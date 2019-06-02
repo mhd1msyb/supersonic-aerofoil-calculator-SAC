@@ -18,7 +18,7 @@ Cross-platform interactive flow calculator for aerofoils. Cross-sections are con
  - Plot cL, cD, and coefficient ratios vs. AoA
  - Display pressure ratios, flow speeds, bow shock data and more using the data tables
  - Weak and strong shocks resolved numerically using the bisection method
- - Oblique shock and expansion fan visualkisation
+ - Oblique shock and expansion fan visualisation
  - Integrated aerofoil library, with ready-to-use presets
  - Variable AoA, flow speed and gas gamma
  
