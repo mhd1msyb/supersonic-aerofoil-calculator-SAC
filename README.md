@@ -4,7 +4,7 @@
 
 ## Description
 
-Cross-platform interactive flow calculator for aerofoils. Cross-sections are constructed in 2D pixel coordinates, by either using a touchscreen, or LMB on a mouse, to add nodal points (defining line segments) which form the outline mesh. The aerofoil can simulated to undergo variable angle of attack (AoA), and oblique shocks (OS) and expansion fans (EF) are calculated for every segment and rendered using colour-coded primitives (lines for OS, triangles for ES). Plots can be generated for common coefficients, namely cL and cD, for user-defined inlet flow conditions flow speed and gas gamma. The cross-section can be visualised in 3D as a single hollow blade/wing, or a set of instanced blades arranged around the hub of a turbine.
+Cross-platform interactive flow calculator for aerofoils. Cross-sections are constructed in 2D pixel coordinates using a touchscreen or LMB mouse, to add nodal points (defining line segments) which form the outline. The aerofoil can simulated to undergo variable angle of attack (AoA), and oblique shocks (OS) and expansion fans (EF) are calculated for every segment and rendered using colour-coded primitives (lines for OS, triangles for ES). Plots can be generated for common coefficients, namely cL and cD, for user-defined inlet flow speed and gas gamma. The cross-section can be visualised in 3D as a single hollow blade/wing, or a set of instanced blades arranged around the hub of a turbine.
 
 
 
@@ -45,7 +45,7 @@ If you want to compile and run the source files:
  - Press `F5` to run
  
  ## Issues, comments and queries
- Please report any bugs using the issue tracker. Additionally, if you would like to ask regarding any aspect of the program, feel free to send me (Mehdi) an email at [mhdmsy@hotmail.co.uk]
+ Please report any bugs/crashes using the issue tracker. Please provide a screen shot of the command window (black window with ascii characters) when reporting program crahses. Additionally, if you would like to ask a question(s) regarding any aspect of the program, feel free to send me (Mehdi) an email at [mhdmsy@hotmail.co.uk]
  
  
 
