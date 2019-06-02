@@ -16,6 +16,7 @@ Cross-platform interactive flow calculator for aerofoils. Cross-sections are con
  - 3D aerofoil mesh visualiser - visualise a single blade/wing or a turbine in 3D
  - Basic save/load aerofoil system
  - Plot cL, cD, and coefficient ratios vs. AoA
+ - Display pressure ratios, flow speeds, bow shock data and more using the data tables
  - Weak and strong shocks resolved numerically using the bisection method
  - Oblique shock and expansion fan visualkisation
  - Integrated aerofoil library, with ready-to-use presets
