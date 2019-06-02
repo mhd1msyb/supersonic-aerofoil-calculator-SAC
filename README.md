@@ -45,7 +45,7 @@ If you want to compile and run the source files:
  - Press `F5` to run
  
  ## Issues, comments and queries
- Please report any bugs/crashes using the issue tracker. Please provide a screen shot of the command window (black window with ascii characters) when reporting program crahses. Additionally, if you would like to ask a question(s) regarding any aspect of the program, feel free to send me (Mehdi) an email at [mhdmsy@hotmail.co.uk]
+ Please report any bugs/crashes using the issue tracker. Please provide a screenshot of the command window (black window with ascii characters) when reporting program crashes. Additionally, if you would like to ask a question(s) regarding any aspect of the program, feel free to send me (Mehdi) an email at [mhdmsy@hotmail.co.uk].
  
  
 
