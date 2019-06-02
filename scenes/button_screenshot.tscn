@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://textures/screenshot_icon.png" type="Texture" id=1]
+[ext_resource path="res://scripts/button_screenshot.gd" type="Script" id=2]
+
+[node name="button_screenshot" type="Button"]
+margin_right = 128.0
+margin_bottom = 38.0
+text = "SCREENSHOT"
+icon = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FileDialog" type="FileDialog" parent="CanvasLayer"]
+margin_left = 263.0
+margin_top = 115.0
+margin_right = 708.0
+margin_bottom = 372.0
+resizable = true
+dialog_text = "Select a folder/directory"
+dialog_hide_on_ok = true
+access = 2
+filters = PoolStringArray( "*.png" )
+show_hidden_files = true
+current_dir = "C:/Users/M/Desktop/plate_calculator/wedge_calculator_v236"
+current_file = "screenshot_name"
+current_path = "C:/Users/M/Desktop/plate_calculator/wedge_calculator_v236/screenshot_name"
+[connection signal="pressed" from="." to="." method="_on_button_screenshot_pressed"]
+[connection signal="confirmed" from="CanvasLayer/FileDialog" to="." method="_on_FileDialog_confirmed"]
