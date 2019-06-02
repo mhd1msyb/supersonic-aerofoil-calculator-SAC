@@ -22,7 +22,7 @@ Cross-platform interactive flow calculator for aerofoils. Cross-sections are con
  - Integrated aerofoil library, with ready-to-use presets
  - Variable AoA, flow speed and gas gamma
  
- 
+ ![](https://github.com/mhd1msyb/supersonic-aerofoil-calculator-SAC/blob/master/preview.png)
  
  ## Pre-compiled binaries (DOWNLOADS)
 Download the zipped files for your platform, then extract and run.
