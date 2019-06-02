@@ -5,7 +5,7 @@ onready var line2d_bottom=get_parent().get_node("pivot/Line2D_bottom")
 onready var label=get_node("label_angle")
 
 var arc_resolution=50
-const arc_radius=400
+const arc_radius=450
 const line_length=200
 #func _ready():
 #	global_transform.origin=pivot.global_transform.origin
@@ -38,13 +38,17 @@ func _draw():
 		draw_polyline(point_array,ColorN("springgreen",0.6),8)
 		
 		
+		
 		####update text position + chars####
-		label.rect_global_position=(Vector2(pivot.global_position.x-arc_radius,pivot.global_position.y)+line_end)*0.5 # set position
+		
+		label.rect_global_position=Vector2(line_start.x,(pivot.global_position.y+line_end.y)*0.5) # set position
 		label.text=str(stepify(pivot.global_rotation_degrees,0.1)) + " deg" # set text
 		
 		
 
 
 
-func _input(event):
-	update()
+func _on_alpha_slider_value_changed(value):
+	if visible==true:
+		update()
+	pass # Replace with function body.

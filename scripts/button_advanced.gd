@@ -14,6 +14,7 @@ extends Button
 8 - pressure ratios p/p1 
 9 - plate indices 
 10 - node indices 
+11 - aerofoil aoa 
 
 """
 
@@ -33,6 +34,7 @@ onready var flow_speeds_listItem=get_parent().get_node("flow_speeds_listItem")
 onready var p_p1_listItem=get_parent().get_node("p_p1_listItem")
 onready var plate_indices_scene=global_var.plate_indices_scene
 onready var node_indices_scene=global_var.node_indices_scene
+onready var aoa_circular_arc=get_parent().get_node("AoA_circular_arc")
 
 
 
@@ -124,17 +126,23 @@ func _on_PopupMenu_index_pressed(index):
 	
 	
 	
-	if index==9 and get_parent().get_node_or_null("plate_indices")==null:#p/p1 data
+	if index==9 and get_parent().get_node_or_null("plate_indices")==null:
 		get_parent().add_child(plate_indices_scene.instance())
 	elif index==9 and get_parent().get_node_or_null("plate_indices")!=null:
 		get_parent().get_node("plate_indices").queue_free()
 		
 		
 		
-	if index==10 and get_parent().get_node_or_null("node_indices")==null:#p/p1 data
+	if index==10 and get_parent().get_node_or_null("node_indices")==null:
 		get_parent().add_child(node_indices_scene.instance())
 	elif index==10 and get_parent().get_node_or_null("node_indices")!=null:
 		get_parent().get_node("node_indices").queue_free()
+	
+	
+	if index==11 and aoa_circular_arc.visible==false:#p/p1 data
+		aoa_circular_arc.visible=true
+	elif index==11 and aoa_circular_arc.visible==true:
+		aoa_circular_arc.visible=false
 	
 	
 #	if index==7:

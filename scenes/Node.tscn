@@ -635,7 +635,7 @@ margin_left = 271.244
 margin_top = 40.7725
 margin_right = 467.244
 margin_bottom = 218.772
-items = [ "WEAK ANGLES", null, 1, false, false, -1, 0, null, "", false, "STRONG ANGLES", null, 1, false, false, -1, 0, null, "", false, "GEOMETRY INFO", null, 1, false, false, -1, 0, null, "", false, "SIMULATION PRECISION", null, 1, false, false, -1, 0, null, "", false, "ARROW INLET", null, 1, false, false, -1, 0, null, "", false, "DASHED LINE", null, 1, false, false, -1, 0, null, "", false, "BOW SHOCK DATA", null, 1, false, false, -1, 0, null, "", false, "FLOW SPEEDS", null, 1, false, false, -1, 0, null, "", false, "PRESSURE RATIOS", null, 1, false, false, -1, 0, null, "", false, "PLATE INDICES", null, 1, false, false, -1, 0, null, "", false, "NODE INDICES", null, 1, false, false, -1, 0, null, "", false ]
+items = [ "WEAK ANGLES", null, 1, false, false, -1, 0, null, "", false, "STRONG ANGLES", null, 1, false, false, -1, 0, null, "", false, "GEOMETRY INFO", null, 1, false, false, -1, 0, null, "", false, "SIMULATION PRECISION", null, 1, false, false, -1, 0, null, "", false, "ARROW INLET", null, 1, false, false, -1, 0, null, "", false, "DASHED LINE", null, 1, false, false, -1, 0, null, "", false, "BOW SHOCK DATA", null, 1, false, false, -1, 0, null, "", false, "FLOW SPEEDS", null, 1, false, false, -1, 0, null, "", false, "PRESSURE RATIOS", null, 1, false, false, -1, 0, null, "", false, "PLATE INDICES", null, 1, false, false, -1, 0, null, "", false, "NODE INDICES", null, 1, false, false, -1, 0, null, "", false, "AEROFOIL AOA", null, 1, false, false, -1, 0, null, "", false ]
 
 [node name="button_generate_3d_mesh" type="Button" parent="."]
 margin_left = 559.144
@@ -867,13 +867,14 @@ script = ExtResource( 49 )
 [connection signal="value_changed" from="alpha_slider" to="strong_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="flow_speeds_listItem/ItemList" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="p_p1_listItem/ItemList" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="oblique_shock_END_EDGES" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="expansion_fans" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="oblique_shock_lines" method="_on_alpha_slider_value_changed"]
-[connection signal="button_up" from="m_slider_button" to="graphs_cL_cD" method="_on_m_slider_button_button_up"]
+[connection signal="value_changed" from="alpha_slider" to="expansion_fans" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="AoA_circular_arc" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="oblique_shock_END_EDGES" method="_on_alpha_slider_value_changed"]
 [connection signal="button_up" from="m_slider_button" to="." method="_on_m_slider_button_button_up"]
-[connection signal="button_up" from="gamma_slider_button" to="graphs_cL_cD" method="_on_gamma_slider_button_button_up"]
+[connection signal="button_up" from="m_slider_button" to="graphs_cL_cD" method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="." method="_on_gamma_slider_button_button_up"]
+[connection signal="button_up" from="gamma_slider_button" to="graphs_cL_cD" method="_on_gamma_slider_button_button_up"]
 [connection signal="value_changed" from="simulation_precision_slider" to="simulation_precision_slider" method="_on_simulation_precision_slider_value_changed"]
 [connection signal="toggled" from="checkboxes/checkbox_cL_plot" to="graphs_cL_cD" method="_on_checkbox_cL_plot_toggled"]
 [connection signal="toggled" from="checkboxes/checkbox_cD_plot" to="graphs_cL_cD" method="_on_checkbox_cD_plot_toggled"]
@@ -885,8 +886,8 @@ script = ExtResource( 49 )
 [connection signal="pressed" from="finish_button" to="." method="_on_finish_button_pressed"]
 [connection signal="pressed" from="button_undo" to="button_undo" method="_on_button_undo_pressed"]
 [connection signal="toggled" from="button_edit" to="button_edit" method="_on_button_edit_toggled"]
-[connection signal="toggled" from="button_edit" to="graphs_cL_cD" method="_on_button_edit_toggled"]
 [connection signal="toggled" from="button_edit" to="." method="_on_button_edit_toggled"]
+[connection signal="toggled" from="button_edit" to="graphs_cL_cD" method="_on_button_edit_toggled"]
 [connection signal="toggled" from="button_edit" to="edit_mode_preview" method="_on_button_edit_toggled"]
 [connection signal="index_pressed" from="button_edit/CanvasLayer/PopupMenu" to="button_edit" method="_on_PopupMenu_index_pressed"]
 [connection signal="index_pressed" from="button_edit/CanvasLayer/PopupMenu" to="edit_mode_preview" method="_on_PopupMenu_index_pressed"]
