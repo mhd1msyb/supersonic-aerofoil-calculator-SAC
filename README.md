@@ -48,7 +48,7 @@ If you want to compile and run the source files:
  ...
  
  ## Issues, comments and queries
- Please report any bugs/crashes using the issue tracker. Please provide a screenshot of the command window (black window with ascii characters) when reporting program crashes. Additionally, if you would like to ask a question(s) regarding any aspect of the program, feel free to send me (Mehdi) an email at [mhdmsy@hotmail.co.uk].
+ Please report any bugs/crashes using the issue tracker. When reporting crashes, pleas provide a screenshot of the command window. Additionally, if you would like to ask a question(s) regarding any aspect of the program, feel free to send me (Mehdi) an email at [mhdmsy@hotmail.co.uk].
  
  
 
