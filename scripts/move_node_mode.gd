@@ -14,6 +14,8 @@ func _ready():
 func _input(event):
 	var index=0
 	
+	
+	
 	for i in (line2d_bottom.get_child_count()):
 		var node=line2d_bottom.get_child(i)
 		if node.pressed:

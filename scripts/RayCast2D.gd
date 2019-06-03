@@ -134,13 +134,59 @@ func _highlight_position_along_line(index):
 
 
 func _input(event):
-	global_transform.origin=get_global_mouse_position()
-	
 	var store_old_GLOBAL_coords_array=[]
 	var store_old_LOCAL_coords_array=[]
 	var index=0
+	
+
+		
+	if event is InputEventScreenTouch or InputEventScreenDrag: # for touchscreen
+		global_transform.origin=event.position
 	#update()
-	if event.is_action_pressed("l_click"):
+	
+	if event is InputEventMouse: # for mouse
+		global_transform.origin=get_viewport().get_mouse_position()
+	
+	
+	if event is InputEventScreenTouch: # for touchscreen
+		if event.pressed==false:
+			_remove_collision_polygon()
+			_add_collision_polygon()
+			
+			if is_colliding():
+				
+				index=get_collider().get_position_in_parent()
+				print(get_collider().get_position_in_parent())
+	#		
+				for i in line2d_bottom.get_point_count():
+					store_old_GLOBAL_coords_array.append(line2d_bottom.to_global(line2d_bottom.get_point_position(i)))
+					store_old_LOCAL_coords_array.append(line2d_bottom.get_point_position(i))
+					
+				store_old_LOCAL_coords_array.insert(index+1,line2d_bottom.to_local(_highlight_position_along_line(index)))
+				store_old_GLOBAL_coords_array.insert(index+1,_highlight_position_along_line(index))
+				
+				_delete_nodes_and_line()
+				
+				for i in len(store_old_LOCAL_coords_array):
+					line2d_bottom.add_point(store_old_LOCAL_coords_array[i])
+				
+				var collision_node=collision_node_scene.instance() #add collision node
+				line2d_bottom.add_child_below_node(line2d_bottom.get_child(index),collision_node) #add the collision node in the correct order
+				collision_node.rect_global_position=_highlight_position_along_line(index)-collision_node.rect_size*0.5
+				
+			_remove_collision_polygon()
+			_add_collision_polygon()
+			
+			pass
+	
+	
+	
+	
+	
+	
+	
+	
+	elif event.is_action_pressed("l_click"):# for mouse
 		_remove_collision_polygon()
 		_add_collision_polygon()
 		
@@ -168,6 +214,10 @@ func _input(event):
 		_remove_collision_polygon()
 		_add_collision_polygon()
 #		_delete_nodes_and_line()
+
+
+
+
 
 	if is_colliding():
 		#highlight_position_along_line_SPRITE.show()
