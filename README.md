@@ -44,6 +44,9 @@ If you want to compile and run the source files:
  - Open the `project.godot` file using the Godot Engine application (an .exe on Windows)
  - Press `F5` to run
  
+ #### Export to Android
+ ...
+ 
  ## Issues, comments and queries
  Please report any bugs/crashes using the issue tracker. Please provide a screenshot of the command window (black window with ascii characters) when reporting program crashes. Additionally, if you would like to ask a question(s) regarding any aspect of the program, feel free to send me (Mehdi) an email at [mhdmsy@hotmail.co.uk].
  
