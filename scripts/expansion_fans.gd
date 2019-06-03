@@ -153,7 +153,10 @@ func _on_checkbox_expansion_fan_toggled(button_pressed):
 func _on_m_slider_button_button_up():
 	if checkbox_expansion_fan.pressed==true:
 		if (global_var.bow_shock_angle+1)!=1.1:
-			global_var._yield_frames(3) #delays exectution of function by by 3 frames (to ensure all values have been updated before redrawing the lines)
+			yield(get_tree(),"idle_frame")
+			yield(get_tree(),"idle_frame")
+			yield(get_tree(),"idle_frame")
+			yield(get_tree(),"idle_frame")
 			update()
 			#print(global_var.list_p_p1,"  ",global_var.list_weak_shock_angle)
 	pass # Replace with function body.
@@ -162,7 +165,10 @@ func _on_m_slider_button_button_up():
 func _on_gamma_slider_button_button_up():
 	if checkbox_expansion_fan.pressed==true:
 		if (global_var.bow_shock_angle+1)!=1.1:
-			global_var._yield_frames(3) #delays exectution of function by by 3 frames (to ensure all values have been updated before redrawing the lines)
+			yield(get_tree(),"idle_frame")
+			yield(get_tree(),"idle_frame")
+			yield(get_tree(),"idle_frame")
+			yield(get_tree(),"idle_frame")
 			update()
 			#print(global_var.list_p_p1,"  ",global_var.list_weak_shock_angle)
 	pass # Replace with function body.

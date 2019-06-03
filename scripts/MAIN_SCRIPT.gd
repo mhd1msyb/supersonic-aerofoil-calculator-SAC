@@ -1834,30 +1834,22 @@ func _on_m_slider_button_button_up():
 	_find_bow_shock()
 	
 	
-	
-	
-	
-	
-	if line2d_bottom.get_point_count()!=global_var.point_count_before_edit:
-		global_var.aerofoil_geomtery_changed=true
-		
-	
-	else:
-		for i in range(line2d_bottom.get_point_count()):
-			if line2d_bottom.get_point_position(i)!=global_var.point_coord_before_edit[i]:
-				global_var.aerofoil_geomtery_changed=true
-				break
-				
-	
-	
-	
-	
-	global_var.point_count_before_edit=line2d_bottom.get_point_count()
-	
-	_store_point_coord_before_edit()
-	
-	
 	global_var.random_graph_point_color=Vector3(randf(),randf(),randf())# generate random colour
+	
+	
+	yield(get_tree(),"idle_frame")
+	yield(get_tree(),"idle_frame")
+	yield(get_tree(),"idle_frame")
+	
+	_MAIN_UPDATE() # update all variables (speed, p/p1, cL, etc) once slider is changed
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 
@@ -1904,34 +1896,13 @@ func _on_gamma_slider_button_button_up():
 	
 	_find_bow_shock()
 	
-	
-	
-	
-	
-	
-	if line2d_bottom.get_point_count()!=global_var.point_count_before_edit:
-		global_var.aerofoil_geomtery_changed=true
-		
-	
-	else:
-		for i in range(line2d_bottom.get_point_count()):
-			if line2d_bottom.get_point_position(i)!=global_var.point_coord_before_edit[i]:
-				global_var.aerofoil_geomtery_changed=true
-				break
-				
-	
-	
-	
-	
-	global_var.point_count_before_edit=line2d_bottom.get_point_count()
-	
-	_store_point_coord_before_edit()
-	
-	
-	global_var.random_graph_point_color=Vector3(randf(),randf(),randf())# generate random colour
 	global_var.random_graph_point_color=Vector3(randf(),randf(),randf())# generate random colour
 	
-	#_MAIN_UPDATE(global_var.alpha_degrees)
+	yield(get_tree(),"idle_frame")
+	yield(get_tree(),"idle_frame")
+	yield(get_tree(),"idle_frame")
+
+	_MAIN_UPDATE() # update all variables (speed, p/p1, cL, etc) once slider is changed
 	
 	
 	
@@ -1973,12 +1944,11 @@ func _add_bow_shock_message(): # adds message when bow shock if formed
 	
 	
 	
-func _MAIN_UPDATE(value):
+func _MAIN_UPDATE():
 ###clean the lists and re-initialise them (to avoid values from previous updates afftecing the next update)#######################################################
 	_clear_lists()
 	
 	###rotate the plate by the specified amount ('alpha')#######################################################
-	pivot.global_rotation_degrees=value
 	
 	###update the vectors, coordinates and mpoints of the lines after rotation###########	
 	_update_coords_vectors_midpoints()
@@ -2010,14 +1980,14 @@ func _MAIN_UPDATE(value):
 			_oblique_shock(ii)
 		elif global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==false:
 			break
-			print("oblique break")
+			print("oblique break, _on_alpha_slider_value_changed")
 			
 			
 			
 		if global_var.list_strings[ii]=="expansion" and _expansion(ii)==true:
 			_expansion(ii)
 		elif global_var.list_strings[ii]=="expansion" and _expansion(ii)==false:
-			print("expansion break")
+			print("expansion break, _on_alpha_slider_value_changed")
 			#global_var.list_p_p1.clear()
 			#global_var.list_m.clear()
 			break
@@ -2025,18 +1995,6 @@ func _MAIN_UPDATE(value):
 			
 		if global_var.list_strings[ii]=="nothing":
 			_nothing(ii)
-			
-	#_display_errors()
-
-			
-			
-
-	
-	########update 2d graphics (lines, exp fan triangles) ###################
-	#update()
-	print("updateee")
-	
-	########Calculate lift coefficient and drag coefficient###################
 			
 	_cL()
 	

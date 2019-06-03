@@ -5,7 +5,7 @@
 [ext_resource path="res://scripts/hub.gd" type="Script" id=3]
 [ext_resource path="res://textures/back_icon.png" type="Texture" id=4]
 [ext_resource path="res://scripts/back_button.gd" type="Script" id=5]
-[ext_resource path="res://textures/move_graph_icon.png" type="Texture" id=6]
+[ext_resource path="res://textures/rotate_icon.png" type="Texture" id=6]
 [ext_resource path="res://scenes/FPS.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/button_screenshot.tscn" type="PackedScene" id=8]
 

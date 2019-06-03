@@ -235,157 +235,6 @@ func _on_alpha_slider_value_changed(value):
 
 
 
-
-
-#func _m2(ii,m):
-#	var m2n=sqrt(((global_var.gamma-1)*pow(m,2)*pow(sin(_shock_angle(ii,m)),2) +2)/((2*global_var.gamma*pow(m,2)*pow(sin(_shock_angle(ii,m)),2))-(global_var.gamma-1)))
-#	var m2=m2n/(sin(_shock_angle(ii,m)-global_var.list_deflection_angle[ii]))
-#	return m2
-#
-#
-#
-#
-#func _p_p1(ii,m):
-#	#var angle=list_deflection_angle[ii]+shock_angle
-#	var p_p1=(1/(global_var.gamma+1)) * (2*global_var.gamma*pow(m,2)*pow(sin(_shock_angle(ii,m)),2) -(global_var.gamma-1))
-#	return p_p1
-#
-#
-#
-#
-#
-#
-#func _plot_curve(m):#done
-#
-#	var points=100
-#	#var indexi=0
-#	#var startingpoint=0
-#	var beta_array_initial=[]
-#	#var beta_array_final=[]
-#	var theta_array_initial=[]
-#	#var theta_array_final=[]
-#
-#
-#	beta_array_initial=global_var._linspace(deg2rad(0.1),deg2rad(100),points)
-#	theta_array_initial=global_var._linspace(0,0,points)
-#
-#	for i in range(len(beta_array_initial)):
-#
-#		theta_array_initial[i]=atan(global_var._Equation__flowDeflection_shockAngle(beta_array_initial[i],m))
-#
-#	return theta_array_initial
-#
-#
-#
-#
-#func _shock_angle(index,m): # done
-#
-############WEAK SHOCK###########
-#
-#	var deflection_angle=0
-#
-#	if index==0:#top
-#		deflection_angle=global_var.list_GlobalAngles[global_var.index_bottom_top_plate]
-#		m=global_var.list_m.back()
-#
-#	if index==1:#bottom
-#		deflection_angle=global_var.list_GlobalAngles[global_var.index_bottom_top_plate-1]
-#		m=global_var.list_m[global_var.index_bottom_top_plate-1]
-#
-#
-#	var setpoint=tan(deflection_angle)
-#	var resolution=global_var.simulation_precision
-#	var minVal=deg2rad(0)
-#	var maxVal=deg2rad(85)
-#	var val=[minVal,maxVal]
-#	var mpoint=(val[0]+val[1])*0.5
-#	var shock_angle=0
-#	#var iterations=0
-#
-#
-#	if deflection_angle<global_var._max(_plot_curve(m))*0.93:
-#		while abs(global_var._Equation__flowDeflection_shockAngle(mpoint,m)-setpoint)>resolution:
-#
-#			#iterations+=1
-#			mpoint=(val[0]+val[1])*0.5
-#			if global_var._Equation__flowDeflection_shockAngle(mpoint,m)>setpoint:
-#			    val[1]=mpoint
-#			if global_var._Equation__flowDeflection_shockAngle(mpoint,m)<setpoint:
-#			    val[0]=mpoint
-#
-#		shock_angle=(val[0]+val[1])*0.5
-#
-#		if index==0:
-#			global_var.weak_shock_END_EDGE=shock_angle
-#		if index==1:
-#			global_var.weak_shock_END_EDGE_BOTTOM=shock_angle
-#	else:
-#		print("Error! Deflection (weak shock) angle too large for the given flow condtions (try decreasing aerofoil thickness and lowering speed).")
-#
-#
-#	return shock_angle
-#
-#
-#
-#
-#
-#
-#
-#func _oblique_shock(ii): # this oblique shock func calculates the oblique shock at the END EDGES
-#	var state=null
-#	var m=0
-#	var m2=0
-#	var p2_p0=0
-#	var theta2=0
-#	var p2_p1=0
-#	var deflection_angle=0
-#	#print(global_var.list_GlobalAngles)
-#
-#
-#	if ii==0:#top
-#		deflection_angle=global_var.list_GlobalAngles[global_var.index_bottom_top_plate]
-#		m=global_var.list_m.back()
-#
-#	if ii==1:#bottom
-#		deflection_angle=global_var.list_GlobalAngles[global_var.index_bottom_top_plate-1]
-#		m=global_var.list_m[global_var.index_bottom_top_plate-1]
-#
-#
-#
-#	if deflection_angle<global_var._max(_plot_curve(m))*0.93:
-#		m2=clamp(_m2(ii,m),0,global_var.m1)
-#		p2_p0=_interpolate(_dataset_search(m2,m_dataset,p_p0_dataset)[1],_dataset_search(m2,m_dataset,p_p0_dataset)[2],_dataset_search(m2,m_dataset,p_p0_dataset)[3],_dataset_search(m2,m_dataset,p_p0_dataset)[4],m2)
-#		theta2=deg2rad(_interpolate(_dataset_search(m2,m_dataset,theta_dataset)[1],_dataset_search(m2,m_dataset,theta_dataset)[2],_dataset_search(m2,m_dataset,theta_dataset)[3],_dataset_search(m2,m_dataset,theta_dataset)[4],m2))
-#		p2_p1=_p_p1(ii,m)
-#
-#
-#		if ii==0:
-#			global_var.m2_END_EDGE=m2
-#			global_var.p2_p0_END_EDGE=p2_p0
-#			global_var.theta2_END_EDGE=theta2
-#			global_var.p2_p1_END_EDGE=p2_p1
-#			state=true
-#
-#		if ii==1:
-#			global_var.m2_END_EDGE_BOTTOM=m2
-#			global_var.p2_p0_END_EDGE_BOTTOM=p2_p0
-#			global_var.theta2_END_EDGE_BOTTOM=theta2
-#			global_var.p2_p1_END_EDGE_BOTTOM=p2_p1
-#			state=true
-#
-#
-#
-#	else:
-#		print("too large def angle")
-#		state=false
-#
-#	return state
-#
-#
-#
-#
-
-#
 #
 ##func _on_finish_button_button_up():
 ##	if global_var.bow_shock_angle==10 or global_var.bow_shock_angle!=0.1:
@@ -412,3 +261,27 @@ func _on_alpha_slider_value_changed(value):
 #				for i in range(2):
 #					_oblique_shock(i)
 #	pass # Replace with function body.
+
+
+func _on_m_slider_button_button_up():
+	if checkbox_oblique_shock.pressed==true or global_var.button_advanced_popup_index==0 or global_var.button_advanced_popup_index==1 or global_var.button_advanced_popup_index==7 :
+		if (global_var.bow_shock_angle+1)!=1.1:
+				yield(get_tree(),"idle_frame")
+				yield(get_tree(),"idle_frame")
+				yield(get_tree(),"idle_frame")
+				yield(get_tree(),"idle_frame")
+				_oblique_shock_BOTTOM_EDGE(0)
+				_oblique_shock_BOTTOM_EDGE(1)
+	pass # Replace with function body.
+
+
+func _on_gamma_slider_button_button_up():
+	if checkbox_oblique_shock.pressed==true or global_var.button_advanced_popup_index==0 or global_var.button_advanced_popup_index==1 or global_var.button_advanced_popup_index==7 :
+		if (global_var.bow_shock_angle+1)!=1.1:
+				yield(get_tree(),"idle_frame")
+				yield(get_tree(),"idle_frame")
+				yield(get_tree(),"idle_frame")
+				yield(get_tree(),"idle_frame")
+				_oblique_shock_BOTTOM_EDGE(0)
+				_oblique_shock_BOTTOM_EDGE(1)
+	pass # Replace with function body.

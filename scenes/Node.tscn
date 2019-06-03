@@ -120,6 +120,9 @@ func _on_button_draw_aerofoil_pressed():
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
 
 [node name="pivot" type="Sprite" parent="."]
 position = Vector2( 512.987, 292.81 )
@@ -149,18 +152,18 @@ margin_bottom = -2.09222
 text = "AoA"
 
 [node name="m_slider_button" type="TextureButton" parent="."]
-margin_left = 795.265
-margin_top = 563.0
-margin_right = 1003.26
+margin_left = 795.0
+margin_top = 552.0
+margin_right = 1003.0
 margin_bottom = 581.0
 expand = true
 script = ExtResource( 4 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="m_slider_button"]
 margin_left = 0.513306
-margin_top = -2.0
+margin_top = 3.0
 margin_right = 208.513
-margin_bottom = 20.0
+margin_bottom = 25.0
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 32, 32 )
 patch_margin_left = 8
@@ -169,7 +172,7 @@ patch_margin_right = 8
 patch_margin_bottom = 8
 
 [node name="knob_sprite" type="Sprite" parent="m_slider_button"]
-position = Vector2( 0, 9.27856 )
+position = Vector2( 0, 14.2786 )
 texture = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="m_slider_button"]
@@ -180,18 +183,18 @@ margin_bottom = -3.36206
 text = "flow speed"
 
 [node name="gamma_slider_button" type="TextureButton" parent="."]
-margin_left = 630.516
-margin_top = 563.0
-margin_right = 684.516
+margin_left = 695.34
+margin_top = 552.0
+margin_right = 749.34
 margin_bottom = 581.0
 expand = true
 script = ExtResource( 7 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="gamma_slider_button"]
 margin_left = 1.0
-margin_top = -2.0
+margin_top = 3.0
 margin_right = 54.0
-margin_bottom = 20.0
+margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 5 )
@@ -202,7 +205,7 @@ patch_margin_right = 8
 patch_margin_bottom = 8
 
 [node name="knob_sprite" type="Sprite" parent="gamma_slider_button"]
-position = Vector2( 0, 9.27856 )
+position = Vector2( 0, 14.2786 )
 texture = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="gamma_slider_button"]
@@ -861,20 +864,26 @@ texture = ExtResource( 36 )
 
 [node name="oblique_shock_END_EDGES" type="Node2D" parent="."]
 script = ExtResource( 49 )
-[connection signal="value_changed" from="alpha_slider" to="alpha_slider" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="." method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="oblique_shock_lines" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="oblique_shock_END_EDGES" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="expansion_fans" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="AoA_circular_arc" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="weak_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="flow_speeds_listItem/ItemList" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="strong_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="p_p1_listItem/ItemList" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="flow_speeds_listItem/ItemList" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="weak_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="alpha_slider" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="." method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="oblique_shock_END_EDGES" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="oblique_shock_lines" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="expansion_fans" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="AoA_circular_arc" method="_on_alpha_slider_value_changed"]
 [connection signal="button_up" from="m_slider_button" to="." method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="m_slider_button" to="graphs_cL_cD" method="_on_m_slider_button_button_up"]
+[connection signal="button_up" from="m_slider_button" to="oblique_shock_END_EDGES" method="_on_m_slider_button_button_up"]
+[connection signal="button_up" from="m_slider_button" to="oblique_shock_lines" method="_on_m_slider_button_button_up"]
+[connection signal="button_up" from="m_slider_button" to="expansion_fans" method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="." method="_on_gamma_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="graphs_cL_cD" method="_on_gamma_slider_button_button_up"]
+[connection signal="button_up" from="gamma_slider_button" to="oblique_shock_END_EDGES" method="_on_gamma_slider_button_button_up"]
+[connection signal="button_up" from="gamma_slider_button" to="oblique_shock_lines" method="_on_gamma_slider_button_button_up"]
+[connection signal="button_up" from="gamma_slider_button" to="expansion_fans" method="_on_gamma_slider_button_button_up"]
 [connection signal="value_changed" from="simulation_precision_slider" to="simulation_precision_slider" method="_on_simulation_precision_slider_value_changed"]
 [connection signal="toggled" from="checkboxes/checkbox_cL_plot" to="graphs_cL_cD" method="_on_checkbox_cL_plot_toggled"]
 [connection signal="toggled" from="checkboxes/checkbox_cD_plot" to="graphs_cL_cD" method="_on_checkbox_cD_plot_toggled"]
