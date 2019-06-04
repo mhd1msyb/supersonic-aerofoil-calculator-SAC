@@ -52,5 +52,5 @@ If you want to compile and run the source files:
  
 ## License details
 This program is licensed under...
-This program uses the Godot Engine. Please visit www.godotengine.org/license to view its (Godot Engine)  license.
+This program uses the Godot Engine. Please visit www.godotengine.org/license to view its (Godot Engine)  license, or refer to the `godot_engine_LICENSE` file.
 
