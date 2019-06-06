@@ -51,6 +51,6 @@ If you want to compile and run the source files:
  Please report any bugs/crashes using the issue tracker. When reporting crashes, pleas provide a screenshot of the command window. Additionally, if you would like to ask a question(s) regarding any aspect of the program, feel free to send me (Mehdi) an email at [mhdmsy@hotmail.co.uk].
  
 ## License details
-This program is licensed under the Apache License Version 2.0.
+This program is licensed under the Apache License Version 2.0 (for more details, view the `LICENSE` file).
 This program uses the Godot Engine, which is licensed under the Expat license. Please visit www.godotengine.org/license to view its (Godot Engine)  license, or refer to the `godot_engine_LICENSE` file.
 
