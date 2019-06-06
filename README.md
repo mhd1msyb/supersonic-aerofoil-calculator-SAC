@@ -52,5 +52,5 @@ If you want to compile and run the source files:
  
 ## License details
 This program is licensed under the Apache License Version 2.0.
-This program uses the Godot Engine, which is l;icensed uder the Expat license. Please visit www.godotengine.org/license to view its (Godot Engine)  license, or refer to the `godot_engine_LICENSE` file.
+This program uses the Godot Engine, which is licensed under the Expat license. Please visit www.godotengine.org/license to view its (Godot Engine)  license, or refer to the `godot_engine_LICENSE` file.
 
