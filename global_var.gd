@@ -80,6 +80,7 @@ var cD=0
 var cL_plot_list=[]
 var cD_plot_list=[]
 var cD_div_cL_plot_list=[]
+var cL_div_cD_plot_list=[]
 
 var execute_program=false
 

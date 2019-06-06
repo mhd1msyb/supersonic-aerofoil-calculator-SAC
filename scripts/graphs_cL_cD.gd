@@ -16,7 +16,7 @@ onready var pivot=get_parent().get_node("pivot")
 onready var show_cL_graph_button=get_parent().get_node("checkboxes/checkbox_cL_plot")
 onready var show_cD_graph_button=get_parent().get_node("checkboxes/checkbox_cD_plot")
 onready var show_cD_div_cL_graph_button=get_parent().get_node("checkboxes/checkbox_cD_div_cL_plot")
-
+onready var show_cL_div_cD_graph_button=get_parent().get_node("checkboxes/checkbox_cL_div_cD_plot")
 
 
 
@@ -30,23 +30,40 @@ onready var show_cD_div_cL_graph_button=get_parent().get_node("checkboxes/checkb
 onready var cL_graph=get_node("cL_graph")
 onready var cD_graph=get_node("cD_graph")
 onready var cD_div_cL_graph=get_node("cD_div_cL_graph")
+onready var cL_div_cD_graph=get_node("cL_div_cD_graph")
+
+
+
 
 
 onready var cL_points=get_node("cL_graph").get_node("points")
 onready var cL_labels=get_node("cL_graph").get_node("labels")
+
 onready var cD_points=get_node("cD_graph").get_node("points")
 onready var cD_labels=get_node("cD_graph").get_node("labels")
+
 onready var cD_div_cL_points=get_node("cD_div_cL_graph").get_node("points")
 onready var cD_div_cL_labels=get_node("cD_div_cL_graph").get_node("labels")
+
+onready var cL_div_cD_points=get_node("cL_div_cD_graph").get_node("points")
+onready var cL_div_cD_labels=get_node("cL_div_cD_graph").get_node("labels")
+
+
+
+
 
 
 onready var cL_x_label=get_node("cL_graph").get_node("labels").get_node("x")
 onready var cL_y_label=get_node("cL_graph").get_node("labels").get_node("y")
+
 onready var cD_x_label=get_node("cD_graph").get_node("labels").get_node("x")
 onready var cD_y_label=get_node("cD_graph").get_node("labels").get_node("y")
+
 onready var cD_div_cL_x_label=get_node("cD_div_cL_graph").get_node("labels").get_node("x")
 onready var cD_div_cL_y_label=get_node("cD_div_cL_graph").get_node("labels").get_node("y")
 
+onready var cL_div_cD_x_label=get_node("cL_div_cD_graph").get_node("labels").get_node("x")
+onready var cL_div_cD_y_label=get_node("cL_div_cD_graph").get_node("labels").get_node("y")
 
 var graph_size=700
 var point_scale=0.2
@@ -69,6 +86,11 @@ func _ready():
 	cD_div_cL_labels.add_child(rich_text_instance_cD_div_cL)
 	rich_text_instance_cD_div_cL.text=str(0)
 
+	var rich_text_instance_cL_div_cD=rich_text.instance()
+	cL_div_cD_labels.add_child(rich_text_instance_cL_div_cD)
+	rich_text_instance_cL_div_cD.text=str(0)
+
+
 	_axes_name_label("AoA (deg)", cL_graph,"x")
 	_axes_name_label("cL", cL_graph,"y")
 	
@@ -79,6 +101,9 @@ func _ready():
 	_axes_name_label("AoA (deg)", cD_div_cL_graph,"x")
 	_axes_name_label("cD/cL", cD_div_cL_graph,"y")
 	
+	
+	_axes_name_label("AoA (deg)", cL_div_cD_graph,"x")
+	_axes_name_label("cL/cD", cL_div_cD_graph,"y")
 	
 	
 	
@@ -162,9 +187,17 @@ func _draw():
 		
 	if show_cD_graph_button.pressed==true:
 		_axes_draw_line("cD_graph")
+		update()
 		
 	if show_cD_div_cL_graph_button.pressed==true:
 		_axes_draw_line("cD_div_cL_graph")
+		update()
+		
+	if show_cL_div_cD_graph_button.pressed==true:
+		_axes_draw_line("cL_div_cD_graph")
+		update()
+		
+		
 	pass
 
 
@@ -192,6 +225,14 @@ func _labels(axis,pos,value,graph_name_string):
 			text_instance=cD_div_cL_x_label
 		if axis=="y":
 			text_instance=cD_div_cL_y_label
+			
+			
+			
+	if graph_name_string=="cL_div_cD_graph":
+		if axis=="x":
+			text_instance=cL_div_cD_x_label
+		if axis=="y":
+			text_instance=cL_div_cD_y_label
 			
 			
 			
@@ -228,6 +269,11 @@ func _on_checkbox_cD_div_cL_plot_toggled(button_pressed):
 
 
 
+func _on_checkbox_cL_div_cD_plot_toggled(button_pressed):
+	cL_div_cD_graph.visible=button_pressed
+	update()
+	pass # Replace with function body.
+
 
 
 func _on_button_edit_toggled(button_pressed): #MAIN FUNCTION
@@ -238,6 +284,8 @@ func _on_button_edit_toggled(button_pressed): #MAIN FUNCTION
 	_update_graph(button_pressed,cD_graph)
 	
 	_update_graph(button_pressed,cD_div_cL_graph)
+	
+	_update_graph(button_pressed,cL_div_cD_graph)
 	
 	
 	
@@ -279,6 +327,10 @@ func _update_graph(button_pressed,graph):
 		check_button=show_cD_div_cL_graph_button
 		list=global_var.cD_div_cL_plot_list
 		cD_div_cL_graph.get_node("points").add_child(sub_points)
+	if graph==cL_div_cD_graph:
+		check_button=show_cL_div_cD_graph_button
+		list=global_var.cL_div_cD_plot_list
+		cL_div_cD_graph.get_node("points").add_child(sub_points)
 	
 	if button_pressed==false and global_var.aerofoil_geomtery_changed==true and check_button.pressed:
 		for i in len(list):
@@ -315,6 +367,10 @@ func _input(event): # to drag the graphs
 	
 		if cD_div_cL_graph.pressed:
 			cD_div_cL_graph.rect_global_position=get_global_mouse_position()
+			update()
+			
+		if cL_div_cD_graph.pressed:
+			cL_div_cD_graph.rect_global_position=get_global_mouse_position()
 			update()
 		#print(global_var.aerofoil_geomtery_changed)
 
@@ -360,6 +416,8 @@ func _on_m_slider_button_button_up():
 	
 	_update_graph(false,cD_div_cL_graph)
 	
+	_update_graph(false,cL_div_cD_graph)
+	
 	update()
 	
 	global_var.aerofoil_geomtery_changed=false
@@ -374,7 +432,12 @@ func _on_gamma_slider_button_button_up():
 	
 	_update_graph(false,cD_div_cL_graph)
 	
+	_update_graph(false,cL_div_cD_graph)
+	
 	update()
 	
 	global_var.aerofoil_geomtery_changed=false
 	pass # Replace with function body.
+
+
+

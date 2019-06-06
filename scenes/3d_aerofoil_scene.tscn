@@ -231,6 +231,7 @@ margin_bottom = 586.15
 min_value = -40.0
 max_value = 40.0
 step = 0.001
+ticks_on_borders = true
 [connection signal="pressed" from="button_back" to="button_back" method="_on_button_back_pressed"]
 [connection signal="toggled" from="shadows_container/CheckButton" to="hub" method="_on_CheckButton_toggled"]
 [connection signal="value_changed" from="blade_AoA_rotation" to="hub" method="_on_blade_AoA_rotation_value_changed"]

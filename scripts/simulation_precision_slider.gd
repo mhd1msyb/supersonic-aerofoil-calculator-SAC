@@ -21,5 +21,10 @@ func _ready():
 
 func _on_simulation_precision_slider_value_changed(value):
 	global_var.simulation_precision=1/pow(10,value)
-	label.text="Iteration Resolution : " +str(global_var.simulation_precision)
+	
+	
+	if value==max_value:
+		label.text="Iteration Resolution : maximum "
+	else:
+		label.text="Iteration Resolution : " +str(global_var.simulation_precision)
 	pass # replace with function body

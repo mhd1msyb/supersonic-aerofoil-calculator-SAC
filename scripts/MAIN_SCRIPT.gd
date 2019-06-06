@@ -1597,6 +1597,7 @@ func _find_bow_shock():
 	var cL_plot_list=[]
 	var cD_plot_list=[]
 	var cD_div_cL_plot_list=[]
+	var cL_div_cD_plot_list=[]
 	var alpha_radians_plot_list=[]
 	var count=0
 	var first_break=null
@@ -1661,7 +1662,7 @@ func _find_bow_shock():
 		else:
 			cD_div_cL_plot_list.append(global_var.cD/global_var.cL)
 		
-		
+		cL_div_cD_plot_list.append(global_var.cL/global_var.cD)
 		
 		
 		
@@ -1728,6 +1729,8 @@ func _find_bow_shock():
 				cD_div_cL_plot_list.append(global_var.cD/0.000001) # to prevent division by 0
 			else:
 				cD_div_cL_plot_list.append(global_var.cD/global_var.cL)
+		
+			cL_div_cD_plot_list.append(global_var.cL/global_var.cD)
 	
 	
 	
@@ -1748,6 +1751,7 @@ func _find_bow_shock():
 	global_var.cL_plot_list=cL_plot_list
 	global_var.cD_plot_list=cD_plot_list
 	global_var.cD_div_cL_plot_list=cD_div_cL_plot_list
+	global_var.cL_div_cD_plot_list=cL_div_cD_plot_list
 	global_var.alpha_radians_plot_list=alpha_radians_plot_list
 	#print(global_var.alpha_radians_plot_list)
 	
