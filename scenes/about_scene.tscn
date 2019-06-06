@@ -66,13 +66,13 @@ size_flags_vertical = 3
 text = "Thanks for using this program. If you wish to report any bugs/glitches, or have any questions, please forward them to : mhdmsy@hotmail.co.uk"
 
 [node name="godot_credits" type="RichTextLabel" parent="."]
-margin_left = 284.08
+margin_left = 284.0
 margin_top = 344.0
-margin_right = 751.08
-margin_bottom = 391.0
+margin_right = 752.0
+margin_bottom = 410.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "This program uses the Godot Engine, which is licensed under the Expat license : godotengine.org/license
+text = "This program is licensed under the Apache License Version 2.0. This program uses the Godot Engine, which is licensed under the Expat license : godotengine.org/license
 The Godot Engine can be downloaded from : godotengine.org"
 
 [node name="button_back" type="Button" parent="."]
