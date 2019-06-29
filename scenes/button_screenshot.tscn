@@ -20,11 +20,11 @@ margin_bottom = 372.0
 resizable = true
 dialog_text = "Select a folder/directory"
 dialog_hide_on_ok = true
+mode_overrides_title = false
 access = 2
 filters = PoolStringArray( "*.png" )
-show_hidden_files = true
-current_dir = "C:/Users/M/Desktop/plate_calculator/wedge_calculator_v236"
+current_dir = "C:/Users/MhMs/Desktop/plate_calculator/wedge_calculator_v240"
 current_file = "screenshot_name"
-current_path = "C:/Users/M/Desktop/plate_calculator/wedge_calculator_v236/screenshot_name"
+current_path = "C:/Users/MhMs/Desktop/plate_calculator/wedge_calculator_v240/screenshot_name"
 [connection signal="pressed" from="." to="." method="_on_button_screenshot_pressed"]
 [connection signal="confirmed" from="CanvasLayer/FileDialog" to="." method="_on_FileDialog_confirmed"]

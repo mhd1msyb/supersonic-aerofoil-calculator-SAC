@@ -15,6 +15,7 @@ extends Button
 9 - plate indices 
 10 - node indices 
 11 - aerofoil aoa 
+12 - screenshot
 
 """
 
@@ -35,6 +36,7 @@ onready var p_p1_listItem=get_parent().get_node("p_p1_listItem")
 onready var plate_indices_scene=global_var.plate_indices_scene
 onready var node_indices_scene=global_var.node_indices_scene
 onready var aoa_circular_arc=get_parent().get_node("AoA_circular_arc")
+onready var button_screenshot=get_parent().get_node("button_screenshot")
 
 
 
@@ -139,15 +141,21 @@ func _on_PopupMenu_index_pressed(index):
 		get_parent().get_node("node_indices").queue_free()
 	
 	
-	if index==11 and aoa_circular_arc.visible==false:#p/p1 data
+	if index==11 and aoa_circular_arc.visible==false:#circular arc
 		aoa_circular_arc.visible=true
 	elif index==11 and aoa_circular_arc.visible==true:
 		aoa_circular_arc.visible=false
 	
 	
-#	if index==7:
-#		get_tree().change_scene_to(global_var.settings_scene)
-		
+	
+	if index==12 and button_screenshot.visible==false:#screenshot button
+		button_screenshot.visible=true
+	elif index==12 and button_screenshot.visible==true:
+		button_screenshot.visible=false
+	
+	
+	
+
 		
 	global_var.button_advanced_popup_index=index
 		

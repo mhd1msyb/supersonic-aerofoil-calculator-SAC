@@ -6,6 +6,10 @@ var aerofoil_size=global_var.aerofoil_size
 var aerofoil_height=global_var.aerofoil_height
 
 func _ready():
+	var mat=SpatialMaterial.new()
+	mat.albedo_color=ColorN("antiquewhite",1.0)
+	material_override=mat # set the material of aerofoil
+	
 	var surftool=SurfaceTool.new()
 	mesh=surftool.clear()
 	

@@ -63,7 +63,7 @@ onready var error_line_highlight=preload("res://scenes/error_line_highlight.tscn
 
 onready var label_please_wait=get_node("label_please_wait")
 
-
+onready var polygon2d_initial_occluder=get_node("polygon2d_initial_occluder")
 
 
 func _refresh_lists():
@@ -1317,7 +1317,7 @@ func _on_aerofoil_library_popup_index_pressed(index):
 	finish_button.queue_free()
 	aerofoil_choice_container.queue_free()
 		
-		
+	#polygon2d_initial_occluder.queue_free()
 		
 	undo_button.disabled=true
 	edit_button.disabled=false

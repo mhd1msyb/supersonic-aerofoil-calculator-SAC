@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://scripts/MAIN_SCRIPT.gd" type="Script" id=1]
 [ext_resource path="res://textures/origin_icon.png" type="Texture" id=2]
@@ -41,14 +41,15 @@
 [ext_resource path="res://scripts/button_save_aerofoil.gd" type="Script" id=39]
 [ext_resource path="res://textures/settings_icon.png" type="Texture" id=40]
 [ext_resource path="res://scripts/button_advanced.gd" type="Script" id=41]
-[ext_resource path="res://textures/generate_3d_mesh_icon.png" type="Texture" id=42]
-[ext_resource path="res://scripts/button_3d_mesh.gd" type="Script" id=43]
-[ext_resource path="res://scenes/button_screenshot.tscn" type="PackedScene" id=44]
-[ext_resource path="res://scripts/chord_slider.gd" type="Script" id=45]
-[ext_resource path="res://scripts/thickness_slider.gd" type="Script" id=46]
-[ext_resource path="res://scenes/FPS.tscn" type="PackedScene" id=47]
-[ext_resource path="res://scripts/edit_mode_preview.gd" type="Script" id=48]
-[ext_resource path="res://scripts/oblique_shock_END_EDGES.gd" type="Script" id=49]
+[ext_resource path="res://textures/screenshot_icon.png" type="Texture" id=42]
+[ext_resource path="res://textures/generate_3d_mesh_icon.png" type="Texture" id=43]
+[ext_resource path="res://scripts/button_3d_mesh.gd" type="Script" id=44]
+[ext_resource path="res://scenes/button_screenshot.tscn" type="PackedScene" id=45]
+[ext_resource path="res://scripts/chord_slider.gd" type="Script" id=46]
+[ext_resource path="res://scripts/thickness_slider.gd" type="Script" id=47]
+[ext_resource path="res://scenes/FPS.tscn" type="PackedScene" id=48]
+[ext_resource path="res://scripts/edit_mode_preview.gd" type="Script" id=49]
+[ext_resource path="res://scripts/oblique_shock_END_EDGES.gd" type="Script" id=50]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends HBoxContainer
@@ -135,20 +136,22 @@ texture_mode = -2120812680
 joint_mode = 2
 
 [node name="alpha_slider" type="HSlider" parent="."]
-margin_left = 110.109
-margin_top = 577.823
-margin_right = 282.109
-margin_bottom = 593.823
+margin_left = 420.0
+margin_top = 474.0
+margin_right = 525.0
+margin_bottom = 490.0
+rect_scale = Vector2( 2, 2 )
 max_value = 10.0
 step = 0.1
 ticks_on_borders = true
 script = ExtResource( 3 )
 
 [node name="alpha_text" type="Label" parent="alpha_slider"]
-margin_left = 48.0
-margin_top = -16.0922
-margin_right = 82.0
-margin_bottom = -2.09222
+margin_left = 40.1972
+margin_top = -5.60718
+margin_right = 74.1972
+margin_bottom = 8.39282
+rect_scale = Vector2( 0.5, 0.5 )
 text = "AoA"
 
 [node name="m_slider_button" type="TextureButton" parent="."]
@@ -671,7 +674,7 @@ margin_left = 271.244
 margin_top = 40.7725
 margin_right = 467.244
 margin_bottom = 218.772
-items = [ "WEAK ANGLES", null, 1, false, false, -1, 0, null, "", false, "STRONG ANGLES", null, 1, false, false, -1, 0, null, "", false, "GEOMETRY INFO", null, 1, false, false, -1, 0, null, "", false, "SIMULATION PRECISION", null, 1, false, false, -1, 0, null, "", false, "ARROW INLET", null, 1, false, false, -1, 0, null, "", false, "DASHED LINE", null, 1, false, false, -1, 0, null, "", false, "BOW SHOCK DATA", null, 1, false, false, -1, 0, null, "", false, "FLOW SPEEDS", null, 1, false, false, -1, 0, null, "", false, "PRESSURE RATIOS", null, 1, false, false, -1, 0, null, "", false, "PLATE INDICES", null, 1, false, false, -1, 0, null, "", false, "NODE INDICES", null, 1, false, false, -1, 0, null, "", false, "AEROFOIL AOA", null, 1, false, false, -1, 0, null, "", false ]
+items = [ "WEAK ANGLES", null, 1, false, false, -1, 0, null, "", false, "STRONG ANGLES", null, 1, false, false, -1, 0, null, "", false, "GEOMETRY INFO", null, 1, false, false, -1, 0, null, "", false, "SIMULATION PRECISION", null, 1, false, false, -1, 0, null, "", false, "ARROW INLET", null, 1, false, false, -1, 0, null, "", false, "DASHED LINE", null, 1, false, false, -1, 0, null, "", false, "BOW SHOCK DATA", null, 1, false, false, -1, 0, null, "", false, "FLOW SPEEDS", null, 1, false, false, -1, 0, null, "", false, "PRESSURE RATIOS", null, 1, false, false, -1, 0, null, "", false, "PLATE INDICES", null, 1, false, false, -1, 0, null, "", false, "NODE INDICES", null, 1, false, false, -1, 0, null, "", false, "AEROFOIL AOA", null, 1, false, false, -1, 0, null, "", false, "SCREENSHOT", ExtResource( 42 ), 1, false, false, -1, 0, null, "", false ]
 
 [node name="button_generate_3d_mesh" type="Button" parent="."]
 margin_left = 559.144
@@ -679,10 +682,11 @@ margin_top = 5.0
 margin_right = 732.144
 margin_bottom = 43.0
 text = "GENERATE 3D MESH"
-icon = ExtResource( 42 )
-script = ExtResource( 43 )
+icon = ExtResource( 43 )
+script = ExtResource( 44 )
 
-[node name="button_screenshot" parent="." instance=ExtResource( 44 )]
+[node name="button_screenshot" parent="." instance=ExtResource( 45 )]
+visible = false
 margin_left = 888.0
 margin_top = 200.0
 margin_right = 1016.0
@@ -708,7 +712,7 @@ max_value = 2.0
 step = 0.001
 tick_count = 3
 ticks_on_borders = true
-script = ExtResource( 45 )
+script = ExtResource( 46 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="chord_slider"]
 margin_top = 38.0
@@ -767,7 +771,7 @@ max_value = 2.0
 step = 0.001
 tick_count = 3
 ticks_on_borders = true
-script = ExtResource( 46 )
+script = ExtResource( 47 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="thickness_slider"]
 margin_top = 38.0
@@ -811,6 +815,11 @@ margin_top = 420.65
 margin_right = 639.294
 margin_bottom = 434.65
 text = "Please wait...(pre-calculation in progress)"
+
+[node name="polygon2d_initial_occluder" type="Polygon2D" parent="."]
+visible = false
+color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
+polygon = PoolVector2Array( -2184.48, -1417.95, -1940.53, 1258.06, 3588.58, 1484.67, 3847.64, -1469.7 )
 
 [node name="aerofoil_choice_container" type="VSplitContainer" parent="."]
 margin_left = 324.0
@@ -864,7 +873,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Load Aerofoil"
 
-[node name="FPS" parent="." instance=ExtResource( 47 )]
+[node name="FPS" parent="." instance=ExtResource( 48 )]
 margin_left = 739.0
 margin_top = 6.0
 margin_right = 779.0
@@ -875,7 +884,7 @@ margin_left = 455.0
 margin_top = 568.0
 margin_right = 550.0
 margin_bottom = 584.0
-script = ExtResource( 48 )
+script = ExtResource( 49 )
 
 [node name="Label" type="Label" parent="edit_mode_preview"]
 margin_top = 1.0
@@ -896,27 +905,28 @@ texture = ExtResource( 36 )
 [node name="colshapes" type="Node2D" parent="."]
 
 [node name="oblique_shock_END_EDGES" type="Node2D" parent="."]
-script = ExtResource( 49 )
-[connection signal="value_changed" from="alpha_slider" to="expansion_fans" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="AoA_circular_arc" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="oblique_shock_END_EDGES" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="oblique_shock_lines" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="." method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="alpha_slider" method="_on_alpha_slider_value_changed"]
+script = ExtResource( 50 )
+
+[connection signal="value_changed" from="alpha_slider" to="flow_speeds_listItem/ItemList" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="weak_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="strong_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="p_p1_listItem/ItemList" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="weak_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="flow_speeds_listItem/ItemList" method="_on_alpha_slider_value_changed"]
-[connection signal="button_up" from="m_slider_button" to="expansion_fans" method="_on_m_slider_button_button_up"]
-[connection signal="button_up" from="m_slider_button" to="oblique_shock_END_EDGES" method="_on_m_slider_button_button_up"]
-[connection signal="button_up" from="m_slider_button" to="oblique_shock_lines" method="_on_m_slider_button_button_up"]
-[connection signal="button_up" from="m_slider_button" to="." method="_on_m_slider_button_button_up"]
+[connection signal="value_changed" from="alpha_slider" to="alpha_slider" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="." method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="oblique_shock_END_EDGES" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="expansion_fans" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="oblique_shock_lines" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="AoA_circular_arc" method="_on_alpha_slider_value_changed"]
 [connection signal="button_up" from="m_slider_button" to="graphs_cL_cD" method="_on_m_slider_button_button_up"]
-[connection signal="button_up" from="gamma_slider_button" to="expansion_fans" method="_on_gamma_slider_button_button_up"]
-[connection signal="button_up" from="gamma_slider_button" to="oblique_shock_END_EDGES" method="_on_gamma_slider_button_button_up"]
-[connection signal="button_up" from="gamma_slider_button" to="oblique_shock_lines" method="_on_gamma_slider_button_button_up"]
-[connection signal="button_up" from="gamma_slider_button" to="." method="_on_gamma_slider_button_button_up"]
+[connection signal="button_up" from="m_slider_button" to="." method="_on_m_slider_button_button_up"]
+[connection signal="button_up" from="m_slider_button" to="oblique_shock_END_EDGES" method="_on_m_slider_button_button_up"]
+[connection signal="button_up" from="m_slider_button" to="expansion_fans" method="_on_m_slider_button_button_up"]
+[connection signal="button_up" from="m_slider_button" to="oblique_shock_lines" method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="graphs_cL_cD" method="_on_gamma_slider_button_button_up"]
+[connection signal="button_up" from="gamma_slider_button" to="." method="_on_gamma_slider_button_button_up"]
+[connection signal="button_up" from="gamma_slider_button" to="oblique_shock_END_EDGES" method="_on_gamma_slider_button_button_up"]
+[connection signal="button_up" from="gamma_slider_button" to="expansion_fans" method="_on_gamma_slider_button_button_up"]
+[connection signal="button_up" from="gamma_slider_button" to="oblique_shock_lines" method="_on_gamma_slider_button_button_up"]
 [connection signal="value_changed" from="simulation_precision_slider" to="simulation_precision_slider" method="_on_simulation_precision_slider_value_changed"]
 [connection signal="toggled" from="checkboxes/checkbox_cL_plot" to="graphs_cL_cD" method="_on_checkbox_cL_plot_toggled"]
 [connection signal="toggled" from="checkboxes/checkbox_cD_plot" to="graphs_cL_cD" method="_on_checkbox_cD_plot_toggled"]
@@ -928,12 +938,12 @@ script = ExtResource( 49 )
 [connection signal="pressed" from="aerofoil_geometry_stats" to="aerofoil_geometry_stats" method="_on_values_general_info_pressed"]
 [connection signal="pressed" from="finish_button" to="." method="_on_finish_button_pressed"]
 [connection signal="pressed" from="button_undo" to="button_undo" method="_on_button_undo_pressed"]
-[connection signal="toggled" from="button_edit" to="." method="_on_button_edit_toggled"]
-[connection signal="toggled" from="button_edit" to="graphs_cL_cD" method="_on_button_edit_toggled"]
-[connection signal="toggled" from="button_edit" to="button_edit" method="_on_button_edit_toggled"]
 [connection signal="toggled" from="button_edit" to="edit_mode_preview" method="_on_button_edit_toggled"]
-[connection signal="index_pressed" from="button_edit/CanvasLayer/PopupMenu" to="button_edit" method="_on_PopupMenu_index_pressed"]
+[connection signal="toggled" from="button_edit" to="button_edit" method="_on_button_edit_toggled"]
+[connection signal="toggled" from="button_edit" to="graphs_cL_cD" method="_on_button_edit_toggled"]
+[connection signal="toggled" from="button_edit" to="." method="_on_button_edit_toggled"]
 [connection signal="index_pressed" from="button_edit/CanvasLayer/PopupMenu" to="edit_mode_preview" method="_on_PopupMenu_index_pressed"]
+[connection signal="index_pressed" from="button_edit/CanvasLayer/PopupMenu" to="button_edit" method="_on_PopupMenu_index_pressed"]
 [connection signal="button_up" from="button_quit" to="button_quit" method="_on_button_quit_button_up"]
 [connection signal="pressed" from="button_restart" to="button_restart" method="_on_button_restart_pressed"]
 [connection signal="pressed" from="button_about" to="button_about" method="_on_button_about_pressed"]
