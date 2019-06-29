@@ -792,7 +792,7 @@ func _ca():
 
 func _cL():
 
-	var cL=cos(global_var.alpha_radians)*_cn() - sin(global_var.alpha_radians)*_ca()
+	var cL=cos(pivot.global_rotation)*_cn() - sin(pivot.global_rotation)*_ca()
 	cL_coeff_lift=cL
 	global_var.cL=cL
 	return cL
@@ -804,7 +804,7 @@ func _cL():
 
 func _cD():
 
-	var cD=sin(global_var.alpha_radians)*_cn() + cos(global_var.alpha_radians)*_ca()
+	var cD=sin(pivot.global_rotation)*_cn() + cos(pivot.global_rotation)*_ca()
 	cD_coeff_drag=cD
 	global_var.cD=cD
 	return cD
@@ -842,13 +842,13 @@ func _on_alpha_slider_value_changed(value):#current
 	
 	
 	
-###clean the lists and re-initialise them (to avoid values from previous updates afftecing the next update)#######################################################
+###clean the lists and re-initialise them (to avoid values from previous updates afftecing the next update#######################################################
 	_clear_lists()
 	
 	###rotate the plate by the specified amount ('alpha')#######################################################
 	pivot.global_rotation_degrees=value
 	
-	###update the vectors, coordinates and mpoints of the lines after rotation###########	
+	###update the vectors, coordinates and mpoints of the lines after rotation#######################################################	
 	_update_coords_vectors_midpoints()
 	
 	
@@ -863,15 +863,15 @@ func _on_alpha_slider_value_changed(value):#current
 #		global_var.list_LocalAngles[i]=acos(global_var.list_vector[i].dot(chord_vec2))
 #		global_var.list_GlobalAngles[i]=acos(global_var.list_vector[i].dot(horizontal_vector))
 		
-		###find whether expansion or contraction#####################################################################		
+		###find whether expansion or contraction#######################################################		
 		_define_expansion_contraction(i)
 		
-		###calculate deflection angles#####################################################################		
+		###calculate deflection angles#######################################################		
 		_deflection_angles(i)
 
 	#var vec=(line2d_bottom.get_point_position(1)-line2d_bottom.get_point_position(0)).normalized()
 	#print(rad2deg(pivot.global_transform.y.normalized().dot(vec)))
-	#apply _oblique_shock() or _expansion based on whether plate is contraction or expansion###########################		
+	#apply _oblique_shock() or _expansion based on whether plate is contraction or expansion#######################################################		
 	for ii in range(len(global_var.list_vector)):
 		
 		if global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==true:
@@ -894,14 +894,7 @@ func _on_alpha_slider_value_changed(value):#current
 		if global_var.list_strings[ii]=="nothing":
 			_nothing(ii)
 			
-	#_display_errors()
-
-			
-			
-
 	
-	########update 2d graphics (lines, exp fan triangles) ###################
-	#update()
 	
 	########Calculate lift coefficient and drag coefficient###################
 			
@@ -910,11 +903,6 @@ func _on_alpha_slider_value_changed(value):#current
 	_cD()
 		
 
-	##############DISPLAY ANY ERRORS###########################################
-		
-		
-	#global_var.times_moved_m_slider+=1
-	
 	#print(global_var.list_p_p1)
 	#print(global_var.list_strings)
 	#print(global_var.m2_END_EDGE_BOTTOM)
@@ -1635,7 +1623,7 @@ func _find_bow_shock():
 		elif _check()[0]==false:
 			#pivot.rotate(deg2rad(float(i)/5))
 			print("broken",count)
-			global_var.bow_shock_angle=count
+			global_var.bow_shock_angle=float(count)
 			alpha_slider.max_value=10
 			first_break=true
 			index_at_break=i
@@ -1643,7 +1631,7 @@ func _find_bow_shock():
 			
 			
 			
-		global_var.alpha_radians=pivot.global_rotation
+		#global_var.alpha_radians=pivot.global_rotation
 		
 		alpha_radians_plot_list.append(pivot.global_rotation)
 		########Calculate lift coefficient and drag coefficient###################
@@ -1662,7 +1650,13 @@ func _find_bow_shock():
 		else:
 			cD_div_cL_plot_list.append(global_var.cD/global_var.cL)
 		
-		cL_div_cD_plot_list.append(global_var.cL/global_var.cD)
+		if global_var.cD==0:
+			cL_div_cD_plot_list.append(global_var.cL/0.000001) # to prevent division by 0
+		else:
+			cL_div_cD_plot_list.append(global_var.cL/global_var.cD)
+		
+		
+		
 		
 		
 		
@@ -1698,14 +1692,14 @@ func _find_bow_shock():
 			if _check()[0]==true:
 				#print(float(i)/100)
 				alpha_slider.max_value=10
-				global_var.bow_shock_angle=10
+				global_var.bow_shock_angle=10.0
 				
 				pass
 
 			elif _check()[0]==false:
 				#pivot.rotate(deg2rad(float(i)/5))
 				print("second break",count-1)
-				global_var.bow_shock_angle=count-1
+				global_var.bow_shock_angle=float(count-1)
 				alpha_slider.max_value=count-1
 				_add_bow_shock_message()
 				
@@ -1714,7 +1708,7 @@ func _find_bow_shock():
 				
 				
 				
-			global_var.alpha_radians=pivot.global_rotation
+			#global_var.alpha_radians=pivot.global_rotation
 			
 			alpha_radians_plot_list.append(pivot.global_rotation)
 
@@ -1729,25 +1723,28 @@ func _find_bow_shock():
 				cD_div_cL_plot_list.append(global_var.cD/0.000001) # to prevent division by 0
 			else:
 				cD_div_cL_plot_list.append(global_var.cD/global_var.cL)
+			
+			if global_var.cD==0:
+				cL_div_cD_plot_list.append(global_var.cL/0.000001) # to prevent division by 0
+			else:
+				cL_div_cD_plot_list.append(global_var.cL/global_var.cD)
+	
 		
-			cL_div_cD_plot_list.append(global_var.cL/global_var.cD)
 	
-	
-	
-	
-		if (count)==1.1: # if bow shock occurs
+		if stepify(global_var.bow_shock_angle,0.1)==0.1: # if bow shock occurs
 			alpha_slider.hide()
 			#m_slider.hide()
 			#gamma_slider.hide()
 		else:# if bow shock NOT occurs
+			
 			alpha_slider.show()
 			m_slider.show()
 			gamma_slider.show()
 		
 		
-		
-	pivot.global_rotation_degrees=alpha_slider.value
-	#global_var.alpha_radians=alpha_slider.value
+	print(global_var.bow_shock_angle)
+	#pivot.global_rotation_degrees=alpha_slider.value
+	pivot.global_rotation_degrees=0
 	global_var.cL_plot_list=cL_plot_list
 	global_var.cD_plot_list=cD_plot_list
 	global_var.cD_div_cL_plot_list=cD_div_cL_plot_list
@@ -1758,19 +1755,6 @@ func _find_bow_shock():
 	
 func _centre_pivot(): # sets pivot to centre of screen
 	pivot.global_transform.origin=viewport_vec*0.5
-
-
-
-
-#func _on_finish_button_button_down(): # show 'Please wait' message when 'Finish' button pressed down
-#	label_please_wait.show()
-#	pass # Replace with function body.
-#
-#
-#func _on_finish_button_button_up():# hide 'Please wait' message
-#	label_please_wait.hide()
-#	pass # Replace with function body.
-
 
 
 
@@ -1789,23 +1773,7 @@ func _please_wait_message():# currently not in use
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 
 
 func _on_m_slider_button_button_up():
@@ -1841,13 +1809,8 @@ func _on_m_slider_button_button_up():
 	global_var.random_graph_point_color=Vector3(randf(),randf(),randf())# generate random colour
 	
 	
-	yield(get_tree(),"idle_frame")
-	yield(get_tree(),"idle_frame")
-	yield(get_tree(),"idle_frame")
-	
+	pivot.global_rotation_degrees=0
 	_MAIN_UPDATE() # update all variables (speed, p/p1, cL, etc) once slider is changed
-	
-	
 	
 	
 	

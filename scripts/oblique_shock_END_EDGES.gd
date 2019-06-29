@@ -129,7 +129,7 @@ func _shock_angle(m,i):#done
 	var setpoint=tan(deflection_angle)
 	var resolution=global_var.simulation_precision
 	var minVal=deg2rad(0)
-	var maxVal=deg2rad(85)
+	var maxVal=deg2rad(90)
 	var val=[minVal,maxVal]
 	var mpoint=(val[0]+val[1])*0.5
 	var shock_angle=0
@@ -181,20 +181,10 @@ func _plot_curve(m):
 	return theta_array_initial
 
 
-
-
-
-
 func _p_p1(m,i): #done
 	#var angle=list_deflection_angle[ii]+shock_angle
 	var p_p1=(1/(global_var.gamma+1)) * (2*global_var.gamma*pow(m,2)*pow(sin(_shock_angle(m,i)),2) -(global_var.gamma-1))
 	return p_p1
-
-
-
-
-
-
 
 
 
@@ -206,82 +196,36 @@ func _Equation__flowDeflection_shockAngle(mpoint,m): #done
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 func _on_alpha_slider_value_changed(value):
 
 	if checkbox_oblique_shock.pressed==true or global_var.button_advanced_popup_index==0 or global_var.button_advanced_popup_index==1 or global_var.button_advanced_popup_index==7 :
 		if global_var.bow_shock_angle==10 or (global_var.bow_shock_angle>0 and value<global_var.bow_shock_angle):
-#			for i in 2:
-#				if _oblique_shock_BOTTOM_EDGE(i)==true:
-				_oblique_shock_BOTTOM_EDGE(0)
-				_oblique_shock_BOTTOM_EDGE(1)
-				print(global_var.m2_END_EDGE_BOTTOM," ",global_var.m2_END_EDGE)
+			_oblique_shock_BOTTOM_EDGE(0)
+			_oblique_shock_BOTTOM_EDGE(1)
+			print(global_var.m2_END_EDGE_BOTTOM," ",global_var.m2_END_EDGE)
 #				else:
 #					print("oblique break, 'oblique_shock_END_EDGES'")
 	pass # Replace with function body.
 
 
 
-
-
-#
-##func _on_finish_button_button_up():
-##	if global_var.bow_shock_angle==10 or global_var.bow_shock_angle!=0.1:
-##		if len(global_var.list_strings)>0:
-##			for i in range(2):
-##				_oblique_shock(i)
-##	pass # Replace with function body.
-#
-#
-#func _on_gamma_slider_button_button_up():
-#	if checkbox_oblique_shock.pressed==true:
-#		if (global_var.bow_shock_angle+1)!=1.1:
-#			if len(global_var.list_strings)>0:
-#				for i in range(2):
-#					_oblique_shock(i)
-#			#print(global_var.list_p_p1,"  ",global_var.list_weak_shock_angle)
-#	pass # Replace with function body.
-#
-#
-#func _on_m_slider_button_button_up():
-#	if checkbox_oblique_shock.pressed==true:
-#		if (global_var.bow_shock_angle+1)!=1.1:
-#			if len(global_var.list_strings)>0: 
-#				for i in range(2):
-#					_oblique_shock(i)
-#	pass # Replace with function body.
-
-
 func _on_m_slider_button_button_up():
 	if checkbox_oblique_shock.pressed==true or global_var.button_advanced_popup_index==0 or global_var.button_advanced_popup_index==1 or global_var.button_advanced_popup_index==7 :
-		if (global_var.bow_shock_angle+1)!=1.1:
-				yield(get_tree(),"idle_frame")
-				yield(get_tree(),"idle_frame")
-				yield(get_tree(),"idle_frame")
-				yield(get_tree(),"idle_frame")
-				_oblique_shock_BOTTOM_EDGE(0)
-				_oblique_shock_BOTTOM_EDGE(1)
+		if (float(global_var.bow_shock_angle)+1.0)!=1.1:
+			yield(get_tree(),"idle_frame")
+			yield(get_tree(),"idle_frame")
+			yield(get_tree(),"idle_frame")
+			_oblique_shock_BOTTOM_EDGE(0)
+			_oblique_shock_BOTTOM_EDGE(1)
 	pass # Replace with function body.
 
 
 func _on_gamma_slider_button_button_up():
 	if checkbox_oblique_shock.pressed==true or global_var.button_advanced_popup_index==0 or global_var.button_advanced_popup_index==1 or global_var.button_advanced_popup_index==7 :
-		if (global_var.bow_shock_angle+1)!=1.1:
-				yield(get_tree(),"idle_frame")
-				yield(get_tree(),"idle_frame")
-				yield(get_tree(),"idle_frame")
-				yield(get_tree(),"idle_frame")
-				_oblique_shock_BOTTOM_EDGE(0)
-				_oblique_shock_BOTTOM_EDGE(1)
+		if (float(global_var.bow_shock_angle)+1.0)!=1.1:
+			yield(get_tree(),"idle_frame")
+			yield(get_tree(),"idle_frame")
+			yield(get_tree(),"idle_frame")
+			_oblique_shock_BOTTOM_EDGE(0)
+			_oblique_shock_BOTTOM_EDGE(1)
 	pass # Replace with function body.

@@ -122,7 +122,7 @@ func _on_checkbox_oblique_shock_toggled(button_pressed):
 
 func _on_gamma_slider_button_button_up(): # update once the gamma slider is changed
 	if checkbox_oblique_shock.pressed==true:
-		if (global_var.bow_shock_angle+1)!=1.1:
+		if float(global_var.bow_shock_angle)!=0.1:
 			yield(get_tree(),"idle_frame")
 			yield(get_tree(),"idle_frame")
 			yield(get_tree(),"idle_frame")
@@ -136,7 +136,7 @@ func _on_gamma_slider_button_button_up(): # update once the gamma slider is chan
 
 func _on_m_slider_button_button_up():# update once the flow speed slider is changed
 	if checkbox_oblique_shock.pressed==true:
-		if (global_var.bow_shock_angle+1)!=1.1:
+		if float(global_var.bow_shock_angle)!=0.1:
 			yield(get_tree(),"idle_frame")
 			yield(get_tree(),"idle_frame")
 			yield(get_tree(),"idle_frame")
