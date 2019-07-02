@@ -48,7 +48,7 @@ If you want to compile and run the source files:
  ...
 
  ## Issues
- Please report any bugs/crashes using the issue tracker. When reporting crashes, pleas provide a screenshot of the command window.
+ Please report any bugs/crashes using the issue tracker. When reporting crashes, please provide a screenshot of the command window.
 
 ## License details
 This program is licensed under the Apache License Version 2.0 (for more details, view the `LICENSE` file).
