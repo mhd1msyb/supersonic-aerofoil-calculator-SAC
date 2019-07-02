@@ -12,7 +12,7 @@ Cross-platform interactive flow calculator for aerofoils. Cross-sections are con
 
  - Cross-platform design, with support for Windows, Linux, Mac, Android and iOS
  - Sketch and edit tools to create aerofoils
- - Built-in geomtery editor
+ - Built-in geometry editor
  - 3D aerofoil mesh visualiser - visualise a single blade/wing or a turbine in 3D
  - Basic save/load aerofoil system
  - Plot cL, cD, and coefficient ratios vs. AoA
@@ -21,17 +21,17 @@ Cross-platform interactive flow calculator for aerofoils. Cross-sections are con
  - Oblique shock and expansion fan visualisation
  - Integrated aerofoil library, with ready-to-use presets
  - User-defined AoA, flow speed and gas gamma
- 
+
  ![](https://github.com/mhd1msyb/supersonic-aerofoil-calculator-SAC/blob/master/preview.png)
- 
+
  ## Pre-compiled binaries (DOWNLOADS)
 Download the zipped files for your platform, then extract and run.
   #### - Windows
   #### - Linux
   #### - Mac
-  
-  
-  
+
+
+
 ## How to use
 Watch the tutorial video (to come)
 
@@ -43,14 +43,13 @@ If you want to compile and run the source files:
  - Download and extract the Godot Engine from www.godotengine.org
  - Open the `project.godot` file using the Godot Engine application (an .exe on Windows)
  - Press `F5` to run
- 
+
  #### Export to Android
  ...
- 
- ## Issues, comments and queries
- Please report any bugs/crashes using the issue tracker. When reporting crashes, pleas provide a screenshot of the command window. Additionally, if you would like to ask a question(s) regarding any aspect of the program, feel free to send me (Mehdi) an email at [mhdmsy@hotmail.co.uk].
- 
+
+ ## Issues
+ Please report any bugs/crashes using the issue tracker. When reporting crashes, pleas provide a screenshot of the command window.
+
 ## License details
 This program is licensed under the Apache License Version 2.0 (for more details, view the `LICENSE` file).
 This program uses the Godot Engine, which is licensed under the Expat license. Please visit www.godotengine.org/license to view its (Godot Engine)  license, or refer to the `godot_engine_LICENSE` file.
-
