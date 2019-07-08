@@ -50,7 +50,7 @@
 [ext_resource path="res://scenes/FPS.tscn" type="PackedScene" id=48]
 [ext_resource path="res://scripts/edit_mode_preview.gd" type="Script" id=49]
 [ext_resource path="res://scripts/oblique_shock_END_EDGES.gd" type="Script" id=50]
-[ext_resource path="res://scenes/reset_aoa_zero.gd" type="Script" id=51]
+[ext_resource path="res://scripts/reset_aoa_zero.gd" type="Script" id=51]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends HBoxContainer
@@ -67,6 +67,8 @@ onready var button_custom_aerofoil=get_node(\"button_custom_aerofoil\")
 onready var button_draw_aerofoil=get_node(\"button_draw_aerofoil\")
 onready var button_load_aerofoil=get_node(\"button_load_aerofoil\")
 onready var sketch_aerofoil_mode_scene=preload(\"res://scenes/sketch_aerofoil_mode.tscn\")
+
+onready var polygon2d_initial_occluder=get_parent().get_parent().get_node(\"polygon2d_initial_occluder\")
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
@@ -99,8 +101,10 @@ func _on_button_custom_aerofoil_pressed():
 
 
 func _on_button_draw_aerofoil_pressed():
+	polygon2d_initial_occluder.queue_free()
 	global_var.aerofoil_choice=\"draw\"
 	finish_button.show()
+	
 	
 	var sketch_aerofoil_mode=sketch_aerofoil_mode_scene.instance()
 	get_parent().get_parent().add_child(sketch_aerofoil_mode)
@@ -817,8 +821,17 @@ margin_right = 639.294
 margin_bottom = 434.65
 text = "Please wait...(pre-calculation in progress)"
 
+[node name="warning" type="Label" parent="."]
+margin_left = 867.0
+margin_top = 207.0
+margin_right = 1062.0
+margin_bottom = 289.0
+rect_scale = Vector2( 0.8, 0.8 )
+text = "WARNING: 'Show oblique shocks' when checked is causing unpredictable crashes in some cases. Use with caution."
+align = 1
+autowrap = true
+
 [node name="polygon2d_initial_occluder" type="ColorRect" parent="."]
-visible = false
 margin_right = 1023.0
 margin_bottom = 600.0
 color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
@@ -910,42 +923,33 @@ texture = ExtResource( 36 )
 script = ExtResource( 50 )
 
 [node name="reset_aoa_zero" type="Button" parent="."]
+visible = false
 margin_left = 920.983
 margin_top = 284.887
 margin_right = 1010.98
 margin_bottom = 348.887
 script = ExtResource( 51 )
 
-[node name="warning" type="Label" parent="."]
-margin_left = 867.0
-margin_top = 207.0
-margin_right = 1062.0
-margin_bottom = 289.0
-rect_scale = Vector2( 0.8, 0.8 )
-text = "WARNING: 'Show oblique shocks' when checked is causing unpredictable crashes in some cases. Use with caution."
-align = 1
-autowrap = true
-
-[connection signal="value_changed" from="alpha_slider" to="oblique_shock_END_EDGES" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="." method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="oblique_shock_lines" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="expansion_fans" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="AoA_circular_arc" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="alpha_slider" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="strong_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="oblique_shock_END_EDGES" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="weak_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="p_p1_listItem/ItemList" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="strong_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="flow_speeds_listItem/ItemList" method="_on_alpha_slider_value_changed"]
-[connection signal="button_up" from="m_slider_button" to="oblique_shock_END_EDGES" method="_on_m_slider_button_button_up"]
+[connection signal="value_changed" from="alpha_slider" to="p_p1_listItem/ItemList" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="alpha_slider" method="_on_alpha_slider_value_changed"]
 [connection signal="button_up" from="m_slider_button" to="." method="_on_m_slider_button_button_up"]
-[connection signal="button_up" from="m_slider_button" to="graphs_cL_cD" method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="m_slider_button" to="oblique_shock_lines" method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="m_slider_button" to="expansion_fans" method="_on_m_slider_button_button_up"]
-[connection signal="button_up" from="gamma_slider_button" to="oblique_shock_END_EDGES" method="_on_gamma_slider_button_button_up"]
+[connection signal="button_up" from="m_slider_button" to="graphs_cL_cD" method="_on_m_slider_button_button_up"]
+[connection signal="button_up" from="m_slider_button" to="oblique_shock_END_EDGES" method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="." method="_on_gamma_slider_button_button_up"]
-[connection signal="button_up" from="gamma_slider_button" to="graphs_cL_cD" method="_on_gamma_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="oblique_shock_lines" method="_on_gamma_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="expansion_fans" method="_on_gamma_slider_button_button_up"]
+[connection signal="button_up" from="gamma_slider_button" to="graphs_cL_cD" method="_on_gamma_slider_button_button_up"]
+[connection signal="button_up" from="gamma_slider_button" to="oblique_shock_END_EDGES" method="_on_gamma_slider_button_button_up"]
 [connection signal="value_changed" from="simulation_precision_slider" to="simulation_precision_slider" method="_on_simulation_precision_slider_value_changed"]
 [connection signal="toggled" from="checkboxes/checkbox_cL_plot" to="graphs_cL_cD" method="_on_checkbox_cL_plot_toggled"]
 [connection signal="toggled" from="checkboxes/checkbox_cD_plot" to="graphs_cL_cD" method="_on_checkbox_cD_plot_toggled"]
@@ -957,12 +961,12 @@ autowrap = true
 [connection signal="pressed" from="aerofoil_geometry_stats" to="aerofoil_geometry_stats" method="_on_values_general_info_pressed"]
 [connection signal="pressed" from="finish_button" to="." method="_on_finish_button_pressed"]
 [connection signal="pressed" from="button_undo" to="button_undo" method="_on_button_undo_pressed"]
-[connection signal="toggled" from="button_edit" to="edit_mode_preview" method="_on_button_edit_toggled"]
 [connection signal="toggled" from="button_edit" to="." method="_on_button_edit_toggled"]
 [connection signal="toggled" from="button_edit" to="graphs_cL_cD" method="_on_button_edit_toggled"]
 [connection signal="toggled" from="button_edit" to="button_edit" method="_on_button_edit_toggled"]
-[connection signal="index_pressed" from="button_edit/CanvasLayer/PopupMenu" to="edit_mode_preview" method="_on_PopupMenu_index_pressed"]
+[connection signal="toggled" from="button_edit" to="edit_mode_preview" method="_on_button_edit_toggled"]
 [connection signal="index_pressed" from="button_edit/CanvasLayer/PopupMenu" to="button_edit" method="_on_PopupMenu_index_pressed"]
+[connection signal="index_pressed" from="button_edit/CanvasLayer/PopupMenu" to="edit_mode_preview" method="_on_PopupMenu_index_pressed"]
 [connection signal="button_up" from="button_quit" to="button_quit" method="_on_button_quit_button_up"]
 [connection signal="pressed" from="button_restart" to="button_restart" method="_on_button_restart_pressed"]
 [connection signal="pressed" from="button_about" to="button_about" method="_on_button_about_pressed"]

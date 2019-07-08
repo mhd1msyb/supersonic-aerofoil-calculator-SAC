@@ -1301,7 +1301,7 @@ func _on_aerofoil_library_popup_index_pressed(index):
 				_add_collision_node(list_coords[i])
 		
 		
-		
+	polygon2d_initial_occluder.queue_free()
 	finish_button.queue_free()
 	aerofoil_choice_container.queue_free()
 		
@@ -1362,10 +1362,13 @@ func _on_aerofoil_library_popup_index_pressed(index):
 
 
 func _on_button_load_aerofoil_pressed():
+	
 	var new_file=File.new()
 	
 	if global_var._load()[0]==true:
+		polygon2d_initial_occluder.queue_free()
 		aerofoil_choice_container.queue_free()
+		
 		var xlist=[]
 		var ylist=[]
 		var point_count=global_var._load()[1]["point count"]

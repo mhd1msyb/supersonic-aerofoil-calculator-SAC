@@ -57,23 +57,23 @@ align = 1
 valign = 1
 
 [node name="thanks_for_using" type="RichTextLabel" parent="."]
-margin_left = 284.08
-margin_top = 295.0
-margin_right = 751.08
-margin_bottom = 342.0
+margin_left = 284.0
+margin_top = 238.0
+margin_right = 751.0
+margin_bottom = 301.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Thanks for using this program. If you wish to report any bugs/glitches, or have any questions, please forward them to : mhdmsy@hotmail.co.uk"
+text = "Thanks for using this program. If you wish to report any bugs/glitches, or have any questions, please open an issue at: https://github.com/mhd1msyb/supersonic-aerofoil-calculator-SAC/issues"
 
 [node name="godot_credits" type="RichTextLabel" parent="."]
 margin_left = 284.0
 margin_top = 344.0
 margin_right = 752.0
-margin_bottom = 410.0
+margin_bottom = 438.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "This program is licensed under the Apache License Version 2.0. This program uses the Godot Engine, which is licensed under the Expat license : godotengine.org/license
-The Godot Engine can be downloaded from : godotengine.org"
+text = "This program is licensed under the Apache License Version 2.0. Source code can be found at: https://github.com/mhd1msyb/supersonic-aerofoil-calculator-SAC.
+This program uses the Godot Engine, which is licensed under the Expat license : godotengine.org/license"
 
 [node name="button_back" type="Button" parent="."]
 margin_top = 558.682
@@ -82,4 +82,5 @@ margin_bottom = 596.682
 text = "BACK"
 icon = ExtResource( 1 )
 script = ExtResource( 2 )
+
 [connection signal="pressed" from="button_back" to="button_back" method="_on_button_back_pressed"]
