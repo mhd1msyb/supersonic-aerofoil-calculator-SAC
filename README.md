@@ -4,7 +4,7 @@
 
 ## Description
 
-Cross-platform interactive flow calculator for aerofoils. Cross-sections are constructed in 2D pixel coordinates by point-clicking, using a touchscreen or LMB mouse, to add nodal points (defining line segments), which form the outline. The aerofoil can be rotated (up to 10 deg) to simulate varying angle of attack's (AoA), and oblique shocks (OS) and expansion fans (EF) are calculated for every segment and rendered using colour-coded primitives (lines for OS, triangles for ES). Plots can be generated for common coefficients, namely cL and cD, for user-defined inlet flow speed and gas gamma. A 3D mesh can be optionally generated, either as a single hollow blade/wing, or a set of instanced blades arranged around the hub of a turbine. **Please note: this program is till a WIP and has room for many optimisations. So do expect slow performance on older hardware and unexpected crashes.**
+Cross-platform interactive flow calculator for aerofoils. Cross-sections are constructed in 2D pixel coordinates by point-clicking, using a touchscreen or LMB mouse, to add nodal points (defining line segments), which form the outline. The aerofoil can be rotated (up to 10 deg) to simulate varying angle of attack's (AoA), and oblique shocks (OS) and expansion fans (EF) are calculated for every segment and rendered using colour-coded primitives (lines for OS, triangles for ES). Plots can be generated for common coefficients, namely cL and cD, for user-defined inlet flow speed and gas gamma. A 3D mesh can be optionally generated, either as a single hollow blade/wing, or a set of instanced blades arranged around the hub of a turbine. **Please note: this program is still a W.I.P and has room for many optimisations. So do expect slow performance on older hardware and unexpected crashes.**
 
 
 
@@ -44,8 +44,6 @@ If you want to compile and run the source files:
  - Open the `project.godot` file using the Godot Engine application (an .exe on Windows)
  - Press `F5` to run
 
- #### Export to Android
- ...
 
  ## Issues
  Please report any bugs/crashes using the [issue tracker](https://github.com/mhd1msyb/supersonic-aerofoil-calculator-SAC/issues). When reporting crashes, please provide a screenshot of the command window.
