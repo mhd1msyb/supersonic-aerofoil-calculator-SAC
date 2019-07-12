@@ -8,7 +8,7 @@ onready var load_aerofoil_listItem=get_node("PanelContainer/VBoxContainer/ItemLi
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var dir=Directory.new()
-	if dir.dir_exists("res://saved_data_folder"):
+	if dir.dir_exists("user://saved_data_folder"):
 		show()
 	else:
 		hide()
@@ -20,8 +20,8 @@ func _on_button_load_aerofoil_pressed():
 	
 	var dir=Directory.new()
 	
-	if dir.dir_exists("res://saved_data_folder"):
-		dir.open("res://saved_data_folder")
+	if dir.dir_exists(OS.get_user_data_dir()+"/saved_data_folder"):
+		dir.open(OS.get_user_data_dir()+"/saved_data_folder")
 		dir.list_dir_begin(true,true)
 		var file_name=dir.get_next()
 		
@@ -43,7 +43,7 @@ func _on_ItemList_item_selected(index):
 
 func _on_delete_aerofoil_button_pressed():
 	var dir=Directory.new()
-	dir.remove("res://saved_data_folder/"+global_var.saved_files_array[global_var.saved_file_index_selected])
+	dir.remove(OS.get_user_data_dir()+"/saved_data_folder/"+global_var.saved_files_array[global_var.saved_file_index_selected])
 	load_aerofoil_listItem.remove_item(global_var.saved_file_index_selected)
 	global_var.saved_files_array.erase(global_var.saved_files_array[global_var.saved_file_index_selected])
 	global_var.saved_file_index_selected=0

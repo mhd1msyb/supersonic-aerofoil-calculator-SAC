@@ -1970,8 +1970,8 @@ func _on_open_aerofoil_button_pressed():
 	var new_file=File.new()
 	var dir=Directory.new()
 	
-	if dir.dir_exists("res://saved_data_folder"):
-		new_file.open("res://saved_data_folder/"+global_var.saved_files_array[global_var.saved_file_index_selected],File.READ)
+	if dir.dir_exists(OS.get_user_data_dir()+"/saved_data_folder"):
+		new_file.open(OS.get_user_data_dir()+"/saved_data_folder/"+global_var.saved_files_array[global_var.saved_file_index_selected],File.READ)
 		var loaded_coords=new_file.get_var()
 		
 		for i in range(len(loaded_coords)):

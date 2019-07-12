@@ -24,17 +24,17 @@ func _save():
 	var new_file=File.new()
 	
 	var line_coord=[]
-	
-	if dir.dir_exists("res://saved_data_folder"):
-		new_file.open("res://saved_data_folder/"+save_dialogue_textedit.text+".sac",File.WRITE)
+	print(OS.get_user_data_dir())
+	if dir.dir_exists(OS.get_user_data_dir()+"/saved_data_folder"):
+		new_file.open(OS.get_user_data_dir()+"/saved_data_folder/"+save_dialogue_textedit.text+".sac",File.WRITE)
 		for i in range(line2d_bottom.get_point_count()):
 			line_coord.append([line2d_bottom.get_point_position(i).x,line2d_bottom.get_point_position(i).y])
 		new_file.store_var(line_coord)
 		
 		
 	else:
-		dir.make_dir("res://saved_data_folder")
-		new_file.open("res://saved_data_folder/"+save_dialogue_textedit.text+".sac",File.WRITE)
+		dir.make_dir(OS.get_user_data_dir()+"/saved_data_folder")
+		new_file.open(OS.get_user_data_dir()+"/saved_data_folder/"+save_dialogue_textedit.text+".sac",File.WRITE)
 		for i in range(line2d_bottom.get_point_count()):
 			line_coord.append([line2d_bottom.get_point_position(i).x,line2d_bottom.get_point_position(i).y])
 		new_file.store_var(line_coord)
