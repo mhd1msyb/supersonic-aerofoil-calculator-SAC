@@ -1361,70 +1361,6 @@ func _on_aerofoil_library_popup_index_pressed(index):
 
 
 
-func _on_button_load_aerofoil_pressed():
-	
-	var new_file=File.new()
-	
-	if global_var._load()[0]==true:
-		polygon2d_initial_occluder.queue_free()
-		aerofoil_choice_container.queue_free()
-		
-		var xlist=[]
-		var ylist=[]
-		var point_count=global_var._load()[1]["point count"]
-		#print(point_count)
-		for i in range(point_count):
-			xlist.append(global_var._load()[1][str(i)+"x"])
-			ylist.append(global_var._load()[1][str(i)+"y"])
-			
-			
-		for i in range(point_count):
-			var coord=Vector2(xlist[i],ylist[i])
-			line2d_bottom.add_point(coord)
-			if i<point_count-1:
-				_add_collision_node(coord)
-			
-			
-		
-		_shift_pivot_mp()
-		
-		_centre_pivot()
-		
-		line2d_bottom.rotate(_clear_AoA())
-		
-		_clear_lists()
-		
-		_refresh_lists()
-		
-		
-		_initialise_lists() #CALLED ONCE
-		
-		###find whether top or bottom side##########################################################################
-		_top_or_bottom()#CALLED ONCE
-	
-		###populate ca_pressures sign list#######################################	
-		_ca_PRESSURES()#CALLED ONCE (assumption)
-		#_update_coords_vectors_midpoints()
-	
-		###calc area ratio (t/c)###################################	
-		_area_t_c()#CALLED ONCE
-		#print(line2d_bottom.get_point_position(0),global_var.list_point_coords[0])
-		
-	#		chord_slider.get_child(1).value=float(0)
-	#		thickness_slider.get_child(1).value=float(0)
-		edit_button.disabled=false
-		undo_button.disabled=true
-		advanced_button.disabled=false
-		generate_3d_mesh_button.disabled=false
-		checkbox_oblique_shock_lines.pressed=true
-		checkbox_expansion_fans.pressed=true
-		m_slider.show()
-		alpha_slider.show()
-		gamma_slider.show()
-		save_button.show()
-		
-		
-		_find_bow_shock()
 		
 
 #		for i in range(line2d_bottom.get_point_count()):
@@ -1434,11 +1370,11 @@ func _on_button_load_aerofoil_pressed():
 		
 		
 		
-	else:
-		var rich_text_instance=rich_text.instance()
-		add_child(rich_text_instance)
-		rich_text_instance.rect_global_position=pivot.global_transform.origin
-		rich_text_instance.text="There are no files to load."
+#	else:
+#		var rich_text_instance=rich_text.instance()
+#		add_child(rich_text_instance)
+#		rich_text_instance.rect_global_position=pivot.global_transform.origin
+#		rich_text_instance.text="There are no files to load."
 
 
 
@@ -2029,3 +1965,74 @@ func _print():
 	
 	
 	
+
+func _on_open_aerofoil_button_pressed():
+	var new_file=File.new()
+	var dir=Directory.new()
+	
+	if dir.dir_exists("res://saved_data_folder"):
+		new_file.open("res://saved_data_folder/"+global_var.saved_files_array[global_var.saved_file_index_selected],File.READ)
+		var loaded_coords=new_file.get_var()
+		
+		for i in range(len(loaded_coords)):
+			var coord=Vector2(loaded_coords[i][0],loaded_coords[i][1])
+			line2d_bottom.add_point(coord)
+			if i<len(loaded_coords)-2:
+				_add_collision_node(coord)
+			
+		polygon2d_initial_occluder.queue_free()
+		aerofoil_choice_container.queue_free()
+		
+		global_var.saved_files_array.clear() # clean save dfiles array
+		global_var.saved_file_index_selected=0 # reset index to 0
+		
+		
+		#dir.make_dir("res://saved_data_folder")
+			
+		
+		_shift_pivot_mp()
+		
+		_centre_pivot()
+		
+		line2d_bottom.rotate(_clear_AoA())
+		
+		_clear_lists()
+		
+		_refresh_lists()
+		
+		
+		_initialise_lists() #CALLED ONCE
+		
+		###find whether top or bottom side##########################################################################
+		_top_or_bottom()#CALLED ONCE
+	
+		###populate ca_pressures sign list#######################################	
+		_ca_PRESSURES()#CALLED ONCE (assumption)
+		#_update_coords_vectors_midpoints()
+	
+		###calc area ratio (t/c)###################################	
+		_area_t_c()#CALLED ONCE
+		#print(line2d_bottom.get_point_position(0),global_var.list_point_coords[0])
+		
+	#		chord_slider.get_child(1).value=float(0)
+	#		thickness_slider.get_child(1).value=float(0)
+		edit_button.disabled=false
+		undo_button.disabled=true
+		advanced_button.disabled=false
+		generate_3d_mesh_button.disabled=false
+		checkbox_oblique_shock_lines.pressed=true
+		checkbox_expansion_fans.pressed=true
+		m_slider.show()
+		alpha_slider.show()
+		gamma_slider.show()
+		save_button.show()
+		
+		_find_bow_shock()
+		
+		
+	else:
+		print("no files to load")
+	
+		
+		
+	pass # Replace with function body.

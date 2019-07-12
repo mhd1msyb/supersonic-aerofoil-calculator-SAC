@@ -163,6 +163,9 @@ var p2_p1_END_EDGE_BOTTOM=0
 var button_advanced_popup_index=null
 
 
+var saved_files_array=[]
+var saved_file_index_selected=0
+
 func _max(list):
 	var copy=list.duplicate(true)
 	copy.sort()

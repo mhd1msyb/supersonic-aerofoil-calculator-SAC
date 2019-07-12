@@ -23,8 +23,9 @@ dialog_hide_on_ok = true
 mode_overrides_title = false
 access = 2
 filters = PoolStringArray( "*.png" )
-current_dir = "C:/Users/MhMs/Desktop/plate_calculator/wedge_calculator_v240"
+current_dir = "C:/Users/MhMs/Desktop/wedge_calculator_v241"
 current_file = "screenshot_name"
-current_path = "C:/Users/MhMs/Desktop/plate_calculator/wedge_calculator_v240/screenshot_name"
+current_path = "C:/Users/MhMs/Desktop/wedge_calculator_v241/screenshot_name"
+
 [connection signal="pressed" from="." to="." method="_on_button_screenshot_pressed"]
 [connection signal="confirmed" from="CanvasLayer/FileDialog" to="." method="_on_FileDialog_confirmed"]

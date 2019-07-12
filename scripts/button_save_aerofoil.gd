@@ -7,6 +7,9 @@ onready var line2d_bottom=get_parent().get_node("pivot/Line2D_bottom")
 onready var alpha_slider=get_parent().get_node("alpha_slider")
 onready var label_with_timer=preload("res://scenes/label_with_timer.tscn")
 onready var prox=preload("res://scenes/proxy_expansion_fan.tscn")
+onready var save_dialogue=get_node("PanelContainer")
+onready var save_dialogue_textedit=get_node("PanelContainer/VBoxContainer/TextEdit")
+
 
 func _ready():
 	
@@ -16,32 +19,25 @@ func _ready():
 
 
 func _save():
+	
+	var dir=Directory.new()
 	var new_file=File.new()
-	new_file.open("user://saveddata.save",File.WRITE)
-	var point_count=global_var.saved_aerofoil_point_count
 	
-	var dict={
+	var line_coord=[]
+	
+	if dir.dir_exists("res://saved_data_folder"):
+		new_file.open("res://saved_data_folder/"+save_dialogue_textedit.text+".sac",File.WRITE)
+		for i in range(line2d_bottom.get_point_count()):
+			line_coord.append([line2d_bottom.get_point_position(i).x,line2d_bottom.get_point_position(i).y])
+		new_file.store_var(line_coord)
 		
-	}
-	
-	
-	if global_var.save_aerofoil==true:
-		dict["point count"]=point_count
-		for i in range(point_count):
-			dict[str(i)+"x"]=global_var.saved_aerofoil_coords[i].x
-	
-		for i in range(point_count):
-			dict[str(i)+"y"]=global_var.saved_aerofoil_coords[i].y
-				
-		new_file.store_line(to_json(dict))
-	
-	
-	print(dict)
-
-
-
-
-
+		
+	else:
+		dir.make_dir("res://saved_data_folder")
+		new_file.open("res://saved_data_folder/"+save_dialogue_textedit.text+".sac",File.WRITE)
+		for i in range(line2d_bottom.get_point_count()):
+			line_coord.append([line2d_bottom.get_point_position(i).x,line2d_bottom.get_point_position(i).y])
+		new_file.store_var(line_coord)
 
 
 
@@ -54,6 +50,13 @@ func _save():
 
 
 func _on_button_save_aerofoil_pressed():
+	save_dialogue.show()
+	pass # replace with function body
+
+
+func _on_Button_pressed():
+	
+	#for i in (save_dialogue.get_node("VBoxContainer/TextEdit").text):
 	
 	var label_with_timer_instance=label_with_timer.instance() 
 	add_child(label_with_timer_instance)
@@ -63,17 +66,11 @@ func _on_button_save_aerofoil_pressed():
 	
 	global_var.save_aerofoil=true
 	
-	for i in range(line2d_bottom.get_point_count()):
-		global_var.saved_aerofoil_coords.append(line2d_bottom.get_point_position(i))
-	
-	
-	global_var.saved_aerofoil_point_count=line2d_bottom.get_point_count()
-	
 	_save()
 	
 	pivot.global_rotation=deg2rad(alpha_slider.value) # rotate back
 	
 	label_with_timer_instance.text="Saved!"
-		
-		
-	pass # replace with function body
+	pass # Replace with function body.
+
+
