@@ -1,6 +1,6 @@
 # Supersonic Aerofoil Calculator - SAC
 
-
+![S.A.C. Logo](https://github.com/mhd1msyb/supersonic-aerofoil-calculator-SAC/blob/master/sac_icon_256.png)
 
 ## Description
 
