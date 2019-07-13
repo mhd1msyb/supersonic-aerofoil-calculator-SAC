@@ -40,7 +40,7 @@ Watch the tutorial video (to come)
 ## Compile from source
 If you want to compile and run the source files:
  - Download and extract the source files (`Clone or download -> Download ZIP`). Alternatively: open a command window and run `git clone https://github.com/mhd1msyb/supersonic-aerofoil-calculator-SAC.git` (this will save the files to your directory)
- - Download and extract the Godot Engine from www.godotengine.org
+ - Download and extract the Godot Engine version 3.1 or above from www.godotengine.org
  - Open the `project.godot` file using the Godot Engine application (an .exe on Windows)
  - Press `F5` to run
 
