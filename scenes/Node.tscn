@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://scripts/MAIN_SCRIPT.gd" type="Script" id=1]
 [ext_resource path="res://textures/origin_icon.png" type="Texture" id=2]
@@ -39,19 +39,20 @@
 [ext_resource path="res://scripts/button_about.gd" type="Script" id=37]
 [ext_resource path="res://textures/save_icon.png" type="Texture" id=38]
 [ext_resource path="res://scripts/button_save_aerofoil.gd" type="Script" id=39]
-[ext_resource path="res://textures/settings_icon.png" type="Texture" id=40]
-[ext_resource path="res://scripts/button_advanced.gd" type="Script" id=41]
-[ext_resource path="res://textures/screenshot_icon.png" type="Texture" id=42]
-[ext_resource path="res://textures/generate_3d_mesh_icon.png" type="Texture" id=43]
-[ext_resource path="res://scripts/button_3d_mesh.gd" type="Script" id=44]
-[ext_resource path="res://scenes/button_screenshot.tscn" type="PackedScene" id=45]
-[ext_resource path="res://scripts/chord_slider.gd" type="Script" id=46]
-[ext_resource path="res://scripts/thickness_slider.gd" type="Script" id=47]
-[ext_resource path="res://scenes/button_load_aerofoil.gd" type="Script" id=48]
-[ext_resource path="res://scenes/FPS.tscn" type="PackedScene" id=49]
-[ext_resource path="res://scripts/edit_mode_preview.gd" type="Script" id=50]
-[ext_resource path="res://scripts/oblique_shock_END_EDGES.gd" type="Script" id=51]
-[ext_resource path="res://scripts/reset_aoa_zero.gd" type="Script" id=52]
+[ext_resource path="res://scripts/save_dialogue_textedit.gd" type="Script" id=40]
+[ext_resource path="res://textures/settings_icon.png" type="Texture" id=41]
+[ext_resource path="res://scripts/button_advanced.gd" type="Script" id=42]
+[ext_resource path="res://textures/screenshot_icon.png" type="Texture" id=43]
+[ext_resource path="res://textures/generate_3d_mesh_icon.png" type="Texture" id=44]
+[ext_resource path="res://scripts/button_3d_mesh.gd" type="Script" id=45]
+[ext_resource path="res://scenes/button_screenshot.tscn" type="PackedScene" id=46]
+[ext_resource path="res://scripts/chord_slider.gd" type="Script" id=47]
+[ext_resource path="res://scripts/thickness_slider.gd" type="Script" id=48]
+[ext_resource path="res://scripts/button_load_aerofoil.gd" type="Script" id=49]
+[ext_resource path="res://scenes/FPS.tscn" type="PackedScene" id=50]
+[ext_resource path="res://scripts/edit_mode_preview.gd" type="Script" id=51]
+[ext_resource path="res://scripts/oblique_shock_END_EDGES.gd" type="Script" id=52]
+[ext_resource path="res://scripts/reset_aoa_zero.gd" type="Script" id=53]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends HBoxContainer
@@ -661,16 +662,16 @@ icon = ExtResource( 38 )
 script = ExtResource( 39 )
 
 [node name="PanelContainer" type="PanelContainer" parent="button_save_aerofoil"]
-margin_left = -37.4327
-margin_top = 39.81
-margin_right = 143.567
-margin_bottom = 130.81
+margin_left = -34.5475
+margin_top = 39.5531
+margin_right = 146.452
+margin_bottom = 194.553
 
 [node name="VBoxContainer" type="VBoxContainer" parent="button_save_aerofoil/PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 174.0
-margin_bottom = 84.0
+margin_right = 173.999
+margin_bottom = 148.0
 
 [node name="Label" type="Label" parent="button_save_aerofoil/PanelContainer/VBoxContainer"]
 margin_right = 166.0
@@ -678,25 +679,45 @@ margin_bottom = 14.0
 text = "File name:"
 align = 1
 
+[node name="error_message" type="Label" parent="button_save_aerofoil/PanelContainer/VBoxContainer"]
+visible = false
+margin_top = 18.0
+margin_right = 166.0
+margin_bottom = 66.0
+custom_colors/font_color = Color( 1, 0.72549, 0, 1 )
+text = "\\ / < > * ? : | \" and a number at the beginning are not allowed"
+align = 1
+autowrap = true
+
 [node name="TextEdit" type="TextEdit" parent="button_save_aerofoil/PanelContainer/VBoxContainer"]
 margin_top = 18.0
 margin_right = 166.0
-margin_bottom = 53.0
+margin_bottom = 92.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "my_aerofoil_001"
 wrap_enabled = true
 caret_block_mode = true
 caret_blink = true
+script = ExtResource( 40 )
 
-[node name="Button" type="Button" parent="button_save_aerofoil/PanelContainer/VBoxContainer"]
+[node name="save_button" type="Button" parent="button_save_aerofoil/PanelContainer/VBoxContainer"]
 margin_left = 62.0
-margin_top = 57.0
+margin_top = 96.0
 margin_right = 103.0
-margin_bottom = 77.0
+margin_bottom = 116.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Save"
+
+[node name="close_button" type="Button" parent="button_save_aerofoil/PanelContainer/VBoxContainer"]
+margin_left = 59.0
+margin_top = 120.0
+margin_right = 106.0
+margin_bottom = 140.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Close"
 
 [node name="button_advanced" type="Button" parent="."]
 margin_left = 274.143
@@ -704,8 +725,8 @@ margin_top = 5.0
 margin_right = 391.143
 margin_bottom = 43.0
 text = "ADVANCED"
-icon = ExtResource( 40 )
-script = ExtResource( 41 )
+icon = ExtResource( 41 )
+script = ExtResource( 42 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="button_advanced"]
 
@@ -714,7 +735,7 @@ margin_left = 271.244
 margin_top = 40.7725
 margin_right = 467.244
 margin_bottom = 218.772
-items = [ "WEAK ANGLES", null, 1, false, false, -1, 0, null, "", false, "STRONG ANGLES", null, 1, false, false, -1, 0, null, "", false, "GEOMETRY INFO", null, 1, false, false, -1, 0, null, "", false, "SIMULATION PRECISION", null, 1, false, false, -1, 0, null, "", false, "ARROW INLET", null, 1, false, false, -1, 0, null, "", false, "DASHED LINE", null, 1, false, false, -1, 0, null, "", false, "BOW SHOCK DATA", null, 1, false, false, -1, 0, null, "", false, "FLOW SPEEDS", null, 1, false, false, -1, 0, null, "", false, "PRESSURE RATIOS", null, 1, false, false, -1, 0, null, "", false, "PLATE INDICES", null, 1, false, false, -1, 0, null, "", false, "NODE INDICES", null, 1, false, false, -1, 0, null, "", false, "AEROFOIL AOA", null, 1, false, false, -1, 0, null, "", false, "SCREENSHOT", ExtResource( 42 ), 1, false, false, -1, 0, null, "", false ]
+items = [ "WEAK ANGLES", null, 1, false, false, -1, 0, null, "", false, "STRONG ANGLES", null, 1, false, false, -1, 0, null, "", false, "GEOMETRY INFO", null, 1, false, false, -1, 0, null, "", false, "SIMULATION PRECISION", null, 1, false, false, -1, 0, null, "", false, "ARROW INLET", null, 1, false, false, -1, 0, null, "", false, "DASHED LINE", null, 1, false, false, -1, 0, null, "", false, "BOW SHOCK DATA", null, 1, false, false, -1, 0, null, "", false, "FLOW SPEEDS", null, 1, false, false, -1, 0, null, "", false, "PRESSURE RATIOS", null, 1, false, false, -1, 0, null, "", false, "PLATE INDICES", null, 1, false, false, -1, 0, null, "", false, "NODE INDICES", null, 1, false, false, -1, 0, null, "", false, "AEROFOIL AOA", null, 1, false, false, -1, 0, null, "", false, "SCREENSHOT", ExtResource( 43 ), 1, false, false, -1, 0, null, "", false, "FPS COUNTER", null, 1, false, false, -1, 0, null, "", false ]
 
 [node name="button_generate_3d_mesh" type="Button" parent="."]
 margin_left = 559.144
@@ -722,10 +743,10 @@ margin_top = 5.0
 margin_right = 732.144
 margin_bottom = 43.0
 text = "GENERATE 3D MESH"
-icon = ExtResource( 43 )
-script = ExtResource( 44 )
+icon = ExtResource( 44 )
+script = ExtResource( 45 )
 
-[node name="button_screenshot" parent="." instance=ExtResource( 45 )]
+[node name="button_screenshot" parent="." instance=ExtResource( 46 )]
 visible = false
 margin_left = 888.0
 margin_top = 200.0
@@ -752,7 +773,7 @@ max_value = 2.0
 step = 0.001
 tick_count = 3
 ticks_on_borders = true
-script = ExtResource( 46 )
+script = ExtResource( 47 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="chord_slider"]
 margin_top = 38.0
@@ -811,7 +832,7 @@ max_value = 2.0
 step = 0.001
 tick_count = 3
 ticks_on_borders = true
-script = ExtResource( 47 )
+script = ExtResource( 48 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="thickness_slider"]
 margin_top = 38.0
@@ -856,18 +877,9 @@ margin_right = 639.294
 margin_bottom = 434.65
 text = "Please wait...(pre-calculation in progress)"
 
-[node name="warning" type="Label" parent="."]
-margin_left = 867.0
-margin_top = 207.0
-margin_right = 1062.0
-margin_bottom = 289.0
-rect_scale = Vector2( 0.8, 0.8 )
-text = "WARNING: 'Show oblique shocks' when checked is causing unpredictable crashes in some cases. Use with caution."
-align = 1
-autowrap = true
-
 [node name="polygon2d_initial_occluder" type="ColorRect" parent="."]
-margin_right = 1023.0
+visible = false
+margin_right = 1487.0
 margin_bottom = 600.0
 color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
 
@@ -895,6 +907,7 @@ size_flags_vertical = 3
 script = SubResource( 1 )
 
 [node name="button_custom_aerofoil" type="Button" parent="aerofoil_choice_container/HBoxContainer"]
+editor/display_folded = true
 margin_right = 122.0
 margin_bottom = 49.0
 size_flags_horizontal = 3
@@ -922,10 +935,9 @@ margin_bottom = 49.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Saved Aerofoils"
-script = ExtResource( 48 )
+script = ExtResource( 49 )
 
 [node name="PanelContainer" type="PanelContainer" parent="aerofoil_choice_container/HBoxContainer/button_load_aerofoil"]
-visible = false
 margin_left = -0.0247192
 margin_top = -130.897
 margin_right = 181.975
@@ -939,37 +951,46 @@ margin_bottom = 218.0
 alignment = 1
 
 [node name="Label" type="Label" parent="aerofoil_choice_container/HBoxContainer/button_load_aerofoil/PanelContainer/VBoxContainer"]
-margin_right = 168.0
+margin_right = 167.0
 margin_bottom = 14.0
 text = "Select a save slot:"
 align = 1
 
 [node name="ItemList" type="ItemList" parent="aerofoil_choice_container/HBoxContainer/button_load_aerofoil/PanelContainer/VBoxContainer"]
 margin_top = 18.0
-margin_right = 168.0
-margin_bottom = 163.0
+margin_right = 167.0
+margin_bottom = 139.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="open_aerofoil_button" type="Button" parent="aerofoil_choice_container/HBoxContainer/button_load_aerofoil/PanelContainer/VBoxContainer"]
 margin_left = 60.0
-margin_top = 167.0
+margin_top = 143.0
 margin_right = 107.0
-margin_bottom = 187.0
+margin_bottom = 163.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Open"
 
 [node name="delete_aerofoil_button" type="Button" parent="aerofoil_choice_container/HBoxContainer/button_load_aerofoil/PanelContainer/VBoxContainer"]
 margin_left = 56.0
-margin_top = 191.0
+margin_top = 167.0
 margin_right = 111.0
-margin_bottom = 211.0
+margin_bottom = 187.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Delete"
 
-[node name="FPS" parent="." instance=ExtResource( 49 )]
+[node name="close_button" type="Button" parent="aerofoil_choice_container/HBoxContainer/button_load_aerofoil/PanelContainer/VBoxContainer"]
+margin_left = 60.0
+margin_top = 191.0
+margin_right = 107.0
+margin_bottom = 211.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Close"
+
+[node name="FPS" parent="." instance=ExtResource( 50 )]
 margin_left = 739.0
 margin_top = 6.0
 margin_right = 779.0
@@ -980,7 +1001,7 @@ margin_left = 455.0
 margin_top = 568.0
 margin_right = 550.0
 margin_bottom = 584.0
-script = ExtResource( 50 )
+script = ExtResource( 51 )
 
 [node name="Label" type="Label" parent="edit_mode_preview"]
 margin_top = 1.0
@@ -1001,7 +1022,7 @@ texture = ExtResource( 36 )
 [node name="colshapes" type="Node2D" parent="."]
 
 [node name="oblique_shock_END_EDGES" type="Node2D" parent="."]
-script = ExtResource( 51 )
+script = ExtResource( 52 )
 
 [node name="reset_aoa_zero" type="Button" parent="."]
 visible = false
@@ -1009,12 +1030,22 @@ margin_left = 920.983
 margin_top = 284.887
 margin_right = 1010.98
 margin_bottom = 348.887
-script = ExtResource( 52 )
+script = ExtResource( 53 )
+
+[node name="warning" type="Label" parent="."]
+margin_left = 861.81
+margin_top = 207.533
+margin_right = 1056.81
+margin_bottom = 289.533
+rect_scale = Vector2( 0.8, 0.8 )
+text = "WARNING: 'Show oblique shocks' when checked is causing unpredictable crashes in some cases. Use with caution."
+align = 1
+autowrap = true
 
 [connection signal="value_changed" from="alpha_slider" to="oblique_shock_END_EDGES" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="expansion_fans" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="oblique_shock_lines" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="AoA_circular_arc" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="oblique_shock_lines" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="expansion_fans" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="." method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="alpha_slider" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="weak_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
@@ -1022,13 +1053,13 @@ script = ExtResource( 52 )
 [connection signal="value_changed" from="alpha_slider" to="flow_speeds_listItem/ItemList" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="p_p1_listItem/ItemList" method="_on_alpha_slider_value_changed"]
 [connection signal="button_up" from="m_slider_button" to="oblique_shock_END_EDGES" method="_on_m_slider_button_button_up"]
-[connection signal="button_up" from="m_slider_button" to="expansion_fans" method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="m_slider_button" to="oblique_shock_lines" method="_on_m_slider_button_button_up"]
+[connection signal="button_up" from="m_slider_button" to="expansion_fans" method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="m_slider_button" to="." method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="m_slider_button" to="graphs_cL_cD" method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="oblique_shock_END_EDGES" method="_on_gamma_slider_button_button_up"]
-[connection signal="button_up" from="gamma_slider_button" to="expansion_fans" method="_on_gamma_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="oblique_shock_lines" method="_on_gamma_slider_button_button_up"]
+[connection signal="button_up" from="gamma_slider_button" to="expansion_fans" method="_on_gamma_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="." method="_on_gamma_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="graphs_cL_cD" method="_on_gamma_slider_button_button_up"]
 [connection signal="value_changed" from="simulation_precision_slider" to="simulation_precision_slider" method="_on_simulation_precision_slider_value_changed"]
@@ -1052,7 +1083,9 @@ script = ExtResource( 52 )
 [connection signal="pressed" from="button_restart" to="button_restart" method="_on_button_restart_pressed"]
 [connection signal="pressed" from="button_about" to="button_about" method="_on_button_about_pressed"]
 [connection signal="pressed" from="button_save_aerofoil" to="button_save_aerofoil" method="_on_button_save_aerofoil_pressed"]
-[connection signal="pressed" from="button_save_aerofoil/PanelContainer/VBoxContainer/Button" to="button_save_aerofoil" method="_on_Button_pressed"]
+[connection signal="text_changed" from="button_save_aerofoil/PanelContainer/VBoxContainer/TextEdit" to="button_save_aerofoil/PanelContainer/VBoxContainer/TextEdit" method="_on_TextEdit_text_changed"]
+[connection signal="pressed" from="button_save_aerofoil/PanelContainer/VBoxContainer/save_button" to="button_save_aerofoil" method="_on_save_button_pressed"]
+[connection signal="pressed" from="button_save_aerofoil/PanelContainer/VBoxContainer/close_button" to="button_save_aerofoil" method="_on_close_button_pressed"]
 [connection signal="pressed" from="button_advanced" to="button_advanced" method="_on_button_advanced_pressed"]
 [connection signal="index_pressed" from="button_advanced/CanvasLayer/PopupMenu" to="button_advanced" method="_on_PopupMenu_index_pressed"]
 [connection signal="pressed" from="button_generate_3d_mesh" to="button_generate_3d_mesh" method="_on_button_3d_mesh_pressed"]
@@ -1065,4 +1098,5 @@ script = ExtResource( 52 )
 [connection signal="item_selected" from="aerofoil_choice_container/HBoxContainer/button_load_aerofoil/PanelContainer/VBoxContainer/ItemList" to="aerofoil_choice_container/HBoxContainer/button_load_aerofoil" method="_on_ItemList_item_selected"]
 [connection signal="pressed" from="aerofoil_choice_container/HBoxContainer/button_load_aerofoil/PanelContainer/VBoxContainer/open_aerofoil_button" to="." method="_on_open_aerofoil_button_pressed"]
 [connection signal="pressed" from="aerofoil_choice_container/HBoxContainer/button_load_aerofoil/PanelContainer/VBoxContainer/delete_aerofoil_button" to="aerofoil_choice_container/HBoxContainer/button_load_aerofoil" method="_on_delete_aerofoil_button_pressed"]
+[connection signal="pressed" from="aerofoil_choice_container/HBoxContainer/button_load_aerofoil/PanelContainer/VBoxContainer/close_button" to="aerofoil_choice_container/HBoxContainer/button_load_aerofoil" method="_on_close_button_pressed"]
 [connection signal="pressed" from="reset_aoa_zero" to="reset_aoa_zero" method="_on_reset_aoa_zero_pressed"]

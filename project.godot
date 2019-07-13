@@ -15,10 +15,11 @@ _global_script_class_icons={
 
 [application]
 
-config/name="plate_calculator"
+config/name="S.A.C. - Supersonic Aerofoil Calculator"
 run/main_scene="res://scenes/Node.tscn"
 boot_splash/image="res://splash_screen_1920.png"
 boot_splash/bg_color=Color( 0.0666667, 0.0666667, 0.0666667, 1 )
+config/icon="res://textures/sac_icon.png"
 
 [autoload]
 

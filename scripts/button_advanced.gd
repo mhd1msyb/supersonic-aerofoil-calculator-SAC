@@ -16,6 +16,7 @@ extends Button
 10 - node indices 
 11 - aerofoil aoa 
 12 - screenshot
+13 - fps counter
 
 """
 
@@ -37,6 +38,7 @@ onready var plate_indices_scene=global_var.plate_indices_scene
 onready var node_indices_scene=global_var.node_indices_scene
 onready var aoa_circular_arc=get_parent().get_node("AoA_circular_arc")
 onready var button_screenshot=get_parent().get_node("button_screenshot")
+onready var fps=get_parent().get_node("FPS")
 
 
 
@@ -154,7 +156,10 @@ func _on_PopupMenu_index_pressed(index):
 		button_screenshot.visible=false
 	
 	
-	
+	if index==13 and fps.visible==false:#screenshot button
+		fps.visible=true
+	elif index==13 and fps.visible==true:
+		fps.visible=false
 
 		
 	global_var.button_advanced_popup_index=index

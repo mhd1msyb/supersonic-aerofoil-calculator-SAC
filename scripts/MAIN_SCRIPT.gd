@@ -1972,7 +1972,7 @@ func _on_open_aerofoil_button_pressed():
 	
 	if dir.dir_exists(OS.get_user_data_dir()+"/saved_data_folder"):
 		new_file.open(OS.get_user_data_dir()+"/saved_data_folder/"+global_var.saved_files_array[global_var.saved_file_index_selected],File.READ)
-		var loaded_coords=new_file.get_var()
+		var loaded_coords=new_file.get_var()["coords"]
 		
 		for i in range(len(loaded_coords)):
 			var coord=Vector2(loaded_coords[i][0],loaded_coords[i][1])
@@ -2013,9 +2013,9 @@ func _on_open_aerofoil_button_pressed():
 		###calc area ratio (t/c)###################################	
 		_area_t_c()#CALLED ONCE
 		#print(line2d_bottom.get_point_position(0),global_var.list_point_coords[0])
-		
-	#		chord_slider.get_child(1).value=float(0)
-	#		thickness_slider.get_child(1).value=float(0)
+
+
+
 		edit_button.disabled=false
 		undo_button.disabled=true
 		advanced_button.disabled=false
