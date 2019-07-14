@@ -50,4 +50,5 @@ If you want to compile and run the source files:
 
 ## License details
 This program is licensed under the Apache License Version 2.0 (for more details, view the `LICENSE` file).
-This program uses the Godot Engine, which is licensed under the Expat license. Please visit www.godotengine.org/license to view its (Godot Engine)  license, or refer to the `godot_engine_LICENSE` file.
+This program uses the Godot Engine, which is licensed under the Expat license. Please visit www.godotengine.org/license to view its (Godot Engine).
+Fonts are rendered using FreeType. Portions of this software are © 2019 The FreeType Project (www.freetype.org). All rights reserved. To view the Godot Engine and FreeType licenses, refer to the `godot_engine_and_freetype_LICENSES` file.

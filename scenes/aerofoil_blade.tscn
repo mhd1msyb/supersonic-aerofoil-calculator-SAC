@@ -12,3 +12,4 @@ script = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="aerofoil_inset" type="MeshInstance" parent="."]
+

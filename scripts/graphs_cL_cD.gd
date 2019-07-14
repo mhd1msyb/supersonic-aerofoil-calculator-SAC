@@ -10,6 +10,8 @@ onready var preload_proxy=preload("res://scenes/graph_point_sprite.tscn")
 onready var subpoints_scene=preload("res://scenes/subpoints.tscn")
 onready var draw_curve_scene=preload("res://scenes/draw_curve_thorugh_points.tscn")
 
+onready var indicator_sprite=get_node("cD_graph/indicator")
+
 onready var checkbox_hide_everything_except_graphs=get_parent().get_node("checkbox_hide_everything_except_graphs")
 
 onready var pivot=get_parent().get_node("pivot")
@@ -17,13 +19,6 @@ onready var show_cL_graph_button=get_parent().get_node("checkboxes/checkbox_cL_p
 onready var show_cD_graph_button=get_parent().get_node("checkboxes/checkbox_cD_plot")
 onready var show_cD_div_cL_graph_button=get_parent().get_node("checkboxes/checkbox_cD_div_cL_plot")
 onready var show_cL_div_cD_graph_button=get_parent().get_node("checkboxes/checkbox_cL_div_cD_plot")
-
-
-
-#onready var checkbox_cL_plot=get_parent().get_node("checkboxes").get_node("checkbox_cL_plot")
-#onready var checkbox_cD_plot=get_parent().get_node("checkboxes").get_node("checkbox_cD_plot")
-#onready var checkbox_cL_divided_cD_plot=get_parent().get_node("checkboxes").get_node("checkbox_cL_divided_cD_plot")
-
 
 
 
@@ -196,8 +191,8 @@ func _draw():
 	if show_cL_div_cD_graph_button.pressed==true:
 		_axes_draw_line("cL_div_cD_graph")
 		update()
-		
-		
+	
+	
 	pass
 
 
@@ -332,7 +327,7 @@ func _update_graph(button_pressed,graph):
 		list=global_var.cL_div_cD_plot_list
 		cL_div_cD_graph.get_node("points").add_child(sub_points)
 	
-	if button_pressed==false and global_var.aerofoil_geomtery_changed==true and check_button.pressed:
+	if global_var.aerofoil_geomtery_changed==true and check_button.pressed:
 		for i in len(list):
 			_add_points(global_var.alpha_radians_plot_list[i], list[i] , graph.rect_global_position , graph_size,graph,sub_points)
 			
@@ -347,7 +342,9 @@ func _update_graph(button_pressed,graph):
 	#print(graph.get_node("points").get_child_count())
 
 
-
+func _indicator(alpha_radians,cD,graph_pos,graph_size):
+	indicator_sprite.global_transform.origin=graph_pos + Vector2(alpha_radians,-cD)*graph_size 
+	pass
 
 
 
@@ -372,6 +369,9 @@ func _input(event): # to drag the graphs
 		if cL_div_cD_graph.pressed:
 			cL_div_cD_graph.rect_global_position=get_global_mouse_position()
 			update()
+			
+		_indicator(pivot.global_rotation,global_var.cD,cD_graph.rect_global_position,graph_size)
+		#_indicator(pivot.global_rotation,global_var.cL,cL_graph.rect_global_position,graph_size)
 		#print(global_var.aerofoil_geomtery_changed)
 
 
@@ -408,20 +408,7 @@ func _draw_bow_shock_line(graph,parent):
 
 
 
-func _on_m_slider_button_button_up():
-	global_var.aerofoil_geomtery_changed=true
-	_update_graph(false,cL_graph)
-	
-	_update_graph(false,cD_graph)
-	
-	_update_graph(false,cD_div_cL_graph)
-	
-	_update_graph(false,cL_div_cD_graph)
-	
-	update()
-	
-	global_var.aerofoil_geomtery_changed=false
-	pass # Replace with function body.
+
 
 
 func _on_gamma_slider_button_button_up():
@@ -435,9 +422,26 @@ func _on_gamma_slider_button_button_up():
 	_update_graph(false,cL_div_cD_graph)
 	
 	update()
+	print(global_var.cL_plot_list)
 	
 	global_var.aerofoil_geomtery_changed=false
 	pass # Replace with function body.
 
 
 
+
+
+func _on_m_slider_button_button_up():
+	global_var.aerofoil_geomtery_changed=true
+	_update_graph(false,cL_graph)
+	
+	_update_graph(false,cD_graph)
+	
+	_update_graph(false,cD_div_cL_graph)
+	
+	_update_graph(false,cL_div_cD_graph)
+	
+	update()
+	print(global_var.cL_plot_list)
+	global_var.aerofoil_geomtery_changed=false
+	pass # Replace with function body.

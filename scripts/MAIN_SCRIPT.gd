@@ -1744,22 +1744,13 @@ func _on_m_slider_button_button_up():
 	
 	_find_bow_shock()
 	
-	
 	global_var.random_graph_point_color=Vector3(randf(),randf(),randf())# generate random colour
 	
-	
-	pivot.global_rotation_degrees=0
-	_MAIN_UPDATE() # update all variables (speed, p/p1, cL, etc) once slider is changed
-	
-	
-	
-	
-	
-	
-	
-	
+	yield(get_tree(),"idle_frame")
+	yield(get_tree(),"idle_frame")
+	yield(get_tree(),"idle_frame")
 
-	#_MAIN_UPDATE(global_var.alpha_degrees)
+	_MAIN_UPDATE() # update all variables (speed, p/p1, cL, etc) once slider is changed
 
 
 	

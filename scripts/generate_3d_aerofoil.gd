@@ -37,7 +37,6 @@ func _ready():
 	for i in range(len(coords)): #final coordinates used to construct mesh
 		coords[i]=Vector3(coords[i].x-min_x_coord,0,coords[i].z-min_z_coord)*aerofoil_size
 		
-	print(coords)
 	#print(coords)
 		
 		
