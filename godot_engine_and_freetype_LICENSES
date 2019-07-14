@@ -1,3 +1,7 @@
+---------------------------------------------------------------------------------
+GODOT ENGINE LICENSE
+---------------------------------------------------------------------------------
+
 Copyright (c) 2007-2019 Juan Linietsky, Ariel Manzur.
 Copyright (c) 2014-2019 Godot Engine contributors (cf. AUTHORS.md)
 
@@ -21,4 +25,7 @@ SOFTWARE.
 
 
 
+---------------------------------------------------------------------------------
+FREETYPE LICENSE
+---------------------------------------------------------------------------------
 Fonts are rendered using FreeType. Portions of this software are © 2019 The FreeType Project (www.freetype.org). All rights reserved.
