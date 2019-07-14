@@ -26,9 +26,9 @@ Cross-platform interactive flow calculator for aerofoils. Cross-sections are con
 
  ## Pre-compiled binaries (DOWNLOADS)
 Download the zipped files for your platform, then extract and run.
-  #### - Windows
-  #### - Linux
-  #### - Mac
+  #### - [Windows](https://github.com/mhd1msyb/supersonic-aerofoil-calculator-SAC/blob/master/downloads/SAC_win_v0.1.zip)
+  #### - [Linux](https://github.com/mhd1msyb/supersonic-aerofoil-calculator-SAC/blob/master/downloads/SAC_lin_v0.1.zip)
+  #### - [Mac](https://github.com/mhd1msyb/supersonic-aerofoil-calculator-SAC/blob/master/downloads/SAC_mac_v0.1.zip)
 
 
 
