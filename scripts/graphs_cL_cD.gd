@@ -10,7 +10,11 @@ onready var preload_proxy=preload("res://scenes/graph_point_sprite.tscn")
 onready var subpoints_scene=preload("res://scenes/subpoints.tscn")
 onready var draw_curve_scene=preload("res://scenes/draw_curve_thorugh_points.tscn")
 
-onready var indicator_sprite=get_node("cD_graph/indicator")
+
+onready var indicator_cL=get_node("cL_graph/indicator_cL")
+onready var indicator_cD=get_node("cD_graph/indicator_cD")
+onready var indicator_cD_div_cL=get_node("cD_div_cL_graph/indicator_cD_div_cL")
+onready var indicator_cL_div_cD=get_node("cL_div_cD_graph/indicator_cL_div_cD")
 
 onready var checkbox_hide_everything_except_graphs=get_parent().get_node("checkbox_hide_everything_except_graphs")
 
@@ -342,8 +346,11 @@ func _update_graph(button_pressed,graph):
 	#print(graph.get_node("points").get_child_count())
 
 
-func _indicator(alpha_radians,cD,graph_pos,graph_size):
-	indicator_sprite.global_transform.origin=graph_pos + Vector2(alpha_radians,-cD)*graph_size 
+func _indicator(indicator,alpha_radians,coefficient,graph_pos,graph_size): 
+	"""
+	this function moves the 'indicator' sprite to the current point along the curve
+	"""
+	indicator.global_transform.origin=graph_pos + Vector2(alpha_radians,-coefficient)*graph_size 
 	pass
 
 
@@ -364,15 +371,26 @@ func _input(event): # to drag the graphs
 	
 		if cD_div_cL_graph.pressed:
 			cD_div_cL_graph.rect_global_position=get_global_mouse_position()
+
 			update()
 			
 		if cL_div_cD_graph.pressed:
 			cL_div_cD_graph.rect_global_position=get_global_mouse_position()
+
 			update()
 			
-		_indicator(pivot.global_rotation,global_var.cD,cD_graph.rect_global_position,graph_size)
-		#_indicator(pivot.global_rotation,global_var.cL,cL_graph.rect_global_position,graph_size)
-		#print(global_var.aerofoil_geomtery_changed)
+			
+			
+		_indicator(indicator_cL,pivot.global_rotation,global_var.cL,cL_graph.rect_global_position,graph_size)
+		
+		_indicator(indicator_cD,pivot.global_rotation,global_var.cD,cD_graph.rect_global_position,graph_size)
+		
+		if abs(global_var.cL)>0:
+			_indicator(indicator_cD_div_cL,pivot.global_rotation,global_var.cD/global_var.cL,cD_div_cL_graph.rect_global_position,graph_size)
+			
+		if abs(global_var.cD)>0:
+			_indicator(indicator_cL_div_cD,pivot.global_rotation,global_var.cL/global_var.cD,cL_div_cD_graph.rect_global_position,graph_size)
+
 
 
 

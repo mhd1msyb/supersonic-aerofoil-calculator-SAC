@@ -11,7 +11,7 @@
 [ext_resource path="res://scripts/dashed_line.gd" type="Script" id=9]
 [ext_resource path="res://scripts/graphs_cL_cD.gd" type="Script" id=10]
 [ext_resource path="res://textures/move_graph_icon.png" type="Texture" id=11]
-[ext_resource path="res://textures/coordinate_on_line_icon.png" type="Texture" id=12]
+[ext_resource path="res://textures/indicator_curve.png" type="Texture" id=12]
 [ext_resource path="res://scripts/graph_shock_vs_deflec.gd" type="Script" id=13]
 [ext_resource path="res://scripts/arrow_inlet_flow.gd" type="Script" id=14]
 [ext_resource path="res://scripts/oblique_shock_lines.gd" type="Script" id=15]
@@ -260,6 +260,7 @@ icon = ExtResource( 11 )
 [node name="points" type="Node2D" parent="graphs_cL_cD/cL_graph"]
 
 [node name="labels" type="Node2D" parent="graphs_cL_cD/cL_graph"]
+editor/display_folded = true
 
 [node name="x" type="Label" parent="graphs_cL_cD/cL_graph/labels"]
 margin_right = 40.0
@@ -268,6 +269,10 @@ margin_bottom = 14.0
 [node name="y" type="Label" parent="graphs_cL_cD/cL_graph/labels"]
 margin_right = 40.0
 margin_bottom = 14.0
+
+[node name="indicator_cL" type="Sprite" parent="graphs_cL_cD/cL_graph"]
+position = Vector2( 232, 0 )
+texture = ExtResource( 12 )
 
 [node name="cD_graph" type="Button" parent="graphs_cL_cD"]
 visible = false
@@ -290,11 +295,10 @@ margin_bottom = 14.0
 margin_right = 40.0
 margin_bottom = 14.0
 
-[node name="indicator" type="Sprite" parent="graphs_cL_cD/cD_graph"]
+[node name="indicator_cD" type="Sprite" parent="graphs_cL_cD/cD_graph"]
 texture = ExtResource( 12 )
 
 [node name="cD_div_cL_graph" type="Button" parent="graphs_cL_cD"]
-editor/display_folded = true
 visible = false
 margin_left = 606.0
 margin_top = 345.0
@@ -314,8 +318,11 @@ margin_bottom = 14.0
 margin_right = 40.0
 margin_bottom = 14.0
 
+[node name="indicator_cD_div_cL" type="Sprite" parent="graphs_cL_cD/cD_div_cL_graph"]
+position = Vector2( -96, 0 )
+texture = ExtResource( 12 )
+
 [node name="cL_div_cD_graph" type="Button" parent="graphs_cL_cD"]
-editor/display_folded = true
 visible = false
 margin_left = 606.0
 margin_top = 345.0
@@ -334,6 +341,10 @@ margin_bottom = 14.0
 [node name="y" type="Label" parent="graphs_cL_cD/cL_div_cD_graph/labels"]
 margin_right = 40.0
 margin_bottom = 14.0
+
+[node name="indicator_cL_div_cD" type="Sprite" parent="graphs_cL_cD/cL_div_cD_graph"]
+position = Vector2( -96, 0 )
+texture = ExtResource( 12 )
 
 [node name="graph_shock_vs_deflec" type="Node2D" parent="."]
 script = ExtResource( 13 )
@@ -1051,26 +1062,26 @@ text = "WARNING: 'Show oblique shocks' when checked is causing unpredictable cra
 align = 1
 autowrap = true
 
-[connection signal="value_changed" from="alpha_slider" to="oblique_shock_END_EDGES" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="." method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="weak_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="strong_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="flow_speeds_listItem/ItemList" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="p_p1_listItem/ItemList" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="alpha_slider" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="." method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="oblique_shock_lines" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="expansion_fans" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="AoA_circular_arc" method="_on_alpha_slider_value_changed"]
-[connection signal="button_up" from="m_slider_button" to="oblique_shock_END_EDGES" method="_on_m_slider_button_button_up"]
-[connection signal="button_up" from="m_slider_button" to="." method="_on_m_slider_button_button_up"]
+[connection signal="value_changed" from="alpha_slider" to="oblique_shock_END_EDGES" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="strong_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="weak_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="flow_speeds_listItem/ItemList" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="p_p1_listItem/ItemList" method="_on_alpha_slider_value_changed"]
 [connection signal="button_up" from="m_slider_button" to="graphs_cL_cD" method="_on_m_slider_button_button_up"]
+[connection signal="button_up" from="m_slider_button" to="." method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="m_slider_button" to="oblique_shock_lines" method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="m_slider_button" to="expansion_fans" method="_on_m_slider_button_button_up"]
-[connection signal="button_up" from="gamma_slider_button" to="oblique_shock_END_EDGES" method="_on_gamma_slider_button_button_up"]
-[connection signal="button_up" from="gamma_slider_button" to="." method="_on_gamma_slider_button_button_up"]
+[connection signal="button_up" from="m_slider_button" to="oblique_shock_END_EDGES" method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="graphs_cL_cD" method="_on_gamma_slider_button_button_up"]
+[connection signal="button_up" from="gamma_slider_button" to="." method="_on_gamma_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="oblique_shock_lines" method="_on_gamma_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="expansion_fans" method="_on_gamma_slider_button_button_up"]
+[connection signal="button_up" from="gamma_slider_button" to="oblique_shock_END_EDGES" method="_on_gamma_slider_button_button_up"]
 [connection signal="value_changed" from="simulation_precision_slider" to="simulation_precision_slider" method="_on_simulation_precision_slider_value_changed"]
 [connection signal="toggled" from="checkboxes/checkbox_cL_plot" to="graphs_cL_cD" method="_on_checkbox_cL_plot_toggled"]
 [connection signal="toggled" from="checkboxes/checkbox_cD_plot" to="graphs_cL_cD" method="_on_checkbox_cD_plot_toggled"]
@@ -1082,12 +1093,12 @@ autowrap = true
 [connection signal="pressed" from="aerofoil_geometry_stats" to="aerofoil_geometry_stats" method="_on_values_general_info_pressed"]
 [connection signal="pressed" from="finish_button" to="." method="_on_finish_button_pressed"]
 [connection signal="pressed" from="button_undo" to="button_undo" method="_on_button_undo_pressed"]
-[connection signal="toggled" from="button_edit" to="." method="_on_button_edit_toggled"]
-[connection signal="toggled" from="button_edit" to="graphs_cL_cD" method="_on_button_edit_toggled"]
-[connection signal="toggled" from="button_edit" to="button_edit" method="_on_button_edit_toggled"]
 [connection signal="toggled" from="button_edit" to="edit_mode_preview" method="_on_button_edit_toggled"]
-[connection signal="index_pressed" from="button_edit/CanvasLayer/PopupMenu" to="button_edit" method="_on_PopupMenu_index_pressed"]
+[connection signal="toggled" from="button_edit" to="button_edit" method="_on_button_edit_toggled"]
+[connection signal="toggled" from="button_edit" to="graphs_cL_cD" method="_on_button_edit_toggled"]
+[connection signal="toggled" from="button_edit" to="." method="_on_button_edit_toggled"]
 [connection signal="index_pressed" from="button_edit/CanvasLayer/PopupMenu" to="edit_mode_preview" method="_on_PopupMenu_index_pressed"]
+[connection signal="index_pressed" from="button_edit/CanvasLayer/PopupMenu" to="button_edit" method="_on_PopupMenu_index_pressed"]
 [connection signal="button_up" from="button_quit" to="button_quit" method="_on_button_quit_button_up"]
 [connection signal="pressed" from="button_restart" to="button_restart" method="_on_button_restart_pressed"]
 [connection signal="pressed" from="button_about" to="button_about" method="_on_button_about_pressed"]
