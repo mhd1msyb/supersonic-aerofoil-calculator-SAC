@@ -10,7 +10,7 @@ Cross-platform interactive flow calculator for aerofoils. Cross-sections are con
 
 ## Features
 
- - Cross-platform design, with support for Windows, Linux, Mac, Android and iOS
+ - Cross-platform design, with support for Windows, Linux, Mac
  - Sketch and edit tools to create aerofoils
  - Built-in geometry editor
  - 3D aerofoil mesh visualiser - visualise a single blade/wing or a turbine in 3D
