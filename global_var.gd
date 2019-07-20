@@ -145,11 +145,11 @@ var chord_length_mode=false
 var thickness_mode=false
 
 
-var weak_shock_END_EDGE=0
-var m2_END_EDGE=0
-var p2_p0_END_EDGE=0
-var theta2_END_EDGE=0
-var p2_p1_END_EDGE=0
+var weak_shock_END_EDGE_TOP=0
+var m2_END_EDGE_TOP=0
+var p2_p0_END_EDGE_TOP=0
+var theta2_END_EDGE_TOP=0
+var p2_p1_END_EDGE_TOP=0
 
 
 var weak_shock_END_EDGE_BOTTOM=0
@@ -351,11 +351,11 @@ func _refresh_lists():
 	thickness_mode=false
 
 
-	weak_shock_END_EDGE=0
-	m2_END_EDGE=0
-	p2_p0_END_EDGE=0
-	theta2_END_EDGE=0
-	p2_p1_END_EDGE=0
+	weak_shock_END_EDGE_TOP=0
+	m2_END_EDGE_TOP=0
+	p2_p0_END_EDGE_TOP=0
+	theta2_END_EDGE_TOP=0
+	p2_p1_END_EDGE_TOP=0
 
 
 	weak_shock_END_EDGE_BOTTOM=0

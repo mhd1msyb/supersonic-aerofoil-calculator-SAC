@@ -12,3 +12,4 @@ script = ExtResource( 1 )
 
 [node name="coordinate_on_line_sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+

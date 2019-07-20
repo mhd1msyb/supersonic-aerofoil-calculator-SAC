@@ -11,7 +11,7 @@ var horizontal_vector=Vector2(1,0)
 
 
 
-var colour=[Color(1,0,0),Color(0,1,0),Color(0,0,1)]
+var colour=[Color(0,0,1),Color(0,1,0),Color(0,0,1)]
 var uvs=[Vector2(),Vector2(),Vector2()]
 var triangle_height=70
 

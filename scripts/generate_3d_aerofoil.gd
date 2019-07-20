@@ -10,6 +10,10 @@ func _ready():
 	mat.albedo_color=ColorN("antiquewhite",1.0)
 	material_override=mat # set the material of aerofoil
 	
+	
+	
+	
+	
 	var surftool=SurfaceTool.new()
 	mesh=surftool.clear()
 	
@@ -96,6 +100,44 @@ func _ready():
 
 	
 	mesh=surftool.commit(mesh)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	#_add_omni(coords)
 	_add_cube_pillars(coords)

@@ -3,7 +3,8 @@ extends MeshInstance
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-onready var rot_speed_slider=get_parent().get_node("rot_speed_slider").get_node("slider")
+onready var rot_speed_slider=get_parent().get_node("rot_speed_slider/slider")
+onready var rot_speed_label=get_parent().get_node("rot_speed_slider/Label")
 onready var aerofoil_blade_scene=preload("res://scenes/aerofoil_blade.tscn")
 onready var spotlight=get_parent().get_node("lights/SpotLight")
 var blade_count=float(5)
@@ -28,6 +29,7 @@ func _process(delta):
 	var rot_speed=rot_speed_slider.value
 	rotate_z(rot_speed*delta)
 	
+	rot_speed_label.text='Rotational speed : ' + str(rot_speed) + ' (rad/s)'
 
 
 
@@ -39,6 +41,24 @@ func _on_blade_AoA_rotation_value_changed(value):
 	pass # Replace with function body.
 
 
-func _on_CheckButton_toggled(button_pressed):
+
+
+
+
+
+
+func _on_wireframe_checkbox_toggled(button_pressed):
+	for i in get_children():
+		i.get_node("wireframe").visible=button_pressed
+	pass # Replace with function body.
+
+
+func _on_solid_checkbox_toggled(button_pressed):
+	for i in get_children():
+		i.get_node("aerofoil_mesh").visible=button_pressed
+	pass # Replace with function body.
+
+
+func _on_shadow_checkbox_toggled(button_pressed):
 	spotlight.shadow_enabled=button_pressed
 	pass # Replace with function body.

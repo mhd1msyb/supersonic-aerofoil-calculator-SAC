@@ -5,9 +5,9 @@
 [ext_resource path="res://scripts/hub.gd" type="Script" id=3]
 [ext_resource path="res://textures/back_icon.png" type="Texture" id=4]
 [ext_resource path="res://scripts/back_button.gd" type="Script" id=5]
-[ext_resource path="res://textures/rotate_icon.png" type="Texture" id=6]
-[ext_resource path="res://scenes/FPS.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/button_screenshot.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/FPS.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/button_screenshot.tscn" type="PackedScene" id=7]
+[ext_resource path="res://textures/rotate_icon.png" type="Texture" id=8]
 [ext_resource path="res://textures/green_square.png" type="Texture" id=9]
 
 [sub_resource type="Environment" id=1]
@@ -20,41 +20,43 @@ ambient_light_color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
 [node name="Spatial" type="Spatial"]
 
 [node name="gimbal" type="Spatial" parent="."]
-editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.3103, 0 )
 script = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="gimbal"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.58012, 33.39 )
-far = 300.0
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.68308, 52.4311 )
+far = 2000.0
 
 [node name="hub" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.3103, 0 )
 mesh = ExtResource( 2 )
 material/0 = null
 script = ExtResource( 3 )
 
-[node name="rot_speed_slider" type="HSplitContainer" parent="."]
+[node name="rot_speed_slider" type="VBoxContainer" parent="."]
 editor/display_folded = true
-margin_top = 326.0
-margin_right = 40.0
-margin_bottom = 519.0
+margin_left = 465.312
+margin_top = 543.309
+margin_right = 599.312
+margin_bottom = 594.309
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="rot_speed_slider"]
-margin_right = 83.0
-margin_bottom = 193.0
+margin_right = 134.0
+margin_bottom = 31.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Rotational
 speed (rad/s)"
+align = 1
 
-[node name="slider" type="VSlider" parent="rot_speed_slider"]
-margin_left = 95.0
-margin_right = 111.0
-margin_bottom = 193.0
+[node name="slider" type="HSlider" parent="rot_speed_slider"]
+margin_top = 35.0
+margin_right = 134.0
+margin_bottom = 51.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-min_value = 1.0
 max_value = 20.0
 step = 0.1
 value = 1.0
@@ -69,18 +71,9 @@ icon = ExtResource( 4 )
 script = ExtResource( 5 )
 
 [node name="rotate_zoom_info" type="RichTextLabel" parent="."]
-margin_right = 166.0
-margin_bottom = 86.0
-text = "Move mouse to rotate around the aerofoil.
-
-Roll middle mouse to zoom in/out."
-
-[node name="description" type="RichTextLabel" parent="."]
-margin_left = 642.096
-margin_top = 535.238
-margin_right = 1027.1
-margin_bottom = 597.238
-text = "Description: this 3D mesh viewer works by extruding the 2D sketch (previously drawn or loaded in) along the vertical axis to form a 3D hollow mesh. The purpose of this is to allow better visualization of an aerofoil mesh."
+margin_right = 155.0
+margin_bottom = 37.0
+text = "Roll middle mouse to zoom in/out."
 
 [node name="title" type="RichTextLabel" parent="."]
 margin_left = 420.0
@@ -93,6 +86,7 @@ text = "3D MESH VIEWER"
 environment = SubResource( 1 )
 
 [node name="lights" type="OmniLight" parent="."]
+editor/display_folded = true
 transform = Transform( 0.887159, 0, 0.461464, 0, 1, 0, -0.461464, 0, 0.887159, 10.529, 18.7035, 12.6959 )
 light_color = Color( 0.831373, 0.552941, 0.329412, 1 )
 light_energy = 0.66
@@ -183,52 +177,99 @@ shadow_color = Color( 0.47451, 0.47451, 0.47451, 1 )
 omni_range = 20.0
 omni_attenuation = 1.10957
 
-[node name="shadows_container" type="VSplitContainer" parent="."]
-editor/display_folded = true
-margin_top = 208.766
-margin_right = 76.0
-margin_bottom = 274.766
+[node name="FPS" parent="." instance=ExtResource( 6 )]
 
-[node name="Label" type="Label" parent="shadows_container"]
-margin_right = 76.0
-margin_bottom = 14.0
-text = "Shadows"
-align = 1
+[node name="ground_plane" type="MeshInstance" parent="."]
+transform = Transform( 2423.52, 0, 0, 0, 2423.52, 0, 0, 0, 2423.52, 0, -34.8263, 0 )
+mesh = SubResource( 2 )
+material/0 = null
 
-[node name="CheckButton" type="CheckButton" parent="shadows_container"]
-margin_top = 26.0
-margin_right = 76.0
-margin_bottom = 66.0
+[node name="slanted_plane" type="MeshInstance" parent="."]
+transform = Transform( 2423.52, 0, 0, 0, 1320.27, -2032.32, 0, 2032.32, 1320.27, 0, -16.3812, -34.191 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="button_panel" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 259.65
+margin_right = 102.0
+margin_bottom = 339.65
+
+[node name="wireframe_checkbox" type="HBoxContainer" parent="button_panel"]
+margin_right = 95.0
+margin_bottom = 24.0
+
+[node name="wireframe_checkbox2" type="CheckBox" parent="button_panel/wireframe_checkbox"]
+margin_right = 24.0
+margin_bottom = 24.0
+size_flags_vertical = 3
 pressed = true
 
-[node name="button_press_to_rot" type="Button" parent="."]
-margin_left = 789.0
-margin_top = 462.0
-margin_right = 1005.0
-margin_bottom = 516.0
-text = "PRESS AND DRAG TO ROTATE"
-icon = ExtResource( 6 )
+[node name="Label" type="Label" parent="button_panel/wireframe_checkbox"]
+margin_left = 28.0
+margin_right = 95.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Wireframe"
+align = 1
 
-[node name="FPS" parent="." instance=ExtResource( 7 )]
+[node name="solid_checkbox" type="HBoxContainer" parent="button_panel"]
+margin_top = 28.0
+margin_right = 95.0
+margin_bottom = 52.0
 
-[node name="button_screenshot" parent="." instance=ExtResource( 8 )]
+[node name="solid_checkbox2" type="CheckBox" parent="button_panel/solid_checkbox"]
+margin_right = 24.0
+margin_bottom = 24.0
+size_flags_vertical = 3
+pressed = true
+
+[node name="Label2" type="Label" parent="button_panel/solid_checkbox"]
+margin_left = 28.0
+margin_right = 95.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Solid"
+
+[node name="shadow_checkbox" type="HBoxContainer" parent="button_panel"]
+editor/display_folded = true
+margin_top = 56.0
+margin_right = 95.0
+margin_bottom = 80.0
+
+[node name="shadow_checkbox" type="CheckBox" parent="button_panel/shadow_checkbox"]
+margin_right = 24.0
+margin_bottom = 24.0
+size_flags_vertical = 3
+pressed = true
+
+[node name="Label" type="Label" parent="button_panel/shadow_checkbox"]
+margin_left = 28.0
+margin_right = 95.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Shadow"
+
+[node name="button_screenshot" parent="." instance=ExtResource( 7 )]
 margin_left = 892.347
 margin_top = 1.50734
 margin_right = 1020.35
 margin_bottom = 39.5073
 
-[node name="blade_AoA_rotation" type="HSlider" parent="."]
-margin_left = 171.2
-margin_top = 554.15
-margin_right = 315.2
-margin_bottom = 586.15
-min_value = -40.0
-max_value = 40.0
-step = 0.001
-ticks_on_borders = true
+[node name="button_press_to_rot" type="Button" parent="."]
+margin_left = 789.0
+margin_top = 541.778
+margin_right = 1021.0
+margin_bottom = 595.778
+text = "PRESS AND DRAG TO ROTATE"
+icon = ExtResource( 8 )
 
 [node name="zoom" type="VBoxContainer" parent="."]
 editor/display_folded = true
+visible = false
 margin_left = 406.0
 margin_top = 535.0
 margin_right = 588.0
@@ -270,16 +311,27 @@ size_flags_vertical = 2
 text = "+"
 align = 2
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 2423.52, 0, 0, 0, 2423.52, 0, 0, 0, 2423.52, 0, -34.8263, 0 )
-mesh = SubResource( 2 )
-material/0 = null
+[node name="blade_AoA_rotation" type="HSlider" parent="."]
+visible = false
+margin_left = 171.2
+margin_top = 554.15
+margin_right = 315.2
+margin_bottom = 586.15
+min_value = -40.0
+max_value = 40.0
+step = 0.001
+ticks_on_borders = true
 
-[node name="MeshInstance2" type="MeshInstance" parent="."]
-transform = Transform( 2423.52, 0, 0, 0, 1918.75, -1480.48, 0, 1480.48, 1918.75, 0, -16.3812, -24.4219 )
-mesh = SubResource( 2 )
-material/0 = null
+[node name="description" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 642.096
+margin_top = 535.238
+margin_right = 1027.1
+margin_bottom = 597.238
+text = "Description: this 3D mesh viewer works by extruding the 2D sketch (previously drawn or loaded in) along the vertical axis to form a 3D hollow mesh. The purpose of this is to allow better visualization of an aerofoil mesh."
 
 [connection signal="pressed" from="button_back" to="button_back" method="_on_button_back_pressed"]
-[connection signal="toggled" from="shadows_container/CheckButton" to="hub" method="_on_CheckButton_toggled"]
+[connection signal="toggled" from="button_panel/wireframe_checkbox/wireframe_checkbox2" to="hub" method="_on_wireframe_checkbox_toggled"]
+[connection signal="toggled" from="button_panel/solid_checkbox/solid_checkbox2" to="hub" method="_on_solid_checkbox_toggled"]
+[connection signal="toggled" from="button_panel/shadow_checkbox/shadow_checkbox" to="hub" method="_on_shadow_checkbox_toggled"]
 [connection signal="value_changed" from="blade_AoA_rotation" to="hub" method="_on_blade_AoA_rotation_value_changed"]

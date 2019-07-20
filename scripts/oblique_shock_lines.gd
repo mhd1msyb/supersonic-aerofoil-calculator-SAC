@@ -37,7 +37,7 @@ func _draw_oblique_shock(i,mode):#done CHANGE PRESSURE RATIO AT BACK (IS NOT ==1
 	
 	
 	copy_list_p_p1.push_back(global_var.p2_p1_END_EDGE_BOTTOM) #######CHECK THIS...	
-	copy_list_p_p1.push_back(global_var.p2_p1_END_EDGE) #######CHECK THIS...
+	copy_list_p_p1.push_back(global_var.p2_p1_END_EDGE_TOP) #######CHECK THIS...
 	var max_p_p1=global_var._max(copy_list_p_p1)
 	
 	if max_p_p1>0: # to ensure we don't / by 0
@@ -62,7 +62,7 @@ func _draw_oblique_shock(i,mode):#done CHANGE PRESSURE RATIO AT BACK (IS NOT ==1
 		if mode=="top end edge":
 			normalized_p_p1=copy_list_p_p1.back()/max_p_p1
 			starting_point=global_var.list_point_coords[global_var.index_bottom_top_plate]
-			end_point=starting_point+Vector2(cos(global_var.weak_shock_END_EDGE),-sin(global_var.weak_shock_END_EDGE))*line_length
+			end_point=starting_point+Vector2(cos(global_var.weak_shock_END_EDGE_TOP),-sin(global_var.weak_shock_END_EDGE_TOP))*line_length
 			
 			
 			

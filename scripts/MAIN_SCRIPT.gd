@@ -320,8 +320,6 @@ func _dataset_search(interpVal,data1,data2):
 			maxValdata2=data1[index+1]
 			break
 
-
-
 	return [index,minValdata1,maxValdata1,minValdata2,maxValdata2]
 
 
@@ -876,9 +874,13 @@ func _on_alpha_slider_value_changed(value):#current
 		
 		if global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==true:
 			_oblique_shock(ii)
+			
+			
 		elif global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==false:
 			break
 			print("oblique break, _on_alpha_slider_value_changed")
+			
+			
 			
 			
 			
@@ -894,6 +896,50 @@ func _on_alpha_slider_value_changed(value):#current
 		if global_var.list_strings[ii]=="nothing":
 			_nothing(ii)
 			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+	for i in 1:
+		if _oblique_shock_END_EDGE("top")==true:
+			_oblique_shock_END_EDGE("top")
+		else:
+			break
+	
+			
+		var gradi=-global_var.list_vector[global_var.index_bottom_top_plate-1].y/global_var.list_vector[global_var.index_bottom_top_plate-1].x
+		if sign(gradi)==1: # to prevent exp fan showing if tehre is an oblique shock line
+			if _oblique_shock_END_EDGE("bottom")==true:
+				_oblique_shock_END_EDGE("bottom")
+			else:
+				break
+	
+		print(global_var.p2_p1_END_EDGE_TOP, "   ",global_var.p2_p1_END_EDGE_BOTTOM)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	########Calculate lift coefficient and drag coefficient###################
@@ -1487,15 +1533,33 @@ func _check():
 			state=true
 		elif global_var.list_strings[ii]=="expansion" and _expansion(ii)==false:
 			print("expansion break, _check")
-			#global_var.list_p_p1.clear()
-			#global_var.list_m.clear()
 			state=false
 			reason="expansion"
 			break
 
-
 		if global_var.list_strings[ii]=="nothing":
 			_nothing(ii)
+			
+			
+	for i in 1:
+		if _oblique_shock_END_EDGE("top")==true:
+			_oblique_shock_END_EDGE("top")
+			state=true
+		else:
+			print("end top edge break")
+			state=false
+			break
+	
+			
+		var gradi=-global_var.list_vector[global_var.index_bottom_top_plate-1].y/global_var.list_vector[global_var.index_bottom_top_plate-1].x
+		if sign(gradi)==1: # to prevent exp fan showing if tehre is an oblique shock line
+			if _oblique_shock_END_EDGE("bottom")==true:
+				_oblique_shock_END_EDGE("bottom")
+				state=true
+			else:
+				print("bottom edge break")
+				state=false
+				break
 
 	return [state,reason]
 	
@@ -1556,11 +1620,9 @@ func _find_bow_shock():
 				
 				
 		if _check()[0]==true:
-			#print(float(i)/100)
 			alpha_slider.max_value=10
 			global_var.bow_shock_angle=10
 		elif _check()[0]==false:
-			#pivot.rotate(deg2rad(float(i)/5))
 			print("broken",count)
 			global_var.bow_shock_angle=float(count)
 			alpha_slider.max_value=10
@@ -1716,43 +1778,90 @@ func _please_wait_message():# currently not in use
 
 
 func _on_m_slider_button_button_up():
+	var ang=pivot.global_rotation
 	
+	_clear_lists()
 	
 	pivot.global_rotation=0
-
-		
-	_clear_lists()
-	_refresh_lists()
-	
-	
-	_initialise_lists() #CALLED ONCE
-	###find whether top or bottom side##########################################################################
-	_top_or_bottom()#CALLED ONCE
-	
-	###populate ca_pressures sign list#######################################	
-	_ca_PRESSURES()#CALLED ONCE (assumption)
-	#_update_coords_vectors_midpoints()
-	
-	###calc area ratio (t/c)###################################	
-	_area_t_c()#CALLED ONCE
-	
-	global_var.point_count_before_edit=line2d_bottom.get_point_count()
-	
-	_store_point_coord_before_edit()
-	
-	_clear_lists()
 	
 	_find_bow_shock()
 	
-	global_var.random_graph_point_color=Vector3(randf(),randf(),randf())# generate random colour
+###clean the lists and re-initialise them (to avoid values from previous updates afftecing the next update#######################################################
+	pivot.global_rotation=ang
 	
-	yield(get_tree(),"idle_frame")
-	yield(get_tree(),"idle_frame")
-	yield(get_tree(),"idle_frame")
+	_clear_lists()
+	
+	###update the vectors, coordinates and mpoints of the lines after rotation#######################################################	
+	_update_coords_vectors_midpoints()
+	
+	###populate angular and vector lists#######################################################	
+	
+	_calculate_GlobalAngles()
+	
+	for i in range (len(global_var.list_vector)):
 
-	_MAIN_UPDATE() # update all variables (speed, p/p1, cL, etc) once slider is changed
+		###find whether expansion or contraction#######################################################		
+		_define_expansion_contraction(i)
+		
+		###calculate deflection angles#######################################################		
+		_deflection_angles(i)
 
-
+	#apply _oblique_shock() or _expansion based on whether plate is contraction or expansion#######################################################		
+	for ii in range(len(global_var.list_vector)):
+		
+		if global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==true:
+			_oblique_shock(ii)
+		elif global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==false:
+			print("oblique break, _on_alpha_slider_value_changed")
+			break
+			
+			
+			
+		if global_var.list_strings[ii]=="expansion" and _expansion(ii)==true:
+			_expansion(ii)
+		elif global_var.list_strings[ii]=="expansion" and _expansion(ii)==false:
+			print("expansion break, _on_alpha_slider_value_changed")
+			break
+			
+			
+		if global_var.list_strings[ii]=="nothing":
+			_nothing(ii)
+			
+			
+			
+			
+			
+			
+			
+			
+	for i in 1:
+		if _oblique_shock_END_EDGE("top")==true:
+			_oblique_shock_END_EDGE("top")
+		else:
+			break
+	
+			
+		var gradi=-global_var.list_vector[global_var.index_bottom_top_plate-1].y/global_var.list_vector[global_var.index_bottom_top_plate-1].x
+		if sign(gradi)==1: # to prevent exp fan showing if tehre is an oblique shock line
+			if _oblique_shock_END_EDGE("bottom")==true:
+				_oblique_shock_END_EDGE("bottom")
+			else:
+				break
+	
+		print(global_var.p2_p1_END_EDGE_TOP, "   ",global_var.p2_p1_END_EDGE_BOTTOM)
+			
+			
+			
+			
+			
+			
+	
+	########Calculate lift coefficient and drag coefficient###################
+			
+	_cL()
+	
+	_cD()
+		
 	
 	
 	
@@ -1767,39 +1876,8 @@ func _on_m_slider_button_button_up():
 	
 	
 func _on_gamma_slider_button_button_up():
-	pivot.global_rotation=0
 
-		
-	_clear_lists()
-	_refresh_lists()
-	
-	
-	_initialise_lists() #CALLED ONCE
-	###find whether top or bottom side##########################################################################
-	_top_or_bottom()#CALLED ONCE
-	
-	###populate ca_pressures sign list#######################################	
-	_ca_PRESSURES()#CALLED ONCE (assumption)
-	#_update_coords_vectors_midpoints()
-	
-	###calc area ratio (t/c)###################################	
-	_area_t_c()#CALLED ONCE
-	
-	global_var.point_count_before_edit=line2d_bottom.get_point_count()
-	
-	_store_point_coord_before_edit()
-	
-	_clear_lists()
-	
-	_find_bow_shock()
-	
-	global_var.random_graph_point_color=Vector3(randf(),randf(),randf())# generate random colour
-	
-	yield(get_tree(),"idle_frame")
-	yield(get_tree(),"idle_frame")
-	yield(get_tree(),"idle_frame")
-
-	_MAIN_UPDATE() # update all variables (speed, p/p1, cL, etc) once slider is changed
+	pass
 	
 	
 	
@@ -2023,7 +2101,235 @@ func _on_open_aerofoil_button_pressed():
 		
 	else:
 		print("no files to load")
+		return
 	
 		
 		
 	pass # Replace with function body.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func _oblique_shock_END_EDGE(plate):
+	var state=null
+	var m=0
+	var deflection_angle=0
+	var m2=0
+	var p2_p0=0
+	var theta2=0
+	var p2_p1=0
+
+	if plate=="top":
+		m=global_var.list_m.back()
+		deflection_angle=global_var.list_GlobalAngles[global_var.index_bottom_top_plate]
+	if plate=="bottom":
+		m=global_var.list_m[global_var.index_bottom_top_plate-1]
+		deflection_angle=global_var.list_GlobalAngles[global_var.index_bottom_top_plate-1]
+
+
+	if deflection_angle<_plot_curve_END_EDGE(m).max()*0.93:
+		m2=clamp(_m2_END_EDGE(m,plate),0,global_var.m1)
+		p2_p0=_interpolate(_dataset_search(m2,m_dataset,p_p0_dataset)[1],_dataset_search(m2,m_dataset,p_p0_dataset)[2],_dataset_search(m2,m_dataset,p_p0_dataset)[3],_dataset_search(m2,m_dataset,p_p0_dataset)[4],m2)
+		theta2=deg2rad(_interpolate(_dataset_search(m2,m_dataset,theta_dataset)[1],_dataset_search(m2,m_dataset,theta_dataset)[2],_dataset_search(m2,m_dataset,theta_dataset)[3],_dataset_search(m2,m_dataset,theta_dataset)[4],m2))
+		p2_p1=_p_p1_END_EDGE(m,plate)
+		
+		if plate=="top":
+			global_var.m2_END_EDGE_TOP=m2
+			global_var.p2_p0_END_EDGE_TOP=p2_p0
+			global_var.theta2_END_EDGE_TOP=theta2
+			global_var.p2_p1_END_EDGE_TOP=p2_p1
+			state=true
+			
+		if plate=="bottom":
+			global_var.m2_END_EDGE_BOTTOM=m2
+			global_var.p2_p0_END_EDGE_BOTTOM=p2_p0
+			global_var.theta2_END_EDGE_BOTTOM=theta2
+			global_var.p2_p1_END_EDGE_BOTTOM=p2_p1
+			state=true
+		
+	else:
+		print("too large def angle")
+		state=false
+		
+	return state
+
+
+
+
+
+
+
+
+func _plot_curve_END_EDGE(m): #ok
+
+	var points=100
+	var beta_array_initial=[]
+	var theta_array_initial=[]
+
+
+	beta_array_initial=global_var._linspace(deg2rad(0.01),deg2rad(110),points)
+	theta_array_initial=global_var._linspace(0,0,points)
+
+	for i in range(len(beta_array_initial)):
+
+		theta_array_initial[i]=atan(_Equation__flowDeflection_shockAngle_END_EDGE(beta_array_initial[i],m))
+		
+	return theta_array_initial
+
+
+
+
+func _m2_END_EDGE(m,plate): #ok
+	var m2n=sqrt(((global_var.gamma-1)*pow(m,2)*pow(sin(_shock_angle_END_EDGE(m,plate)),2) +2)/((2*global_var.gamma*pow(m,2)*pow(sin(_shock_angle_END_EDGE(m,plate)),2))-(global_var.gamma-1)))
+	var m2=0
+	
+	if plate=="top":
+		m2n/(sin(_shock_angle_END_EDGE(m,plate)-global_var.list_GlobalAngles[global_var.index_bottom_top_plate]))
+		
+	if plate=="bottom":
+		m2n/(sin(_shock_angle_END_EDGE(m,plate)-global_var.list_GlobalAngles[global_var.index_bottom_top_plate-1]))
+		
+	return m2
+
+
+
+func _p_p1_END_EDGE(m,plate): #ok
+	var p_p1=(1/(global_var.gamma+1)) * (2*global_var.gamma*pow(m,2)*pow(sin(_shock_angle_END_EDGE(m,plate)),2) -(global_var.gamma-1))
+	return p_p1
+
+
+
+func _Equation__flowDeflection_shockAngle_END_EDGE(mpoint,m): #ok
+
+	var eqn=(2*(1/tan(mpoint))*(pow(m,2)*pow(sin(mpoint),2) -1))/(pow(m,2)*(global_var.gamma+cos(2*mpoint)) +2)
+	return eqn
+	
+	
+
+func _shock_angle_END_EDGE(m,plate): #ok
+
+	
+	var deflection_angle=0
+	
+	if plate=="top":
+		deflection_angle=global_var.list_GlobalAngles[global_var.index_bottom_top_plate]
+	if plate=="bottom":
+		deflection_angle=global_var.list_GlobalAngles[global_var.index_bottom_top_plate-1]
+	
+	var setpoint=tan(deflection_angle)
+	var resolution=global_var.simulation_precision
+	var minVal=deg2rad(0)
+	var maxVal=deg2rad(110)
+	var val=[minVal,maxVal]
+	var mpoint=(val[0]+val[1])*0.5
+	var shock_angle=0
+	#var iterations=0
+
+
+	if deflection_angle<_plot_curve_END_EDGE(m).max()*0.8:
+		while abs(_Equation__flowDeflection_shockAngle_END_EDGE(mpoint,m)-setpoint)>resolution:
+	
+			#iterations+=1
+			mpoint=(val[0]+val[1])*0.5
+			if _Equation__flowDeflection_shockAngle_END_EDGE(mpoint,m)>setpoint:
+			    val[1]=mpoint
+			if _Equation__flowDeflection_shockAngle_END_EDGE(mpoint,m)<setpoint:
+			    val[0]=mpoint
+	
+		shock_angle=(val[0]+val[1])*0.5
+		
+		if plate=="top":
+			global_var.weak_shock_END_EDGE_TOP=shock_angle
+		if plate=="bottom":
+			global_var.weak_shock_END_EDGE_BOTTOM=shock_angle
+	else:
+		print("Error! Deflection (weak shock) angle too large for the given flow condtions (try decreasing aerofoil thickness and lowering speed).")
+		return
+		
+	return shock_angle
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
