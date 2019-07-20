@@ -10,7 +10,7 @@ Cross-platform interactive flow calculator for aerofoils. Cross-sections are con
 
 ## Features
 
- - Cross-platform design, with support for Windows, Linux, Mac, Android and iOS
+ - Cross-platform design, with support for Windows, Linux, Mac
  - Sketch and edit tools to create aerofoils
  - Built-in geometry editor
  - 3D aerofoil mesh visualiser - visualise a single blade/wing or a turbine in 3D
@@ -51,7 +51,7 @@ If you want to compile and run the source files:
 ## License details
 This program is licensed under the Apache License Version 2.0 (for more details, view the `LICENSE` file).
 
-This program uses the Godot Engine, which is licensed under the Expat license. Please visit www.godotengine.org/license to view its (Godot Engine).
+This program uses the Godot Engine, which is licensed under the Expat license : www.godotengine.org/license
 
 Fonts are rendered using FreeType. Portions of this software are © 2019 The FreeType Project (www.freetype.org). All rights reserved. 
 
