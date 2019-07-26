@@ -101,6 +101,7 @@ func _ready():
 	
 	mesh=surftool.commit(mesh)
 	
+	#_add_cube_pillars(coords)
 	
 	
 	
@@ -140,7 +141,6 @@ func _ready():
 	
 	
 	#_add_omni(coords)
-	_add_cube_pillars(coords)
 	
 
 	

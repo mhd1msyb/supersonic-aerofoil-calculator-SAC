@@ -7,6 +7,7 @@ var aerofoil_size=global_var.aerofoil_size
 var aerofoil_height=global_var.aerofoil_height
 
 func _ready():
+
 	var mat=SpatialMaterial.new()
 	mat.albedo_color=ColorN("springgreen",1.0)
 	mat.flags_unshaded=true

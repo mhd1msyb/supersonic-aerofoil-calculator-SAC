@@ -20,7 +20,7 @@ func _on_alpha_slider_value_changed(value):
 		clear()
 		for i in len(global_var.list_m):
 			add_item("Plate"+str(i)+" : "+str(stepify(global_var.list_m[i],0.01)),null,false)
-		add_item("Top trail edge"+" : "+str(stepify(global_var.m2_END_EDGE,0.01)),null,false)
+		add_item("Top trail edge"+" : "+str(stepify(global_var.m2_END_EDGE_TOP,0.01)),null,false)
 		add_item("Bottom trail edge"+" : "+str(stepify(global_var.m2_END_EDGE_BOTTOM,0.01)),null,false)
 
 

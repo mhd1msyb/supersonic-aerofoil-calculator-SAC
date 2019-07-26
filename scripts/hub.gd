@@ -29,7 +29,7 @@ func _process(delta):
 	var rot_speed=rot_speed_slider.value
 	rotate_z(rot_speed*delta)
 	
-	rot_speed_label.text='Rotational speed : ' + str(rot_speed) + ' (rad/s)'
+	rot_speed_label.text='Rotational speed : ' + str(stepify(rot_speed*delta,0.01)) + ' (rad/s)'
 
 
 
