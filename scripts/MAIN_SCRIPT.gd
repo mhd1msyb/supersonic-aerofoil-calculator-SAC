@@ -156,8 +156,14 @@ func _clear_lists():#done
 func _plate_gradient(i):
 	
 	if global_var.list_vector[i].x<0.000001:
-		print("NEGATIVE GRADIENT",i)
-		return 10000000000000
+		var error_message=label_with_timer.instance()
+		add_child(error_message)
+		error_message.text="Error! Plate gradients are too steep. Press 'UNDO' and sketch again."
+		error_message.rect_size.x*=3
+		error_message.rect_global_position=alpha_slider.rect_global_position-Vector2(0,60)
+		error_message.self_modulate=ColorN("orangered",1.0)
+		print("STEEP GRADIENT",i)
+		return 100000000000000
 		
 	else:
 		var grad=-global_var.list_vector[i].y/global_var.list_vector[i].x
@@ -171,9 +177,6 @@ func _plate_gradient(i):
 func _initialise_lists():#done
 	
 	######used to create dynamically-sized list (based on number or plate), and initialise them############
-
-	
-	
 
 	global_var.index_bottom_top_plate=0
 	global_var.list_point_coords.clear()
@@ -877,8 +880,8 @@ func _on_alpha_slider_value_changed(value):#current
 			
 			
 		elif global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==false:
-			break
 			print("oblique break, _on_alpha_slider_value_changed")
+			break
 			
 			
 			
@@ -926,17 +929,7 @@ func _on_alpha_slider_value_changed(value):#current
 			else:
 				break
 	
-		print(global_var.p2_p1_END_EDGE_TOP, "   ",global_var.p2_p1_END_EDGE_BOTTOM)
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	print(global_var.p2_p1_END_EDGE_TOP, "   ",global_var.p2_p1_END_EDGE_BOTTOM)
 	
 	
 	
@@ -1013,9 +1006,6 @@ func _shift_pivot_mp():
 	
 	
 func _on_finish_button_pressed():
-	
-	
-	
 	if get_node_or_null("label_with_timer_Sketch_Aerofoil"): #delete the text in the top left corner
 		get_node("label_with_timer_Sketch_Aerofoil").queue_free()
 	
@@ -1033,7 +1023,6 @@ func _on_finish_button_pressed():
 		line2d_bottom.add_point(initial_point_coord) 
 			
 		
-		undo_button.disabled=true
 		edit_button.disabled=false
 		advanced_button.disabled=false
 		generate_3d_mesh_button.disabled=false
@@ -1044,6 +1033,7 @@ func _on_finish_button_pressed():
 		gamma_slider.show()
 		save_button.show()
 		finish_button.queue_free()
+		undo_button.queue_free()
 		
 		
 		
@@ -1090,10 +1080,6 @@ func _on_finish_button_pressed():
 	
 	
 	
-		
-
-		
-		
 func _geometry_edited_checker():
 	"""
 	if index is NOT the same as global_var.index_bottom_top_plate (i.e. nodes deleted/ moved/added), SHIFT MIDPOINT, shift_pivot_midpoint==true
@@ -1485,9 +1471,8 @@ func _check_gradients():
 			add_child(error_line_highlight.instance())
 			print(i,_plate_gradient(i))
 			break
-		else:
 			
-			#print("fine")
+		else:
 			state=true
 			
 		
@@ -2311,9 +2296,20 @@ func _shock_angle_END_EDGE(m,plate): #ok
 			global_var.weak_shock_END_EDGE_TOP=shock_angle
 		if plate=="bottom":
 			global_var.weak_shock_END_EDGE_BOTTOM=shock_angle
+			
 	else:
 		print("Error! Deflection (weak shock) angle too large for the given flow condtions (try decreasing aerofoil thickness and lowering speed).")
-		return
+		
+		alpha_slider.max_value=pivot.global_rotation_degrees-0.1
+		
+		var error_message=label_with_timer.instance()
+		add_child(error_message)
+		error_message.text="Error! Deflection angle out of plot range. Try editing the geometry to reduce steep plate angles."
+		error_message.rect_size*=3
+		error_message.rect_global_position=alpha_slider.rect_global_position-Vector2(0,60)
+		error_message.self_modulate=ColorN("orangered",1.0)
+		
+		return 0.0
 		
 	return shock_angle
 
