@@ -1,3 +1,4 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends OptionButton
 
 onready var line2d_bottom=get_parent().get_node("pivot").get_node("Line2D_bottom")

@@ -1,8 +1,7 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends HSlider
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+
 
 onready var label=get_node("Label")
 
@@ -13,10 +12,6 @@ func _ready():
 	hide()
 	pass
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
 
 
 func _on_simulation_precision_slider_value_changed(value):

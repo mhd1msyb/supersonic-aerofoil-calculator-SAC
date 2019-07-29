@@ -1,8 +1,7 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends VBoxContainer
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+
 onready var error_large_deflection_angle=get_node("error_large_deflection_angle")
 onready var error_exceeded_dataset=get_node("error_exceeded_dataset")
 

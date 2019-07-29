@@ -1,8 +1,8 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends MeshInstance
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
+
 var aerofoil_size=global_var.aerofoil_size
 var aerofoil_height=global_var.aerofoil_height
 

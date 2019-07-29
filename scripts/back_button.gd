@@ -1,3 +1,4 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends Button
 
 # Declare member variables here. Examples:

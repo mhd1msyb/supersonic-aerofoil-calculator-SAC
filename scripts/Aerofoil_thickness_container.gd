@@ -1,8 +1,6 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends VBoxContainer
-#Copyright Mehdi Msayib#
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+
 
 onready var line=get_node("Line2D")
 onready var colourPickerButton=get_node("ColorPickerButton")

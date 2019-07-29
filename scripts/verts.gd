@@ -1,8 +1,7 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends MeshInstance
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
 onready var main_aerofoil_mesh=get_parent().get_node("aerofoil")
 
 

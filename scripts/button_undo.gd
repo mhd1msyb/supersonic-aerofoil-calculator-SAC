@@ -1,8 +1,8 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends Button
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+
+
 onready var pivot=get_parent().get_node("pivot")
 onready var line2d_bottom=get_parent().get_node("pivot").get_node("Line2D_bottom")
 

@@ -1,8 +1,7 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends Button
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
 onready var load_aerofoil_dialogue=get_node("PanelContainer")
 onready var load_aerofoil_listItem=get_node("PanelContainer/VBoxContainer/ItemList")
 # Called when the node enters the scene tree for the first time.

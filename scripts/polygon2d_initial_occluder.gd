@@ -1,3 +1,4 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends Polygon2D
 
 """

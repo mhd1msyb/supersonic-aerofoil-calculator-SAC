@@ -1,11 +1,12 @@
- extends Node2D
-#Copyright Mehdi Msayib#
+#Copyright (c) 2019 Mehdi Msayib#
+extends Node2D
+
+
 #isentropic data from DATASET#######
 onready var m_dataset=global_var.m_dataset
 onready var p_p0_dataset=global_var.p_p0_dataset
 onready var theta_dataset=global_var.theta_dataset
-#var m1=1.6# defined by user DATA HAS TO BE ENETRED IN EXACLTY AS IN DATASET
-#var gamma=1.4 # defined by user
+
 var alpha=0 # defined by the user
 
 var horizontal_vector=Vector2(1,0)
@@ -523,7 +524,7 @@ func _oblique_shock(ii):
 		global_var.error_large_def_angle_ob_shock_func=false
 		var m2=clamp(_m2(ii,m),0,global_var.m1)
 		var p2_p0=_interpolate(_dataset_search(m2,m_dataset,p_p0_dataset)[1],_dataset_search(m2,m_dataset,p_p0_dataset)[2],_dataset_search(m2,m_dataset,p_p0_dataset)[3],_dataset_search(m2,m_dataset,p_p0_dataset)[4],m2)
-		var theta2=deg2rad(_interpolate(_dataset_search(m2,m_dataset,theta_dataset)[1],_dataset_search(m2,m_dataset,theta_dataset)[2],_dataset_search(m2,m_dataset,theta_dataset)[3],_dataset_search(m2,m_dataset,theta_dataset)[4],m2))
+		var theta2=_interpolate(_dataset_search(m2,m_dataset,theta_dataset)[1],_dataset_search(m2,m_dataset,theta_dataset)[2],_dataset_search(m2,m_dataset,theta_dataset)[3],_dataset_search(m2,m_dataset,theta_dataset)[4],m2)
 		var p2_p1=_p_p1(ii,m)
 
 		global_var.list_m[ii]=m2
@@ -553,12 +554,12 @@ func _expansion(ii):
 	var p4_p1=0
 
 	if global_var.list_position[ii]=="below" and ii==0:
-		theta4=deg2rad(_interpolate(_dataset_search(global_var.m1,m_dataset,theta_dataset)[1],_dataset_search(global_var.m1,m_dataset,theta_dataset)[2],_dataset_search(global_var.m1,m_dataset,theta_dataset)[3],_dataset_search(global_var.m1,m_dataset,theta_dataset)[4],global_var.m1))+global_var.list_deflection_angle[ii]
+		theta4=_interpolate(_dataset_search(global_var.m1,m_dataset,theta_dataset)[1],_dataset_search(global_var.m1,m_dataset,theta_dataset)[2],_dataset_search(global_var.m1,m_dataset,theta_dataset)[3],_dataset_search(global_var.m1,m_dataset,theta_dataset)[4],global_var.m1)+global_var.list_deflection_angle[ii]
 		
-		if rad2deg(theta4)<=theta_dataset.max(): ###safety shunt (prevent program crashing if out of dataset's range
+		if theta4<=theta_dataset.max(): ###safety shunt (prevent program crashing if out of dataset's range
 			global_var.error_exceeded_dataset_1=false
-			p4_p0=_interpolate(_dataset_search(rad2deg(theta4),theta_dataset,p_p0_dataset)[1],_dataset_search(rad2deg(theta4),theta_dataset,p_p0_dataset)[2],_dataset_search(rad2deg(theta4),theta_dataset,p_p0_dataset)[3],_dataset_search(rad2deg(theta4),theta_dataset,p_p0_dataset)[4],rad2deg(theta4))#0.257 #INTERPOLATE. find value of p3_p0 at for theta3 ##################CARRY ON
-			m4=_interpolate(_dataset_search(rad2deg(theta4),theta_dataset,m_dataset)[1],_dataset_search(rad2deg(theta4),theta_dataset,m_dataset)[2],_dataset_search(rad2deg(theta4),theta_dataset,m_dataset)[3],_dataset_search(rad2deg(theta4),theta_dataset,m_dataset)[4],rad2deg(theta4))#1.54 #INTERPOLATE. find value of m3 at for theta3 ##################CARRY ON
+			p4_p0=_interpolate(_dataset_search(theta4,theta_dataset,p_p0_dataset)[1],_dataset_search(theta4,theta_dataset,p_p0_dataset)[2],_dataset_search(theta4,theta_dataset,p_p0_dataset)[3],_dataset_search(theta4,theta_dataset,p_p0_dataset)[4],theta4)#0.257 #INTERPOLATE. find value of p3_p0 at for theta3 ##################CARRY ON
+			m4=_interpolate(_dataset_search(theta4,theta_dataset,m_dataset)[1],_dataset_search(theta4,theta_dataset,m_dataset)[2],_dataset_search(theta4,theta_dataset,m_dataset)[3],_dataset_search(theta4,theta_dataset,m_dataset)[4],theta4)#1.54 #INTERPOLATE. find value of m3 at for theta3 ##################CARRY ON
 			p4_p1=p4_p0/_interpolate(_dataset_search(global_var.m1,m_dataset,p_p0_dataset)[1],_dataset_search(global_var.m1,m_dataset,p_p0_dataset)[2],_dataset_search(global_var.m1,m_dataset,p_p0_dataset)[3],_dataset_search(global_var.m1,m_dataset,p_p0_dataset)[4],global_var.m1)
 			#print(ii)
 			global_var.list_m[ii]=m4
@@ -576,10 +577,10 @@ func _expansion(ii):
 	if global_var.list_position[ii]=="below" and ii>0:
 		theta4=global_var.list_theta[ii-1]+global_var.list_deflection_angle[ii] 
 		
-		if rad2deg(theta4)<=theta_dataset.max() and global_var.list_p_p0[ii-1]>0: ###safety shunt (prevent program crashing if out of dataset's range
+		if theta4<=theta_dataset.max() and global_var.list_p_p0[ii-1]>0: ###safety shunt (prevent program crashing if out of dataset's range
 			global_var.error_exceeded_dataset_2=false
-			m4=_interpolate(_dataset_search(rad2deg(theta4),theta_dataset,m_dataset)[1],_dataset_search(rad2deg(theta4),theta_dataset,m_dataset)[2],_dataset_search(rad2deg(theta4),theta_dataset,m_dataset)[3],_dataset_search(rad2deg(theta4),theta_dataset,m_dataset)[4],rad2deg(theta4))#1.44#_interpolate(_dataset_search(theta4,theta_dataset,p_p0_dataset)[1],_dataset_search(theta4,theta_dataset,p_p0_dataset)[2],_dataset_search(theta4,theta_dataset,p_p0_dataset)[3],_dataset_search(theta4,theta_dataset,p_p0_dataset)[4],theta4)*10 #1.44 # INTERPOLATE for a value of theta4		
-			p4_p0=_interpolate(_dataset_search(rad2deg(theta4),theta_dataset,p_p0_dataset)[1],_dataset_search(rad2deg(theta4),theta_dataset,p_p0_dataset)[2],_dataset_search(rad2deg(theta4),theta_dataset,p_p0_dataset)[3],_dataset_search(rad2deg(theta4),theta_dataset,p_p0_dataset)[4],rad2deg(theta4))   #0.2969 # INTERPOLATE for a value of theta4
+			m4=_interpolate(_dataset_search(theta4,theta_dataset,m_dataset)[1],_dataset_search(theta4,theta_dataset,m_dataset)[2],_dataset_search(theta4,theta_dataset,m_dataset)[3],_dataset_search(theta4,theta_dataset,m_dataset)[4],theta4)#1.44#_interpolate(_dataset_search(theta4,theta_dataset,p_p0_dataset)[1],_dataset_search(theta4,theta_dataset,p_p0_dataset)[2],_dataset_search(theta4,theta_dataset,p_p0_dataset)[3],_dataset_search(theta4,theta_dataset,p_p0_dataset)[4],theta4)*10 #1.44 # INTERPOLATE for a value of theta4		
+			p4_p0=_interpolate(_dataset_search(theta4,theta_dataset,p_p0_dataset)[1],_dataset_search(theta4,theta_dataset,p_p0_dataset)[2],_dataset_search(theta4,theta_dataset,p_p0_dataset)[3],_dataset_search(theta4,theta_dataset,p_p0_dataset)[4],theta4)   #0.2969 # INTERPOLATE for a value of theta4
 			p4_p1=(p4_p0/global_var.list_p_p0[ii-1])*global_var.list_p_p1[ii-1]
 			global_var.list_m[ii]=m4
 			global_var.list_p_p1[ii]=p4_p1
@@ -593,12 +594,12 @@ func _expansion(ii):
 
 
 	if global_var.list_position[ii]=="above" and global_var.list_position[ii-1]=="below":
-		theta4=deg2rad(_interpolate(_dataset_search(global_var.m1,m_dataset,theta_dataset)[1],_dataset_search(global_var.m1,m_dataset,theta_dataset)[2],_dataset_search(global_var.m1,m_dataset,theta_dataset)[3],_dataset_search(global_var.m1,m_dataset,theta_dataset)[4],global_var.m1))+global_var.list_deflection_angle[ii]
+		theta4=_interpolate(_dataset_search(global_var.m1,m_dataset,theta_dataset)[1],_dataset_search(global_var.m1,m_dataset,theta_dataset)[2],_dataset_search(global_var.m1,m_dataset,theta_dataset)[3],_dataset_search(global_var.m1,m_dataset,theta_dataset)[4],global_var.m1)+global_var.list_deflection_angle[ii]
 		
-		if rad2deg(theta4)<=theta_dataset.max(): ###safety shunt (prevent program crashing if out of dataset's range
+		if theta4<=theta_dataset.max(): ###safety shunt (prevent program crashing if out of dataset's range
 			global_var.error_exceeded_dataset_3=false
-			p4_p0=_interpolate(_dataset_search(rad2deg(theta4),theta_dataset,p_p0_dataset)[1],_dataset_search(rad2deg(theta4),theta_dataset,p_p0_dataset)[2],_dataset_search(rad2deg(theta4),theta_dataset,p_p0_dataset)[3],_dataset_search(rad2deg(theta4),theta_dataset,p_p0_dataset)[4],rad2deg(theta4))#0.257 #INTERPOLATE. find value of p3_p0 at for theta3 ##################CARRY ON
-			m4=_interpolate(_dataset_search(rad2deg(theta4),theta_dataset,m_dataset)[1],_dataset_search(rad2deg(theta4),theta_dataset,m_dataset)[2],_dataset_search(rad2deg(theta4),theta_dataset,m_dataset)[3],_dataset_search(rad2deg(theta4),theta_dataset,m_dataset)[4],rad2deg(theta4))#1.54 #INTERPOLATE. find value of m3 at for theta3 ##################CARRY ON
+			p4_p0=_interpolate(_dataset_search(theta4,theta_dataset,p_p0_dataset)[1],_dataset_search(theta4,theta_dataset,p_p0_dataset)[2],_dataset_search(theta4,theta_dataset,p_p0_dataset)[3],_dataset_search(theta4,theta_dataset,p_p0_dataset)[4],theta4)#0.257 #INTERPOLATE. find value of p3_p0 at for theta3 ##################CARRY ON
+			m4=_interpolate(_dataset_search(theta4,theta_dataset,m_dataset)[1],_dataset_search(theta4,theta_dataset,m_dataset)[2],_dataset_search(theta4,theta_dataset,m_dataset)[3],_dataset_search(theta4,theta_dataset,m_dataset)[4],theta4)#1.54 #INTERPOLATE. find value of m3 at for theta3 ##################CARRY ON
 			p4_p1=p4_p0/_interpolate(_dataset_search(global_var.m1,m_dataset,p_p0_dataset)[1],_dataset_search(global_var.m1,m_dataset,p_p0_dataset)[2],_dataset_search(global_var.m1,m_dataset,p_p0_dataset)[3],_dataset_search(global_var.m1,m_dataset,p_p0_dataset)[4],global_var.m1)
 			global_var.list_m[ii]=m4
 			global_var.list_p_p1[ii]=p4_p1
@@ -616,10 +617,10 @@ func _expansion(ii):
 	if global_var.list_position[ii]=="above" and global_var.list_position[ii-1]=="above":
 		theta4=global_var.list_theta[ii-1]+global_var.list_deflection_angle[ii]
 		
-		if rad2deg(theta4)<=theta_dataset.max(): ###safety shunt (prevent program crashing if out of dataset's range
+		if theta4<=theta_dataset.max(): ###safety shunt (prevent program crashing if out of dataset's range
 			global_var.error_exceeded_dataset_4=false
-			p4_p0=_interpolate(_dataset_search(rad2deg(theta4),theta_dataset,p_p0_dataset)[1],_dataset_search(rad2deg(theta4),theta_dataset,p_p0_dataset)[2],_dataset_search(rad2deg(theta4),theta_dataset,p_p0_dataset)[3],_dataset_search(rad2deg(theta4),theta_dataset,p_p0_dataset)[4],rad2deg(theta4))#0.257 #INTERPOLATE. find value of p3_p0 at for theta3 ##################CARRY ON
-			m4=_interpolate(_dataset_search(rad2deg(theta4),theta_dataset,m_dataset)[1],_dataset_search(rad2deg(theta4),theta_dataset,m_dataset)[2],_dataset_search(rad2deg(theta4),theta_dataset,m_dataset)[3],_dataset_search(rad2deg(theta4),theta_dataset,m_dataset)[4],rad2deg(theta4))#1.54 #INTERPOLATE. find value of m3 at for theta3 ##################CARRY ON
+			p4_p0=_interpolate(_dataset_search(theta4,theta_dataset,p_p0_dataset)[1],_dataset_search(theta4,theta_dataset,p_p0_dataset)[2],_dataset_search(theta4,theta_dataset,p_p0_dataset)[3],_dataset_search(theta4,theta_dataset,p_p0_dataset)[4],theta4)#0.257 #INTERPOLATE. find value of p3_p0 at for theta3 ##################CARRY ON
+			m4=_interpolate(_dataset_search(theta4,theta_dataset,m_dataset)[1],_dataset_search(theta4,theta_dataset,m_dataset)[2],_dataset_search(theta4,theta_dataset,m_dataset)[3],_dataset_search(theta4,theta_dataset,m_dataset)[4],theta4)#1.54 #INTERPOLATE. find value of m3 at for theta3 ##################CARRY ON
 			p4_p1=p4_p0/_interpolate(_dataset_search(global_var.m1,m_dataset,p_p0_dataset)[1],_dataset_search(global_var.m1,m_dataset,p_p0_dataset)[2],_dataset_search(global_var.m1,m_dataset,p_p0_dataset)[3],_dataset_search(global_var.m1,m_dataset,p_p0_dataset)[4],global_var.m1)
 			global_var.list_m[ii]=m4
 			global_var.list_p_p1[ii]=p4_p1
@@ -640,7 +641,7 @@ func _nothing(ii):
 		global_var.list_m[ii]=global_var.m1
 		global_var.list_p_p1[ii]=1
 		global_var.list_p_p0[ii]=_interpolate(_dataset_search(global_var.m1,m_dataset,p_p0_dataset)[1],_dataset_search(global_var.m1,m_dataset,p_p0_dataset)[2],_dataset_search(global_var.m1,m_dataset,p_p0_dataset)[3],_dataset_search(global_var.m1,m_dataset,p_p0_dataset)[4],global_var.m1)
-		global_var.list_theta[ii]=deg2rad(_interpolate(_dataset_search(global_var.m1,m_dataset,theta_dataset)[1],_dataset_search(global_var.m1,m_dataset,theta_dataset)[2],_dataset_search(global_var.m1,m_dataset,theta_dataset)[3],_dataset_search(global_var.m1,m_dataset,theta_dataset)[4],global_var.m1))
+		global_var.list_theta[ii]=_interpolate(_dataset_search(global_var.m1,m_dataset,theta_dataset)[1],_dataset_search(global_var.m1,m_dataset,theta_dataset)[2],_dataset_search(global_var.m1,m_dataset,theta_dataset)[3],_dataset_search(global_var.m1,m_dataset,theta_dataset)[4],global_var.m1)
 
 	if ii>0 and global_var.list_position[ii]==global_var.list_position[ii-1]: # in between plates (top or bottom)
 		global_var.list_m[ii]=global_var.list_m[ii-1]
@@ -652,7 +653,7 @@ func _nothing(ii):
 		global_var.list_m[ii]=global_var.m1
 		global_var.list_p_p1[ii]=1
 		global_var.list_p_p0[ii]=_interpolate(_dataset_search(global_var.m1,m_dataset,p_p0_dataset)[1],_dataset_search(global_var.m1,m_dataset,p_p0_dataset)[2],_dataset_search(global_var.m1,m_dataset,p_p0_dataset)[3],_dataset_search(global_var.m1,m_dataset,p_p0_dataset)[4],global_var.m1)
-		global_var.list_theta[ii]=deg2rad(_interpolate(_dataset_search(global_var.m1,m_dataset,theta_dataset)[1],_dataset_search(global_var.m1,m_dataset,theta_dataset)[2],_dataset_search(global_var.m1,m_dataset,theta_dataset)[3],_dataset_search(global_var.m1,m_dataset,theta_dataset)[4],global_var.m1))
+		global_var.list_theta[ii]=_interpolate(_dataset_search(global_var.m1,m_dataset,theta_dataset)[1],_dataset_search(global_var.m1,m_dataset,theta_dataset)[2],_dataset_search(global_var.m1,m_dataset,theta_dataset)[3],_dataset_search(global_var.m1,m_dataset,theta_dataset)[4],global_var.m1)
 
 
 
@@ -930,6 +931,7 @@ func _on_alpha_slider_value_changed(value):#current
 				break
 	
 	print(global_var.p2_p1_END_EDGE_TOP, "   ",global_var.p2_p1_END_EDGE_BOTTOM)
+	#print(global_var.list_p_p1, "   ",global_var.list_m)
 	
 	
 	
@@ -2184,7 +2186,7 @@ func _oblique_shock_END_EDGE(plate):
 	if deflection_angle<_plot_curve_END_EDGE(m).max()*0.93:
 		m2=clamp(_m2_END_EDGE(m,plate),0,global_var.m1)
 		p2_p0=_interpolate(_dataset_search(m2,m_dataset,p_p0_dataset)[1],_dataset_search(m2,m_dataset,p_p0_dataset)[2],_dataset_search(m2,m_dataset,p_p0_dataset)[3],_dataset_search(m2,m_dataset,p_p0_dataset)[4],m2)
-		theta2=deg2rad(_interpolate(_dataset_search(m2,m_dataset,theta_dataset)[1],_dataset_search(m2,m_dataset,theta_dataset)[2],_dataset_search(m2,m_dataset,theta_dataset)[3],_dataset_search(m2,m_dataset,theta_dataset)[4],m2))
+		theta2=_interpolate(_dataset_search(m2,m_dataset,theta_dataset)[1],_dataset_search(m2,m_dataset,theta_dataset)[2],_dataset_search(m2,m_dataset,theta_dataset)[3],_dataset_search(m2,m_dataset,theta_dataset)[4],m2)
 		p2_p1=_p_p1_END_EDGE(m,plate)
 		
 		if plate=="top":
@@ -2305,7 +2307,7 @@ func _shock_angle_END_EDGE(m,plate): #ok
 		var error_message=label_with_timer.instance()
 		add_child(error_message)
 		error_message.text="Error! Deflection angle out of plot range. Try editing the geometry to reduce steep plate angles."
-		error_message.rect_size*=3
+		error_message.rect_size.x*=2
 		error_message.rect_global_position=alpha_slider.rect_global_position-Vector2(0,60)
 		error_message.self_modulate=ColorN("orangered",1.0)
 		

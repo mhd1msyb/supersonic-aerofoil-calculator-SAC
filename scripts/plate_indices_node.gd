@@ -1,12 +1,11 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
 onready var rich_text=global_var.rich_text
 onready var pivot=get_parent().get_node("pivot")
 onready var line2d_bottom=pivot.get_node("Line2D_bottom")
-# Called when the node enters the scene tree for the first time.
+
 
 var line_midpoint=Vector2()
 

@@ -1,8 +1,7 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends Node2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+
 onready var viewport_vec=global_var.viewport_vec*0.5
 
 func _ready():

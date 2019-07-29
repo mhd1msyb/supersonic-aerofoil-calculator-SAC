@@ -1,5 +1,5 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends Node2D
-#Copyright Mehdi Msayib#
 
 onready var viewport_vec=global_var.viewport_vec
 

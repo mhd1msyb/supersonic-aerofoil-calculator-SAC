@@ -1,3 +1,4 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends Node2D
 
 var m_dataset=global_var.m_dataset

@@ -1,3 +1,4 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends MeshInstance
 
 onready var cube3d_scene=preload("res://scenes/3d_cube.tscn")

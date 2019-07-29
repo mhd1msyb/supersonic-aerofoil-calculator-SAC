@@ -1,8 +1,6 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends Node2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
 
 onready var checkbox_shock_vs_deflec_curve=get_parent().get_node("checkboxes").get_node("checkbox_shock_vs_deflec_curve")
 

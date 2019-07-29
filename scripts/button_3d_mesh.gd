@@ -1,7 +1,7 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends Button
-#Copyright Mehdi Msayib#
-# class member variables go here, for example:
-# var a = 2
+
+
 
 onready var aerofoil3D_scene=preload("res://scenes/3d_aerofoil_scene.tscn")
 

@@ -1,8 +1,7 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends HSlider
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+
 
 func _ready():
 	global_var.m1=value

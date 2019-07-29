@@ -1,8 +1,7 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends HSlider
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
 onready var pivot=get_parent().get_parent().get_node("pivot")
 onready var line2d_bottom=get_parent().get_parent().get_node("pivot/Line2D_bottom")
 #onready var preload_collison_node=preload("res://scenes/collision_node.tscn")

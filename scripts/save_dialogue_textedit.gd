@@ -1,18 +1,12 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends TextEdit
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
 onready var error_message=get_parent().get_node("error_message")
 var back_slash="\\"
 var quote_mark='"'
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
 
 
 func _on_TextEdit_text_changed():

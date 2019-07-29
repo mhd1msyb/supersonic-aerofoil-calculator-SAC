@@ -1,8 +1,7 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
 
 var m_dataset=global_var.m_dataset
 var p_p0_dataset=global_var.p_p0_dataset
@@ -74,7 +73,7 @@ func _oblique_shock_END_EDGE(plate):
 	if deflection_angle<_plot_curve_END_EDGE(m).max()*0.93:
 		m2=clamp(_m2_END_EDGE(m,plate),0,global_var.m1)
 		p2_p0=_interpolate(_dataset_search(m2,m_dataset,p_p0_dataset)[1],_dataset_search(m2,m_dataset,p_p0_dataset)[2],_dataset_search(m2,m_dataset,p_p0_dataset)[3],_dataset_search(m2,m_dataset,p_p0_dataset)[4],m2)
-		theta2=deg2rad(_interpolate(_dataset_search(m2,m_dataset,theta_dataset)[1],_dataset_search(m2,m_dataset,theta_dataset)[2],_dataset_search(m2,m_dataset,theta_dataset)[3],_dataset_search(m2,m_dataset,theta_dataset)[4],m2))
+		theta2=_interpolate(_dataset_search(m2,m_dataset,theta_dataset)[1],_dataset_search(m2,m_dataset,theta_dataset)[2],_dataset_search(m2,m_dataset,theta_dataset)[3],_dataset_search(m2,m_dataset,theta_dataset)[4],m2)
 		p2_p1=_p_p1_END_EDGE(m,plate)
 		
 		if plate=="top":

@@ -1,8 +1,7 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends Button
-#Copyright Mehdi Msayib#
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+
+
 
 #func _input(event):
 #	if pressed and global_var.edit_mode==true:

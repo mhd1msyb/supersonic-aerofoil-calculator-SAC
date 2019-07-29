@@ -1,8 +1,7 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends MeshInstance
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
 onready var rot_speed_slider=get_parent().get_node("rot_speed_slider/slider")
 onready var rot_speed_label=get_parent().get_node("rot_speed_slider/Label")
 onready var aerofoil_blade_scene=preload("res://scenes/aerofoil_blade.tscn")

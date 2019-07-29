@@ -1,8 +1,7 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends TextureButton
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
 onready var knob_sprite=get_node("knob_sprite")
 onready var label=get_node("Label")
 

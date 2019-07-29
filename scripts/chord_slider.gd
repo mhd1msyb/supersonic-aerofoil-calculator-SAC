@@ -1,8 +1,7 @@
+#Copyright (c) 2019 Mehdi Msayib#
 extends HSlider
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
 onready var pivot=get_parent().get_parent().get_node("pivot")
 onready var line2d_bottom=get_parent().get_parent().get_node("pivot/Line2D_bottom")
 # Called when the node enters the scene tree for the first time.
@@ -10,9 +9,7 @@ func _ready():
 	get_parent().hide()
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
 
 
 func _on_chord_slider_value_changed(value):

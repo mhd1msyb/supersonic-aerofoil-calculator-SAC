@@ -1,6 +1,6 @@
-
+#Copyright (c) 2019 Mehdi Msayib#
 extends Button
-#Copyright Mehdi Msayib#
+
 
 onready var pivot=get_parent().get_node("pivot")
 onready var line2d_bottom=get_parent().get_node("pivot/Line2D_bottom")
