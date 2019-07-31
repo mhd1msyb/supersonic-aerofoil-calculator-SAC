@@ -15,10 +15,13 @@ func _ready():
 
 func _on_button_load_aerofoil_pressed():
 	
+	load_aerofoil_listItem.clear()
+	
 	load_aerofoil_dialogue.show()
 	
 	var dir=Directory.new()
 	var new_file=File.new()
+	
 	
 	if dir.dir_exists(OS.get_user_data_dir()+"/saved_data_folder"):
 		dir.open(OS.get_user_data_dir()+"/saved_data_folder")
@@ -32,6 +35,7 @@ func _on_button_load_aerofoil_pressed():
 			new_file.open(OS.get_user_data_dir()+"/saved_data_folder/"+file_get_next,File.READ)
 			load_aerofoil_listItem.add_item(new_file.get_var()["file name"][0],null,true)
 			file_get_next=dir.get_next()
+			
 
 #	else:
 #		print("there are no files to load (saved data folder not found...)")

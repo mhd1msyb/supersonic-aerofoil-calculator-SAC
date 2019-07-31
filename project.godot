@@ -36,6 +36,7 @@ gdscript/warnings/return_value_discarded=false
 
 [display]
 
+window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/warnings/unreachable_code=false
