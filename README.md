@@ -1,6 +1,6 @@
 # Supersonic Aerofoil Calculator - S.A.C.
 
-![S.A.C. Logo](https://github.com/mhd1msyb/supersonic-aerofoil-calculator-SAC/blob/master/sac_icon_256.png)
+![S.A.C. Logo](https://github.com/mhd1msyb/S.A.C._Resources/blob/master/sac_icon_256.png)
 
 ## Description
 
@@ -21,14 +21,15 @@ Cross-platform interactive flow calculator for aerofoils. Cross-sections are con
  - Oblique shock and expansion fan visualisation
  - Integrated aerofoil library, with ready-to-use presets
  - User-defined AoA, flow speed and gas gamma
+ - Self-contained - no external dependencies and no installation setup required; just run the executable
 
- ![](https://github.com/mhd1msyb/supersonic-aerofoil-calculator-SAC/blob/master/preview.png)
+ ![](https://github.com/mhd1msyb/S.A.C._Resources/blob/master/preview.png)
 
  ## Pre-compiled binaries (DOWNLOADS)
 Download the zipped files for your platform, then extract and run.
-  #### - [Windows](https://github.com/mhd1msyb/supersonic-aerofoil-calculator-SAC/blob/master/downloads/SAC_win_v0.1.zip)
-  #### - [Linux](https://github.com/mhd1msyb/supersonic-aerofoil-calculator-SAC/blob/master/downloads/SAC_lin_v0.1.zip)
-  #### - [Mac](https://github.com/mhd1msyb/supersonic-aerofoil-calculator-SAC/blob/master/downloads/SAC_mac_v0.1.zip)
+  #### - [Windows](https://github.com/mhd1msyb/S.A.C._Resources/blob/master/downloads/SAC_win_v0.1.zip)
+  #### - [Linux](https://github.com/mhd1msyb/S.A.C._Resources/blob/master/downloads/SAC_lin_v0.1.zip)
+  #### - [Mac](https://github.com/mhd1msyb/S.A.C._Resources/blob/master/downloads/SAC_mac_v0.1.zip)
 
 
 
@@ -53,6 +54,6 @@ This program is licensed under the Apache License Version 2.0 (for more details,
 
 This program uses the Godot Engine, which is licensed under the Expat license : www.godotengine.org/license
 
-Fonts are rendered using FreeType. Portions of this software are © 2019 The FreeType Project (www.freetype.org). All rights reserved. 
+Fonts are rendered using FreeType. Portions of this software are © 2019 The FreeType Project (www.freetype.org). All rights reserved.
 
 To view the Godot Engine and FreeType licenses, refer to the `godot_engine_and_freetype_LICENSES` file.
