@@ -34,7 +34,11 @@ Download the zipped files for your platform, then extract and run.
 
 
 ## How to use
-Watch the tutorial video (to come)
+#### Tutorial Videos
+  - Sketch Mode [](https://github.com/mhd1msyb/S.A.C._Resources/raw/master/Sketch%20Tutorial.m4v)
+
+#### Instruction Manual
+
 
 
 
