@@ -21,7 +21,8 @@ margin_bottom = 14.0
 rect_scale = Vector2( 2, 2 )
 size_flags_horizontal = 3
 size_flags_vertical = 7
-text = "Supersonic Aerofoil Calculator - SAC"
+text = "Supersonic Aerofoil Calculator - S.A.C. 
+v0.2"
 align = 1
 valign = 1
 
@@ -37,7 +38,7 @@ size_flags_vertical = 3
 alignment = 1
 
 [node name="school of mace" type="Label" parent="VSplitContainer"]
-margin_right = 416.0
+margin_right = 415.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
@@ -47,17 +48,17 @@ valign = 1
 
 [node name="developed_by" type="Label" parent="VSplitContainer"]
 margin_top = 32.0
-margin_right = 416.0
+margin_right = 415.0
 margin_bottom = 60.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
-text = "Developed by Iain Dupere and Mehdi Msayib"
+text = "Developed by Mehdi Msayib and Iain Dupere"
 align = 1
 valign = 1
 
 [node name="(c)_all_scripts" type="Label" parent="VSplitContainer"]
 margin_top = 64.0
-margin_right = 416.0
+margin_right = 415.0
 margin_bottom = 92.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
@@ -72,23 +73,22 @@ margin_right = 751.0
 margin_bottom = 443.0
 
 [node name="prog" type="RichTextLabel" parent="VBoxContainer"]
-margin_top = 30.0
 margin_right = 467.0
-margin_bottom = 93.0
+margin_bottom = 63.0
 size_flags_vertical = 3
-text = "This program is licensed under the Apache License Version 2.0. Source code can be found at: https://github.com/mhd1msyb/supersonic-aerofoil-calculator-SAC."
+text = "This program is licensed under the Apache License Version 2.0. Source code can be found at: https://github.com/mhd1msyb/supersonic-aerofoil-calculator-SAC"
 
 [node name="godot" type="RichTextLabel" parent="VBoxContainer"]
-margin_top = 97.0
+margin_top = 67.0
 margin_right = 467.0
-margin_bottom = 160.0
+margin_bottom = 130.0
 size_flags_vertical = 3
 text = "This program uses the Godot Engine, which is licensed under the Expat license : godotengine.org/license"
 
 [node name="freetype" type="RichTextLabel" parent="VBoxContainer"]
-margin_top = 164.0
+margin_top = 134.0
 margin_right = 467.0
-margin_bottom = 228.0
+margin_bottom = 198.0
 size_flags_vertical = 3
 text = "Fonts are rendered using FreeType. Portions of this software are © 2019 The FreeType Project (www.freetype.org). All rights reserved."
 

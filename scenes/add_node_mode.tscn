@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://scripts/RayCast2D.gd" type="Script" id=1]
+[ext_resource path="res://scripts/add_node_mode.gd" type="Script" id=1]
 [ext_resource path="res://textures/coordinate_on_line_icon.png" type="Texture" id=2]
 
 [node name="add_node_mode" type="Node2D"]

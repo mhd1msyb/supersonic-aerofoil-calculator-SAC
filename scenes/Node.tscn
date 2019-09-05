@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://scripts/MAIN_SCRIPT.gd" type="Script" id=1]
 [ext_resource path="res://textures/origin_icon.png" type="Texture" id=2]
@@ -52,6 +52,7 @@
 [ext_resource path="res://scripts/strong_shock_angles.gd" type="Script" id=50]
 [ext_resource path="res://scripts/flow_speeds_listItem.gd" type="Script" id=51]
 [ext_resource path="res://scripts/p_p1_ItemList.gd" type="Script" id=52]
+[ext_resource path="res://scenes/spline_interp_scene.tscn" type="PackedScene" id=53]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends HBoxContainer
@@ -366,7 +367,6 @@ margin_right = 40.0
 margin_bottom = 14.0
 
 [node name="checkboxes" type="VBoxContainer" parent="."]
-editor/display_folded = true
 anchor_left = 0.71
 anchor_right = 1.0
 anchor_bottom = 0.02
@@ -461,7 +461,6 @@ margin_bottom = 19.0
 text = "Show inlet shock curve"
 
 [node name="checkbox_hide_everything_except_graphs" type="HBoxContainer" parent="."]
-editor/display_folded = true
 margin_left = 864.0
 margin_top = 164.0
 margin_right = 1038.0
@@ -936,10 +935,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 6
 texture = ExtResource( 33 )
 
-[node name="colshapes" type="Node2D" parent="."]
-
-[node name="oblique_shock_END_EDGES" type="Node2D" parent="."]
-
 [node name="warning" type="Label" parent="."]
 margin_left = 866.81
 margin_top = 207.533
@@ -949,6 +944,10 @@ rect_scale = Vector2( 0.8, 0.8 )
 text = "WARNING: 'Show oblique shocks' when checked is causing unpredictable crashes in some cases. Use with caution."
 align = 1
 autowrap = true
+
+[node name="colshapes" type="Node2D" parent="."]
+
+[node name="oblique_shock_END_EDGES" type="Node2D" parent="."]
 
 [node name="data_tables" type="PanelContainer" parent="."]
 editor/display_folded = true
@@ -1076,20 +1075,22 @@ margin_bottom = 79.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="spline_interp" parent="." instance=ExtResource( 53 )]
+visible = false
+
 [connection signal="value_changed" from="alpha_slider" to="." method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="oblique_shock_lines" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="expansion_fans" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="AoA_circular_arc" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="alpha_slider" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="data_tables/ScrollContainer/VBoxContainer/flow_speeds_listItem/ItemList" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="data_tables/ScrollContainer/VBoxContainer/weak_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="data_tables/ScrollContainer/VBoxContainer/flow_speeds_listItem/ItemList" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="data_tables/ScrollContainer/VBoxContainer/strong_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="data_tables/ScrollContainer/VBoxContainer/p_p1_listItem/ItemList" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="oblique_shock_lines" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="AoA_circular_arc" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="expansion_fans" method="_on_alpha_slider_value_changed"]
 [connection signal="button_up" from="m_slider_button" to="." method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="m_slider_button" to="graphs_cL_cD" method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="m_slider_button" to="oblique_shock_lines" method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="m_slider_button" to="expansion_fans" method="_on_m_slider_button_button_up"]
-[connection signal="button_up" from="gamma_slider_button" to="oblique_shock_END_EDGES" method="_on_gamma_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="." method="_on_gamma_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="graphs_cL_cD" method="_on_gamma_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="oblique_shock_lines" method="_on_gamma_slider_button_button_up"]

@@ -58,9 +58,7 @@ onready var rich_text=preload("res://scenes/rich_text.tscn")
 
 onready var label_with_timer=preload("res://scenes/label_with_timer.tscn")
 
-
 onready var error_line_highlight=preload("res://scenes/error_line_highlight.tscn")
-
 
 onready var label_please_wait=get_node("label_please_wait")
 
@@ -1012,6 +1010,16 @@ func _on_finish_button_pressed():
 		get_node("label_with_timer_Sketch_Aerofoil").queue_free()
 	
 	
+	if line2d_bottom.get_point_count()<4: #error message if few nodes
+		var error_msg_few_node=label_with_timer.instance()
+		add_child(error_msg_few_node)
+		error_msg_few_node.text="Error! Too few nodes. Add more nodes and try again."
+		error_msg_few_node.rect_size.x*=3
+		error_msg_few_node.rect_global_position=alpha_slider.rect_global_position-Vector2(0,10)
+		error_msg_few_node.self_modulate=ColorN("orangered",1.0)
+	
+	
+	
 	if _check_gradients()==true:# checks if grads are very steep or not
 		
 		get_node("sketch_aerofoil_mode").queue_free() #delete the script which allows you to draw the aerofoil
@@ -1863,7 +1871,89 @@ func _on_m_slider_button_button_up():
 	
 	
 func _on_gamma_slider_button_button_up():
+	var ang=pivot.global_rotation
+	
+	_clear_lists()
+	
+	pivot.global_rotation=0
+	
+	_find_bow_shock()
+	
+###clean the lists and re-initialise them (to avoid values from previous updates afftecing the next update#######################################################
+	pivot.global_rotation=ang
+	
+	_clear_lists()
+	
+	###update the vectors, coordinates and mpoints of the lines after rotation#######################################################	
+	_update_coords_vectors_midpoints()
+	
+	###populate angular and vector lists#######################################################	
+	
+	_calculate_GlobalAngles()
+	
+	for i in range (len(global_var.list_vector)):
 
+		###find whether expansion or contraction#######################################################		
+		_define_expansion_contraction(i)
+		
+		###calculate deflection angles#######################################################		
+		_deflection_angles(i)
+
+	#apply _oblique_shock() or _expansion based on whether plate is contraction or expansion#######################################################		
+	for ii in range(len(global_var.list_vector)):
+		
+		if global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==true:
+			_oblique_shock(ii)
+		elif global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==false:
+			print("oblique break, _on_alpha_slider_value_changed")
+			break
+			
+			
+			
+		if global_var.list_strings[ii]=="expansion" and _expansion(ii)==true:
+			_expansion(ii)
+		elif global_var.list_strings[ii]=="expansion" and _expansion(ii)==false:
+			print("expansion break, _on_alpha_slider_value_changed")
+			break
+			
+			
+		if global_var.list_strings[ii]=="nothing":
+			_nothing(ii)
+			
+			
+			
+			
+			
+			
+			
+			
+	for i in 1:
+		if _oblique_shock_END_EDGE("top")==true:
+			_oblique_shock_END_EDGE("top")
+		else:
+			break
+	
+			
+		var gradi=-global_var.list_vector[global_var.index_bottom_top_plate-1].y/global_var.list_vector[global_var.index_bottom_top_plate-1].x
+		if sign(gradi)==1: # to prevent exp fan showing if tehre is an oblique shock line
+			if _oblique_shock_END_EDGE("bottom")==true:
+				_oblique_shock_END_EDGE("bottom")
+			else:
+				break
+	
+		print(global_var.p2_p1_END_EDGE_TOP, "   ",global_var.p2_p1_END_EDGE_BOTTOM)
+			
+			
+			
+			
+			
+			
+	
+	########Calculate lift coefficient and drag coefficient###################
+			
+	_cL()
+	
+	_cD()
 	pass
 	
 	
@@ -1877,6 +1967,7 @@ func _add_bow_shock_message(): # adds message when bow shock if formed
 	
 	if global_var.bow_shock_angle+1==1.1:
 		label.text="Bow shock forms at AoA of 0 deg. Try : (1) reducing the thickness (EDIT -> THICKNESS) of the aerofoil (2) Adjusting flow speed and trying again."
+		label.self_modulate=ColorN("orangered",1.0)
 		label.get_node("Timer").wait_time=10
 	else:
 		label.text="Bow shock forms at AoA of : " + str(global_var.bow_shock_angle) + " deg"
