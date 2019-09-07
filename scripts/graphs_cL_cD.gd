@@ -360,24 +360,22 @@ func _indicator(indicator,alpha_radians,coefficient,graph_pos,graph_size):
 
 func _input(event): # to drag the graphs 
 	
-	if InputEventMouseMotion:
+	if event is InputEventMouseMotion:
 		
 		if cL_graph.pressed:
-			cL_graph.rect_global_position=get_global_mouse_position()
+			cL_graph.rect_global_position+=event.relative
 			update()
 			
 		if cD_graph.pressed:
-			cD_graph.rect_global_position=get_global_mouse_position()
+			cD_graph.rect_global_position+=event.relative
 			update()
 	
 		if cD_div_cL_graph.pressed:
-			cD_div_cL_graph.rect_global_position=get_global_mouse_position()
-
+			cD_div_cL_graph.rect_global_position+=event.relative
 			update()
 			
 		if cL_div_cD_graph.pressed:
-			cL_div_cD_graph.rect_global_position=get_global_mouse_position()
-
+			cL_div_cD_graph.rect_global_position+=event.relative
 			update()
 			
 			

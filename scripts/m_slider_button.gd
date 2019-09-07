@@ -34,3 +34,7 @@ func _input(event):
 	pass
 	
 	
+
+
+func _on_m_slider_button_button_up():
+	pass # Replace with function body.

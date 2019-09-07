@@ -18,6 +18,7 @@ extends Button
 11 - aerofoil aoa 
 12 - screenshot
 13 - fps counter
+14 - error log
 
 """
 
@@ -40,6 +41,7 @@ onready var node_indices_scene=global_var.node_indices_scene
 onready var aoa_circular_arc=get_parent().get_node("AoA_circular_arc")
 onready var button_screenshot=get_parent().get_node("button_screenshot")
 onready var fps=get_parent().get_node("FPS")
+onready var error_log=get_parent().get_node("error_log")
 
 
 
@@ -157,10 +159,17 @@ func _on_PopupMenu_index_pressed(index):
 		button_screenshot.visible=false
 	
 	
-	if index==13 and fps.visible==false:#screenshot button
+	if index==13 and fps.visible==false:#fps indicator
 		fps.visible=true
 	elif index==13 and fps.visible==true:
 		fps.visible=false
+
+
+
+	if index==14 and error_log.visible==false:#error log
+		error_log.visible=true
+	elif index==14 and error_log.visible==true:
+		error_log.visible=false
 
 		
 	global_var.button_advanced_popup_index=index

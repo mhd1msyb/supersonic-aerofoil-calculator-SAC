@@ -1,7 +1,6 @@
 #Copyright (c) 2019 Mehdi Msayib#
 extends Node2D
 
-
 #isentropic data from DATASET#######
 onready var m_dataset=global_var.m_dataset
 onready var p_p0_dataset=global_var.p_p0_dataset
@@ -58,11 +57,19 @@ onready var rich_text=preload("res://scenes/rich_text.tscn")
 
 onready var label_with_timer=preload("res://scenes/label_with_timer.tscn")
 
+<<<<<<< HEAD
+onready var label=preload("res://scenes/label.tscn")
+
+=======
+>>>>>>> e0b9a79e02a3eff675aea345f23db5b087d0349e
 onready var error_line_highlight=preload("res://scenes/error_line_highlight.tscn")
 
 onready var label_please_wait=get_node("label_please_wait")
 
 onready var polygon2d_initial_occluder=get_node("polygon2d_initial_occluder")
+
+onready var error_log=get_node("error_log")
+onready var error_log_message_box=get_node("error_log/VBoxContainer/background/ScrollContainer/message_box")
 
 
 func _refresh_lists():
@@ -146,8 +153,8 @@ func _clear_lists():#done
 	global_var.cL=0
 	global_var.cD=0
 	
-	global_var.cL_plot_list.clear()
-	global_var.cD_plot_list.clear()
+#	global_var.cL_plot_list.clear()
+#	global_var.cD_plot_list.clear()
 	
 	
 
@@ -155,12 +162,15 @@ func _clear_lists():#done
 func _plate_gradient(i):
 	
 	if global_var.list_vector[i].x<0.000001:
-		var error_message=label_with_timer.instance()
-		add_child(error_message)
-		error_message.text="Error! Plate gradients are too steep. Press 'UNDO' and sketch again."
-		error_message.rect_size.x*=3
-		error_message.rect_global_position=alpha_slider.rect_global_position-Vector2(0,60)
+		var error_message=label.instance()
+		error_log_message_box.add_child(error_message)
+		error_message.text="""#Error! Plate gradients are too 
+		steep. Press 'UNDO' and sketch 
+		again.#"""
+#		error_message.rect_size.x*=3
+#		error_message.rect_global_position=alpha_slider.rect_global_position-Vector2(0,60)
 		error_message.self_modulate=ColorN("orangered",1.0)
+		error_log.show()
 		print("STEEP GRADIENT",i)
 		return 100000000000000
 		
@@ -1011,17 +1021,27 @@ func _on_finish_button_pressed():
 	
 	
 	if line2d_bottom.get_point_count()<4: #error message if few nodes
+<<<<<<< HEAD
+		var error_msg_few_node=label.instance()
+		error_log_message_box.add_child(error_msg_few_node)
+		error_msg_few_node.text="""#Error! Too few nodes. Add more 
+		nodes and try again.#"""
+#		error_msg_few_node.rect_size.x*=3
+#		error_msg_few_node.rect_global_position=alpha_slider.rect_global_position-Vector2(0,10)
+		error_msg_few_node.self_modulate=ColorN("orangered",1.0)
+		error_log.show()
+=======
 		var error_msg_few_node=label_with_timer.instance()
 		add_child(error_msg_few_node)
 		error_msg_few_node.text="Error! Too few nodes. Add more nodes and try again."
 		error_msg_few_node.rect_size.x*=3
 		error_msg_few_node.rect_global_position=alpha_slider.rect_global_position-Vector2(0,10)
 		error_msg_few_node.self_modulate=ColorN("orangered",1.0)
+>>>>>>> e0b9a79e02a3eff675aea345f23db5b087d0349e
 	
 	
 	
 	if _check_gradients()==true:# checks if grads are very steep or not
-		
 		get_node("sketch_aerofoil_mode").queue_free() #delete the script which allows you to draw the aerofoil
 		
 		### sets 'line_mode' to 1 (to prevent any adding of further points)
@@ -1046,10 +1066,8 @@ func _on_finish_button_pressed():
 		undo_button.queue_free()
 		
 		
-		
 		_clear_lists()
 		_refresh_lists()
-		
 		
 		_remove_duplicate_entries(line2d_bottom)
 		
@@ -1059,7 +1077,6 @@ func _on_finish_button_pressed():
 		
 		line2d_bottom.global_rotation=_clear_AoA()
 		#global_var.alpha_offset=_clear_AoA()
-		
 		
 		_initialise_lists() #CALLED ONCE
 		
@@ -1515,7 +1532,6 @@ func _check():
 		if global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==true:
 			_oblique_shock(ii)
 			state=true
-
 		elif global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==false:
 			print("oblique break, _check")
 			state=false
@@ -1535,26 +1551,26 @@ func _check():
 		if global_var.list_strings[ii]=="nothing":
 			_nothing(ii)
 			
-			
-	for i in 1:
-		if _oblique_shock_END_EDGE("top")==true:
-			_oblique_shock_END_EDGE("top")
-			state=true
-		else:
-			print("end top edge break")
-			state=false
-			break
-	
-			
-		var gradi=-global_var.list_vector[global_var.index_bottom_top_plate-1].y/global_var.list_vector[global_var.index_bottom_top_plate-1].x
-		if sign(gradi)==1: # to prevent exp fan showing if tehre is an oblique shock line
-			if _oblique_shock_END_EDGE("bottom")==true:
-				_oblique_shock_END_EDGE("bottom")
+	if state==true:
+		for i in 1:
+			if _oblique_shock_END_EDGE("top")==true:
+				_oblique_shock_END_EDGE("top")
 				state=true
 			else:
-				print("bottom edge break")
+				print("end top edge break")
 				state=false
 				break
+		
+				
+			var gradi=-global_var.list_vector[global_var.index_bottom_top_plate-1].y/global_var.list_vector[global_var.index_bottom_top_plate-1].x
+			if sign(gradi)==1: # to prevent exp fan showing if tehre is an oblique shock line
+				if _oblique_shock_END_EDGE("bottom")==true:
+					_oblique_shock_END_EDGE("bottom")
+					state=true
+				else:
+					print("bottom edge break")
+					state=false
+					break
 
 	return [state,reason]
 	
@@ -1591,6 +1607,11 @@ func _find_bow_shock():
 	var global_rot_before_break=0
 	
 	
+	global_var.cL_plot_list.clear()
+	global_var.cD_plot_list.clear()
+	global_var.cD_div_cL_plot_list.clear()
+	global_var.cL_div_cD_plot_list.clear()
+	
 	for i in range(number_of_iter):
 		_clear_lists()
 		
@@ -1620,7 +1641,7 @@ func _find_bow_shock():
 		elif _check()[0]==false:
 			print("broken",count)
 			global_var.bow_shock_angle=float(count)
-			alpha_slider.max_value=10
+			alpha_slider.max_value=count-1
 			first_break=true
 			index_at_break=i
 			break
@@ -1683,8 +1704,6 @@ func _find_bow_shock():
 			### check whether bow occurs or not
 			#_check()
 
-
-
 			if _check()[0]==true:
 				#print(float(i)/100)
 				alpha_slider.max_value=10
@@ -1698,7 +1717,6 @@ func _find_bow_shock():
 				global_var.bow_shock_angle=float(count-1)
 				alpha_slider.max_value=count-1
 				_add_bow_shock_message()
-				
 				break
 				
 				
@@ -1732,7 +1750,6 @@ func _find_bow_shock():
 			#m_slider.hide()
 			#gamma_slider.hide()
 		else:# if bow shock NOT occurs
-			
 			alpha_slider.show()
 			m_slider.show()
 			gamma_slider.show()
@@ -1755,24 +1772,109 @@ func _centre_pivot(): # sets pivot to centre of screen
 
 
 
-func _please_wait_message():# currently not in use
-	
-	var label_instance=label_with_timer.instance()
-	label_instance.get_node("Timer").wait_time=0.1
-	add_child(label_instance)
-	label_instance.text="Please wait..."
-	label_instance.rect_global_position=viewport_vec*0.5
-	
-	
-	
-	
-	
-	
-	
+
 
 
 
 func _on_m_slider_button_button_up():
+	var ang=pivot.global_rotation
+	
+	_clear_lists()
+	
+	pivot.global_rotation=0
+	
+	_find_bow_shock()
+	
+###clean the lists and re-initialise them (to avoid values from previous updates afftecing the next update#######################################################
+	pivot.global_rotation=ang
+
+	_clear_lists()
+
+	###update the vectors, coordinates and mpoints of the lines after rotation#######################################################	
+	_update_coords_vectors_midpoints()
+
+	###populate angular and vector lists#######################################################	
+
+	_calculate_GlobalAngles()
+
+	for i in range (len(global_var.list_vector)):
+
+		###find whether expansion or contraction#######################################################		
+		_define_expansion_contraction(i)
+
+		###calculate deflection angles#######################################################		
+		_deflection_angles(i)
+
+	#apply _oblique_shock() or _expansion based on whether plate is contraction or expansion#######################################################		
+	for ii in range(len(global_var.list_vector)):
+
+		if global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==true:
+			_oblique_shock(ii)
+		elif global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==false:
+			print("oblique break, _on_alpha_slider_value_changed")
+			break
+
+
+
+		if global_var.list_strings[ii]=="expansion" and _expansion(ii)==true:
+			_expansion(ii)
+		elif global_var.list_strings[ii]=="expansion" and _expansion(ii)==false:
+			print("expansion break, _on_alpha_slider_value_changed")
+			break
+
+
+		if global_var.list_strings[ii]=="nothing":
+			_nothing(ii)
+
+
+
+
+
+
+
+
+	for i in 1:
+		if _oblique_shock_END_EDGE("top")==true:
+			_oblique_shock_END_EDGE("top")
+		else:
+			break
+
+
+		var gradi=-global_var.list_vector[global_var.index_bottom_top_plate-1].y/global_var.list_vector[global_var.index_bottom_top_plate-1].x
+		if sign(gradi)==1: # to prevent exp fan showing if tehre is an oblique shock line
+			if _oblique_shock_END_EDGE("bottom")==true:
+				_oblique_shock_END_EDGE("bottom")
+			else:
+				break
+
+#		print(global_var.p2_p1_END_EDGE_TOP, "   ",global_var.p2_p1_END_EDGE_BOTTOM)
+
+
+
+
+
+
+
+	########Calculate lift coefficient and drag coefficient###################
+
+	_cL()
+
+	_cD()
+		
+	global_var.random_graph_point_color=Color(rand_range(0,1),rand_range(0,1),rand_range(0,1))
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+func _on_gamma_slider_button_button_up():
 	var ang=pivot.global_rotation
 	
 	_clear_lists()
@@ -1843,12 +1945,7 @@ func _on_m_slider_button_button_up():
 			else:
 				break
 	
-		print(global_var.p2_p1_END_EDGE_TOP, "   ",global_var.p2_p1_END_EDGE_BOTTOM)
-			
-			
-			
-			
-			
+#		print(global_var.p2_p1_END_EDGE_TOP, "   ",global_var.p2_p1_END_EDGE_BOTTOM)
 			
 	
 	########Calculate lift coefficient and drag coefficient###################
@@ -1856,6 +1953,8 @@ func _on_m_slider_button_button_up():
 	_cL()
 	
 	_cD()
+<<<<<<< HEAD
+=======
 		
 	
 	
@@ -1954,6 +2053,7 @@ func _on_gamma_slider_button_button_up():
 	_cL()
 	
 	_cD()
+>>>>>>> e0b9a79e02a3eff675aea345f23db5b087d0349e
 	pass
 	
 	
@@ -1963,32 +2063,38 @@ func _on_gamma_slider_button_button_up():
 
 func _add_bow_shock_message(): # adds message when bow shock if formed
 	
-	var label=label_with_timer.instance()
 	
 	if global_var.bow_shock_angle+1==1.1:
+<<<<<<< HEAD
+		var label_error=label.instance()
+		label_error.text="""Bow shock forms at AoA of 0 deg.
+		Try : (1) reducing the thickness 
+		(EDIT -> THICKNESS) of the aerofoil (2)
+		Adjusting flow speed and trying again."""
+		label_error.self_modulate=ColorN("orangered",1.0)
+		error_log_message_box.add_child(label_error)
+		error_log.show()
+=======
 		label.text="Bow shock forms at AoA of 0 deg. Try : (1) reducing the thickness (EDIT -> THICKNESS) of the aerofoil (2) Adjusting flow speed and trying again."
 		label.self_modulate=ColorN("orangered",1.0)
 		label.get_node("Timer").wait_time=10
 	else:
 		label.text="Bow shock forms at AoA of : " + str(global_var.bow_shock_angle) + " deg"
 		label.get_node("Timer").wait_time=3
+>>>>>>> e0b9a79e02a3eff675aea345f23db5b087d0349e
 		
+	else:
+		var lab_timer=label_with_timer.instance()
+		lab_timer.text="Bow shock forms at AoA of : " + str(global_var.bow_shock_angle) + " deg"
+		lab_timer.get_node("Timer").wait_time=3
+		add_child(lab_timer)
+		lab_timer.rect_global_position=screen_center+Vector2(-lab_timer.rect_size.x*0.5,200)
+		lab_timer.rect_size.x*=2
 		
-	label.rect_global_position=screen_center+Vector2(-label.rect_size.x*0.5,200)
-	label.rect_size.x*=2
-	add_child(label)
-	
-	
-	
-	
 	pass
 	
 	
 	
-
-
-
-
 	
 	
 	
@@ -2067,46 +2173,6 @@ func _MAIN_UPDATE():
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-func _print():
-	print(global_var.list_position)
-	print(global_var.list_point_coords)
-	print(global_var.list_midpoint_pos)
-	print(global_var.list_vector)
-	print(global_var.list_LocalAngles)
-	print(global_var.list_GlobalAngles)
-	print(global_var.list_strings)
-	print(global_var.list_p_p1)
-	print(global_var.list_p_p0)
-	print(global_var.list_theta)
-	print(global_var.list_deflection_angle)
-	print(global_var.list_m)
-	print(global_var.list_weak_shock_angle)
-	print(global_var.list_strong_shock_angle)
-	
-	print(global_var.index_bottom_top_plate)
-
-
-	print(global_var.expansion_angle1)
-	print(global_var.expansion_angle2)
-	
-	print(global_var.cn_pressures)
-	print(global_var.ca_pressures)
-	
-	print(global_var.t_c)
-	print(global_var.t)
-	print(global_var.c)
-
-	print(global_var.cL)
-	print(global_var.cD)
 	
 	
 	
@@ -2395,12 +2461,15 @@ func _shock_angle_END_EDGE(m,plate): #ok
 		
 		alpha_slider.max_value=pivot.global_rotation_degrees-0.1
 		
-		var error_message=label_with_timer.instance()
-		add_child(error_message)
-		error_message.text="Error! Deflection angle out of plot range. Try editing the geometry to reduce steep plate angles."
-		error_message.rect_size.x*=2
-		error_message.rect_global_position=alpha_slider.rect_global_position-Vector2(0,60)
+		var error_message=label.instance()
+		error_log_message_box.add_child(error_message)
+		error_message.text="""#Error! Deflection angle out of plot 
+		range. Try editing the geometry to 
+		reduce steep plate angles.#"""
+#		error_message.rect_size.x*=2
+#		error_message.rect_global_position=alpha_slider.rect_global_position-Vector2(0,60)
 		error_message.self_modulate=ColorN("orangered",1.0)
+		error_log.show()
 		
 		return 0.0
 		
@@ -2415,10 +2484,43 @@ func _shock_angle_END_EDGE(m,plate): #ok
 
 
 
+func _print():
+	print(global_var.list_position)
+	print(global_var.list_point_coords)
+	print(global_var.list_midpoint_pos)
+	print(global_var.list_vector)
+	print(global_var.list_LocalAngles)
+	print(global_var.list_GlobalAngles)
+	print(global_var.list_strings)
+	print(global_var.list_p_p1)
+	print(global_var.list_p_p0)
+	print(global_var.list_theta)
+	print(global_var.list_deflection_angle)
+	print(global_var.list_m)
+	print(global_var.list_weak_shock_angle)
+	print(global_var.list_strong_shock_angle)
+	
+	print(global_var.index_bottom_top_plate)
 
 
+	print(global_var.expansion_angle1)
+	print(global_var.expansion_angle2)
+	
+	print(global_var.cn_pressures)
+	print(global_var.ca_pressures)
+	
+	print(global_var.t_c)
+	print(global_var.t)
+	print(global_var.c)
+
+	print(global_var.cL)
+	print(global_var.cD)
 
 
-
-
-
+#func _please_wait_message():# currently not in use
+#
+#	var label_instance=label_with_timer.instance()
+#	label_instance.get_node("Timer").wait_time=0.1
+#	add_child(label_instance)
+#	label_instance.text="Please wait..."
+#	label_instance.rect_global_position=viewport_vec*0.5

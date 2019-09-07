@@ -34,3 +34,7 @@ func _input(event):
 	
 	
 	
+
+
+func _on_gamma_slider_button_button_up():
+	pass # Replace with function body.
