@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/delete_nodes.gd" type="Script" id=1]
+
+[node name="delete_nodes" type="Node2D"]
+script = ExtResource( 1 )

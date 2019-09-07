@@ -1,0 +1,37 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path.s3tc="res://.import/coordinate_on_line_icon.png-5a12f5cab4512d3bdac29c35977f328d.s3tc.stex"
+path.etc2="res://.import/coordinate_on_line_icon.png-5a12f5cab4512d3bdac29c35977f328d.etc2.stex"
+path.etc="res://.import/coordinate_on_line_icon.png-5a12f5cab4512d3bdac29c35977f328d.etc.stex"
+metadata={
+"imported_formats": [ "s3tc", "etc2", "etc" ],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://textures/coordinate_on_line_icon.png"
+dest_files=[ "res://.import/coordinate_on_line_icon.png-5a12f5cab4512d3bdac29c35977f328d.s3tc.stex", "res://.import/coordinate_on_line_icon.png-5a12f5cab4512d3bdac29c35977f328d.etc2.stex", "res://.import/coordinate_on_line_icon.png-5a12f5cab4512d3bdac29c35977f328d.etc.stex" ]
+
+[params]
+
+compress/mode=2
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=true
+flags/filter=true
+flags/mipmaps=true
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0
