@@ -20,7 +20,6 @@ onready var pivot =get_node("pivot")
 onready var line2d_bottom=get_child(0).get_node("Line2D_bottom")
 
 
-onready var preload_proxy=preload("res://scenes/proxy_expansion_fan.tscn")
 
 onready var chord_vec2=Vector2(pivot.global_transform.x.normalized().x,pivot.global_transform.x.normalized().y)
 
@@ -1941,6 +1940,8 @@ func _on_gamma_slider_button_button_up():
 	_cL()
 	
 	_cD()
+	
+	global_var.random_graph_point_color=Color(rand_range(0,1),rand_range(0,1),rand_range(0,1))
 	pass
 	
 	

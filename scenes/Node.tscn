@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://scripts/MAIN_SCRIPT.gd" type="Script" id=1]
 [ext_resource path="res://textures/origin_icon.png" type="Texture" id=2]
@@ -11,49 +11,52 @@
 [ext_resource path="res://scripts/dashed_line.gd" type="Script" id=9]
 [ext_resource path="res://scripts/graphs_cL_cD.gd" type="Script" id=10]
 [ext_resource path="res://textures/move_graph_icon.png" type="Texture" id=11]
-[ext_resource path="res://textures/indicator_curve.png" type="Texture" id=12]
-[ext_resource path="res://scripts/graph_shock_vs_deflec.gd" type="Script" id=13]
-[ext_resource path="res://scripts/arrow_inlet_flow.gd" type="Script" id=14]
-[ext_resource path="res://scripts/oblique_shock_lines.gd" type="Script" id=15]
-[ext_resource path="res://scripts/expansion_fans.gd" type="Script" id=16]
-[ext_resource path="res://scripts/AoA_circular_arc.gd" type="Script" id=17]
-[ext_resource path="res://scripts/checkbox_hide_everything_except_graphs.gd" type="Script" id=18]
-[ext_resource path="res://scripts/values_general_info.gd" type="Script" id=19]
-[ext_resource path="res://textures/check_icon.png" type="Texture" id=20]
-[ext_resource path="res://textures/undo_icon.png" type="Texture" id=21]
-[ext_resource path="res://scripts/button_undo.gd" type="Script" id=22]
-[ext_resource path="res://textures/edit_node_icon.png" type="Texture" id=23]
-[ext_resource path="res://scripts/button_edit.gd" type="Script" id=24]
-[ext_resource path="res://textures/add_node_icon.png" type="Texture" id=25]
-[ext_resource path="res://textures/delete_node_icon.png" type="Texture" id=26]
-[ext_resource path="res://textures/move_node_icon.png" type="Texture" id=27]
-[ext_resource path="res://textures/chord_icon.png" type="Texture" id=28]
-[ext_resource path="res://textures/thickness_icon.png" type="Texture" id=29]
-[ext_resource path="res://textures/quit_icon_new.png" type="Texture" id=30]
-[ext_resource path="res://scripts/button_quit.gd" type="Script" id=31]
-[ext_resource path="res://scripts/button_restart.gd" type="Script" id=32]
-[ext_resource path="res://textures/about_icon.png" type="Texture" id=33]
-[ext_resource path="res://scripts/button_about.gd" type="Script" id=34]
-[ext_resource path="res://textures/save_icon.png" type="Texture" id=35]
-[ext_resource path="res://scripts/button_save_aerofoil.gd" type="Script" id=36]
-[ext_resource path="res://scripts/save_dialogue_textedit.gd" type="Script" id=37]
-[ext_resource path="res://textures/settings_icon.png" type="Texture" id=38]
-[ext_resource path="res://scripts/button_advanced.gd" type="Script" id=39]
-[ext_resource path="res://textures/screenshot_icon.png" type="Texture" id=40]
-[ext_resource path="res://textures/generate_3d_mesh_icon.png" type="Texture" id=41]
-[ext_resource path="res://scripts/button_3d_mesh.gd" type="Script" id=42]
-[ext_resource path="res://scenes/button_screenshot.tscn" type="PackedScene" id=43]
-[ext_resource path="res://scripts/chord_slider.gd" type="Script" id=44]
-[ext_resource path="res://scripts/thickness_slider.gd" type="Script" id=45]
-[ext_resource path="res://scripts/button_load_aerofoil.gd" type="Script" id=46]
-[ext_resource path="res://scenes/FPS.tscn" type="PackedScene" id=47]
-[ext_resource path="res://scripts/edit_mode_preview.gd" type="Script" id=48]
-[ext_resource path="res://scripts/weak_shock_listItem.gd" type="Script" id=49]
-[ext_resource path="res://scripts/strong_shock_angles.gd" type="Script" id=50]
-[ext_resource path="res://scripts/flow_speeds_listItem.gd" type="Script" id=51]
-[ext_resource path="res://scripts/p_p1_ItemList.gd" type="Script" id=52]
-[ext_resource path="res://scenes/spline_interp_scene.tscn" type="PackedScene" id=53]
-[ext_resource path="res://scripts/error_log.gd" type="Script" id=54]
+[ext_resource path="res://graph_point_indicator_SHADER.tres" type="Material" id=12]
+[ext_resource path="res://textures/indicator_curve.png" type="Texture" id=13]
+[ext_resource path="res://scripts/graph_shock_vs_deflec.gd" type="Script" id=14]
+[ext_resource path="res://scripts/arrow_inlet_flow.gd" type="Script" id=15]
+[ext_resource path="res://scripts/oblique_shock_lines.gd" type="Script" id=16]
+[ext_resource path="res://scripts/expansion_fans.gd" type="Script" id=17]
+[ext_resource path="res://scripts/AoA_circular_arc.gd" type="Script" id=18]
+[ext_resource path="res://scripts/checkbox_hide_everything_except_graphs.gd" type="Script" id=19]
+[ext_resource path="res://scripts/values_general_info.gd" type="Script" id=20]
+[ext_resource path="res://textures/check_icon.png" type="Texture" id=21]
+[ext_resource path="res://textures/undo_icon.png" type="Texture" id=22]
+[ext_resource path="res://scripts/button_undo.gd" type="Script" id=23]
+[ext_resource path="res://textures/edit_node_icon.png" type="Texture" id=24]
+[ext_resource path="res://scripts/button_edit.gd" type="Script" id=25]
+[ext_resource path="res://textures/add_node_icon.png" type="Texture" id=26]
+[ext_resource path="res://textures/delete_node_icon.png" type="Texture" id=27]
+[ext_resource path="res://textures/move_node_icon.png" type="Texture" id=28]
+[ext_resource path="res://textures/chord_icon.png" type="Texture" id=29]
+[ext_resource path="res://textures/thickness_icon.png" type="Texture" id=30]
+[ext_resource path="res://textures/quit_icon_new.png" type="Texture" id=31]
+[ext_resource path="res://scripts/button_quit.gd" type="Script" id=32]
+[ext_resource path="res://scripts/button_restart.gd" type="Script" id=33]
+[ext_resource path="res://textures/about_icon.png" type="Texture" id=34]
+[ext_resource path="res://scripts/button_about.gd" type="Script" id=35]
+[ext_resource path="res://textures/save_icon.png" type="Texture" id=36]
+[ext_resource path="res://scripts/button_save_aerofoil.gd" type="Script" id=37]
+[ext_resource path="res://scripts/save_dialogue_textedit.gd" type="Script" id=38]
+[ext_resource path="res://textures/settings_icon.png" type="Texture" id=39]
+[ext_resource path="res://scripts/button_advanced.gd" type="Script" id=40]
+[ext_resource path="res://textures/screenshot_icon.png" type="Texture" id=41]
+[ext_resource path="res://textures/generate_3d_mesh_icon.png" type="Texture" id=42]
+[ext_resource path="res://scripts/button_3d_mesh.gd" type="Script" id=43]
+[ext_resource path="res://scenes/button_screenshot.tscn" type="PackedScene" id=44]
+[ext_resource path="res://scripts/chord_slider.gd" type="Script" id=45]
+[ext_resource path="res://scripts/thickness_slider.gd" type="Script" id=46]
+[ext_resource path="res://scripts/button_load_aerofoil.gd" type="Script" id=47]
+[ext_resource path="res://scenes/FPS.tscn" type="PackedScene" id=48]
+[ext_resource path="res://scripts/edit_mode_preview.gd" type="Script" id=49]
+[ext_resource path="res://scripts/weak_shock_listItem.gd" type="Script" id=50]
+[ext_resource path="res://scripts/strong_shock_angles.gd" type="Script" id=51]
+[ext_resource path="res://scripts/flow_speeds_listItem.gd" type="Script" id=52]
+[ext_resource path="res://scripts/p_p1_ItemList.gd" type="Script" id=53]
+[ext_resource path="res://scenes/spline_interp_scene.tscn" type="PackedScene" id=54]
+[ext_resource path="res://scripts/error_log.gd" type="Script" id=55]
+[ext_resource path="res://textures/button_resize_icon.png" type="Texture" id=56]
+[ext_resource path="res://scripts/graph_legend.gd" type="Script" id=57]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends HBoxContainer
@@ -132,6 +135,15 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color( 0.0392157, 0.0392157, 0.0392157, 1 )
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.109804, 0.109804, 0.109804, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0, 0, 0, 1 )
 border_blend = true
 
 [node name="Node2D" type="Node2D"]
@@ -262,6 +274,7 @@ script = ExtResource( 10 )
 
 [node name="cL_graph" type="Button" parent="graphs_cL_cD"]
 visible = false
+show_behind_parent = true
 margin_left = 278.0
 margin_top = 345.0
 margin_right = 290.0
@@ -282,11 +295,21 @@ margin_right = 40.0
 margin_bottom = 14.0
 
 [node name="indicator_cL" type="Sprite" parent="graphs_cL_cD/cL_graph"]
+material = ExtResource( 12 )
 position = Vector2( 232, 0 )
-texture = ExtResource( 12 )
+scale = Vector2( 0.07, 0.07 )
+texture = ExtResource( 13 )
+
+[node name="button_clear_cL_graph" type="Button" parent="graphs_cL_cD/cL_graph"]
+margin_left = -7.0
+margin_top = 24.0
+margin_right = 36.0
+margin_bottom = 44.0
+text = "clear"
 
 [node name="cD_graph" type="Button" parent="graphs_cL_cD"]
 visible = false
+show_behind_parent = true
 margin_left = 510.0
 margin_top = 345.0
 margin_right = 538.0
@@ -296,7 +319,6 @@ icon = ExtResource( 11 )
 [node name="points" type="Node2D" parent="graphs_cL_cD/cD_graph"]
 
 [node name="labels" type="Node2D" parent="graphs_cL_cD/cD_graph"]
-editor/display_folded = true
 
 [node name="x" type="Label" parent="graphs_cL_cD/cD_graph/labels"]
 margin_right = 40.0
@@ -307,10 +329,20 @@ margin_right = 40.0
 margin_bottom = 14.0
 
 [node name="indicator_cD" type="Sprite" parent="graphs_cL_cD/cD_graph"]
-texture = ExtResource( 12 )
+material = ExtResource( 12 )
+scale = Vector2( 0.07, 0.07 )
+texture = ExtResource( 13 )
+
+[node name="button_clear_cD_graph" type="Button" parent="graphs_cL_cD/cD_graph"]
+margin_left = -7.74835
+margin_top = 23.1638
+margin_right = 35.2516
+margin_bottom = 43.1638
+text = "clear"
 
 [node name="cD_div_cL_graph" type="Button" parent="graphs_cL_cD"]
 visible = false
+show_behind_parent = true
 margin_left = 606.0
 margin_top = 345.0
 margin_right = 634.0
@@ -330,11 +362,21 @@ margin_right = 40.0
 margin_bottom = 14.0
 
 [node name="indicator_cD_div_cL" type="Sprite" parent="graphs_cL_cD/cD_div_cL_graph"]
+material = ExtResource( 12 )
 position = Vector2( -96, 0 )
-texture = ExtResource( 12 )
+scale = Vector2( 0.07, 0.07 )
+texture = ExtResource( 13 )
+
+[node name="button_clear_cD_div_cL_graph" type="Button" parent="graphs_cL_cD/cD_div_cL_graph"]
+margin_left = -8.0
+margin_top = 24.0
+margin_right = 35.0
+margin_bottom = 44.0
+text = "clear"
 
 [node name="cL_div_cD_graph" type="Button" parent="graphs_cL_cD"]
 visible = false
+show_behind_parent = true
 margin_left = 606.0
 margin_top = 345.0
 margin_right = 634.0
@@ -354,23 +396,32 @@ margin_right = 40.0
 margin_bottom = 14.0
 
 [node name="indicator_cL_div_cD" type="Sprite" parent="graphs_cL_cD/cL_div_cD_graph"]
+material = ExtResource( 12 )
 position = Vector2( -96, 0 )
-texture = ExtResource( 12 )
+scale = Vector2( 0.07, 0.07 )
+texture = ExtResource( 13 )
+
+[node name="button_clear_cL_div_cD_graph" type="Button" parent="graphs_cL_cD/cL_div_cD_graph"]
+margin_left = -8.0
+margin_top = 24.0
+margin_right = 35.0
+margin_bottom = 44.0
+text = "clear"
 
 [node name="graph_shock_vs_deflec" type="Node2D" parent="."]
-script = ExtResource( 13 )
-
-[node name="arrow_inlet_flow" type="Node2D" parent="."]
 script = ExtResource( 14 )
 
-[node name="oblique_shock_lines" type="Node2D" parent="."]
+[node name="arrow_inlet_flow" type="Node2D" parent="."]
 script = ExtResource( 15 )
 
-[node name="expansion_fans" type="Node2D" parent="."]
+[node name="oblique_shock_lines" type="Node2D" parent="."]
 script = ExtResource( 16 )
 
-[node name="AoA_circular_arc" type="Node2D" parent="."]
+[node name="expansion_fans" type="Node2D" parent="."]
 script = ExtResource( 17 )
+
+[node name="AoA_circular_arc" type="Node2D" parent="."]
+script = ExtResource( 18 )
 
 [node name="label_angle" type="Label" parent="AoA_circular_arc"]
 margin_right = 40.0
@@ -477,7 +528,7 @@ margin_right = 1038.0
 margin_bottom = 195.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 18 )
+script = ExtResource( 19 )
 
 [node name="CheckButton" type="CheckBox" parent="checkbox_hide_everything_except_graphs"]
 margin_right = 24.0
@@ -502,7 +553,7 @@ margin_left = 10.0
 margin_top = 433.849
 margin_right = 107.0
 margin_bottom = 453.849
-script = ExtResource( 19 )
+script = ExtResource( 20 )
 
 [node name="aerofoil info" type="Label" parent="aerofoil_geometry_stats"]
 margin_left = 4.0
@@ -519,7 +570,7 @@ margin_top = 519.0
 margin_right = 620.694
 margin_bottom = 557.0
 text = "FINISH SKETCH"
-icon = ExtResource( 20 )
+icon = ExtResource( 21 )
 
 [node name="button_undo" type="Button" parent="."]
 margin_left = 390.188
@@ -527,8 +578,8 @@ margin_top = 519.622
 margin_right = 477.188
 margin_bottom = 557.622
 text = "UNDO"
-icon = ExtResource( 21 )
-script = ExtResource( 22 )
+icon = ExtResource( 22 )
+script = ExtResource( 23 )
 
 [node name="button_edit" type="Button" parent="."]
 margin_left = 457.26
@@ -537,8 +588,8 @@ margin_right = 532.26
 margin_bottom = 43.0
 toggle_mode = true
 text = "EDIT"
-icon = ExtResource( 23 )
-script = ExtResource( 24 )
+icon = ExtResource( 24 )
+script = ExtResource( 25 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="button_edit"]
 
@@ -547,7 +598,7 @@ margin_left = 454.0
 margin_top = 41.0
 margin_right = 612.0
 margin_bottom = 237.0
-items = [ "ADD NODES", ExtResource( 25 ), 0, false, false, -1, 0, null, "", false, "DELETE NODES", ExtResource( 26 ), 0, false, false, -1, 0, null, "", false, "MOVE NODES", ExtResource( 27 ), 0, false, false, -1, 0, null, "", false, "CHORD LENGTH", ExtResource( 28 ), 0, false, false, -1, 0, null, "", false, "THICKNESS", ExtResource( 29 ), 0, false, false, -1, 0, null, "", false ]
+items = [ "ADD NODES", ExtResource( 26 ), 0, false, false, -1, 0, null, "", false, "DELETE NODES", ExtResource( 27 ), 0, false, false, -1, 0, null, "", false, "MOVE NODES", ExtResource( 28 ), 0, false, false, -1, 0, null, "", false, "CHORD LENGTH", ExtResource( 29 ), 0, false, false, -1, 0, null, "", false, "THICKNESS", ExtResource( 30 ), 0, false, false, -1, 0, null, "", false ]
 
 [node name="button_quit" type="Button" parent="."]
 margin_left = 2.0
@@ -555,8 +606,8 @@ margin_top = 534.889
 margin_right = 81.0
 margin_bottom = 572.889
 text = "QUIT"
-icon = ExtResource( 30 )
-script = ExtResource( 31 )
+icon = ExtResource( 31 )
+script = ExtResource( 32 )
 
 [node name="button_restart" type="Button" parent="."]
 margin_left = 2.0
@@ -564,8 +615,8 @@ margin_top = 493.889
 margin_right = 101.0
 margin_bottom = 531.889
 text = "RESTART"
-icon = ExtResource( 21 )
-script = ExtResource( 32 )
+icon = ExtResource( 22 )
+script = ExtResource( 33 )
 
 [node name="button_about" type="Button" parent="."]
 margin_left = 2.0
@@ -573,8 +624,8 @@ margin_top = 576.0
 margin_right = 78.0
 margin_bottom = 598.0
 text = "ABOUT"
-icon = ExtResource( 33 )
-script = ExtResource( 34 )
+icon = ExtResource( 34 )
+script = ExtResource( 35 )
 
 [node name="button_save_aerofoil" type="Button" parent="."]
 margin_left = 877.0
@@ -582,8 +633,8 @@ margin_top = 404.0
 margin_right = 1023.0
 margin_bottom = 442.0
 text = "SAVE AEROFOIL"
-icon = ExtResource( 35 )
-script = ExtResource( 36 )
+icon = ExtResource( 36 )
+script = ExtResource( 37 )
 
 [node name="PanelContainer" type="PanelContainer" parent="button_save_aerofoil"]
 visible = false
@@ -624,7 +675,7 @@ text = "my_aerofoil_001"
 wrap_enabled = true
 caret_block_mode = true
 caret_blink = true
-script = ExtResource( 37 )
+script = ExtResource( 38 )
 
 [node name="save_button" type="Button" parent="button_save_aerofoil/PanelContainer/VBoxContainer"]
 margin_left = 62.0
@@ -650,8 +701,8 @@ margin_top = 5.0
 margin_right = 452.858
 margin_bottom = 43.0
 text = "ADVANCED"
-icon = ExtResource( 38 )
-script = ExtResource( 39 )
+icon = ExtResource( 39 )
+script = ExtResource( 40 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="button_advanced"]
 
@@ -660,7 +711,7 @@ margin_left = 333.126
 margin_top = 40.7725
 margin_right = 529.126
 margin_bottom = 326.772
-items = [ "WEAK ANGLES", null, 1, false, false, -1, 0, null, "", false, "STRONG ANGLES", null, 1, false, false, -1, 0, null, "", false, "GEOMETRY INFO", null, 1, false, false, -1, 0, null, "", false, "SIMULATION PRECISION", null, 1, false, false, -1, 0, null, "", false, "ARROW INLET", null, 1, false, false, -1, 0, null, "", false, "DASHED LINE", null, 1, false, false, -1, 0, null, "", false, "BOW SHOCK DATA", null, 1, false, false, -1, 0, null, "", false, "FLOW SPEEDS", null, 1, false, false, -1, 0, null, "", false, "PRESSURE RATIOS", null, 1, false, false, -1, 0, null, "", false, "PLATE INDICES", null, 1, false, false, -1, 0, null, "", false, "NODE INDICES", null, 1, false, false, -1, 0, null, "", false, "AEROFOIL AOA", null, 1, false, false, -1, 0, null, "", false, "SCREENSHOT", ExtResource( 40 ), 1, false, false, -1, 0, null, "", false, "FPS COUNTER", null, 1, false, false, -1, 0, null, "", false, "ERROR LOG", null, 1, false, false, -1, 0, null, "", false ]
+items = [ "WEAK ANGLES", null, 1, false, false, -1, 0, null, "", false, "STRONG ANGLES", null, 1, false, false, -1, 0, null, "", false, "GEOMETRY INFO", null, 1, false, false, -1, 0, null, "", false, "SIMULATION PRECISION", null, 1, false, false, -1, 0, null, "", false, "ARROW INLET", null, 1, false, false, -1, 0, null, "", false, "DASHED LINE", null, 1, false, false, -1, 0, null, "", false, "BOW SHOCK DATA", null, 1, false, false, -1, 0, null, "", false, "FLOW SPEEDS", null, 1, false, false, -1, 0, null, "", false, "PRESSURE RATIOS", null, 1, false, false, -1, 0, null, "", false, "PLATE INDICES", null, 1, false, false, -1, 0, null, "", false, "NODE INDICES", null, 1, false, false, -1, 0, null, "", false, "AEROFOIL AOA", null, 1, false, false, -1, 0, null, "", false, "SCREENSHOT", ExtResource( 41 ), 1, false, false, -1, 0, null, "", false, "FPS COUNTER", null, 1, false, false, -1, 0, null, "", false, "ERROR LOG", null, 1, false, false, -1, 0, null, "", false ]
 
 [node name="button_generate_3d_mesh" type="Button" parent="."]
 margin_left = 536.181
@@ -668,10 +719,10 @@ margin_top = 5.0
 margin_right = 709.181
 margin_bottom = 43.0
 text = "GENERATE 3D MESH"
-icon = ExtResource( 41 )
-script = ExtResource( 42 )
+icon = ExtResource( 42 )
+script = ExtResource( 43 )
 
-[node name="button_screenshot" parent="." instance=ExtResource( 43 )]
+[node name="button_screenshot" parent="." instance=ExtResource( 44 )]
 visible = false
 margin_left = 888.0
 margin_top = 200.0
@@ -698,7 +749,7 @@ max_value = 2.0
 step = 0.001
 tick_count = 3
 ticks_on_borders = true
-script = ExtResource( 44 )
+script = ExtResource( 45 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="chord_slider"]
 margin_top = 38.0
@@ -757,7 +808,7 @@ max_value = 2.0
 step = 0.001
 tick_count = 3
 ticks_on_borders = true
-script = ExtResource( 45 )
+script = ExtResource( 46 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="thickness_slider"]
 margin_top = 38.0
@@ -860,7 +911,7 @@ margin_bottom = 49.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Saved Aerofoils"
-script = ExtResource( 46 )
+script = ExtResource( 47 )
 
 [node name="PanelContainer" type="PanelContainer" parent="aerofoil_choice_container/HBoxContainer/button_load_aerofoil"]
 visible = false
@@ -916,7 +967,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Close"
 
-[node name="FPS" parent="." instance=ExtResource( 47 )]
+[node name="FPS" parent="." instance=ExtResource( 48 )]
 margin_left = 739.0
 margin_top = 6.0
 margin_right = 779.0
@@ -927,7 +978,7 @@ margin_left = 455.0
 margin_top = 568.0
 margin_right = 550.0
 margin_bottom = 584.0
-script = ExtResource( 48 )
+script = ExtResource( 49 )
 
 [node name="Label" type="Label" parent="edit_mode_preview"]
 margin_top = 1.0
@@ -943,7 +994,7 @@ margin_right = 95.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-texture = ExtResource( 33 )
+texture = ExtResource( 34 )
 
 [node name="warning" type="Label" parent="."]
 margin_left = 866.81
@@ -960,7 +1011,6 @@ autowrap = true
 [node name="oblique_shock_END_EDGES" type="Node2D" parent="."]
 
 [node name="data_tables" type="PanelContainer" parent="."]
-editor/display_folded = true
 self_modulate = Color( 1, 1, 1, 0 )
 margin_right = 189.0
 margin_bottom = 413.0
@@ -997,7 +1047,7 @@ margin_right = 175.0
 margin_bottom = 96.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 49 )
+script = ExtResource( 50 )
 
 [node name="strong_shock_listItem" type="VBoxContainer" parent="data_tables/ScrollContainer/VBoxContainer"]
 margin_top = 100.0
@@ -1018,7 +1068,7 @@ margin_right = 175.0
 margin_bottom = 96.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 50 )
+script = ExtResource( 51 )
 
 [node name="flow_speeds_listItem" type="VBoxContainer" parent="data_tables/ScrollContainer/VBoxContainer"]
 margin_top = 200.0
@@ -1039,10 +1089,9 @@ margin_right = 175.0
 margin_bottom = 96.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 51 )
+script = ExtResource( 52 )
 
 [node name="p_p1_listItem" type="VBoxContainer" parent="data_tables/ScrollContainer/VBoxContainer"]
-editor/display_folded = true
 margin_top = 300.0
 margin_right = 175.0
 margin_bottom = 399.0
@@ -1062,7 +1111,7 @@ margin_right = 175.0
 margin_bottom = 99.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 52 )
+script = ExtResource( 53 )
 
 [node name="bow_shock_data_listItem" type="VBoxContainer" parent="data_tables/ScrollContainer/VBoxContainer"]
 visible = false
@@ -1085,7 +1134,7 @@ margin_bottom = 79.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="spline_interp" parent="." instance=ExtResource( 53 )]
+[node name="spline_interp" parent="." instance=ExtResource( 54 )]
 visible = false
 
 [node name="error_log" type="PanelContainer" parent="."]
@@ -1095,7 +1144,7 @@ margin_right = 388.286
 margin_bottom = 260.849
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 54 )
+script = ExtResource( 55 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="error_log"]
 margin_left = 7.0
@@ -1135,9 +1184,10 @@ margin_bottom = 22.0
 icon = ExtResource( 11 )
 
 [node name="background" type="PanelContainer" parent="error_log/VBoxContainer"]
+editor/display_folded = true
 margin_top = 44.0
 margin_right = 250.0
-margin_bottom = 214.0
+margin_bottom = 188.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 2 )
@@ -1146,34 +1196,127 @@ custom_styles/panel = SubResource( 2 )
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 246.0
-margin_bottom = 166.0
+margin_bottom = 140.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="message_box" type="VBoxContainer" parent="error_log/VBoxContainer/background/ScrollContainer"]
 margin_right = 242.0
-margin_bottom = 162.0
+margin_bottom = 136.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="button_resize" type="Button" parent="error_log/VBoxContainer"]
+margin_left = 222.0
+margin_top = 192.0
+margin_right = 250.0
+margin_bottom = 214.0
+size_flags_horizontal = 12
+size_flags_vertical = 0
+icon = ExtResource( 56 )
+
+[node name="graph_legend" type="PanelContainer" parent="."]
+margin_left = 679.0
+margin_top = 96.0
+margin_right = 837.0
+margin_bottom = 291.0
+script = ExtResource( 57 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="graph_legend"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 151.0
+margin_bottom = 188.0
+
+[node name="title" type="Label" parent="graph_legend/VBoxContainer"]
+margin_right = 144.0
+margin_bottom = 14.0
+text = "Graph Legend Code"
+align = 1
+
+[node name="button_drag" type="Button" parent="graph_legend/VBoxContainer"]
+margin_left = 58.0
+margin_top = 18.0
+margin_right = 86.0
+margin_bottom = 40.0
+size_flags_horizontal = 4
+icon = ExtResource( 11 )
+
+[node name="PanelContainer" type="PanelContainer" parent="graph_legend/VBoxContainer"]
+editor/display_folded = true
+margin_top = 44.0
+margin_right = 144.0
+margin_bottom = 155.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 3 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="graph_legend/VBoxContainer/PanelContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 140.0
+margin_bottom = 107.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="graph_legend/VBoxContainer/PanelContainer/ScrollContainer"]
+margin_right = 136.0
+margin_bottom = 103.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="graph_legend/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+editor/display_folded = true
+visible = false
+margin_right = 61.0
+margin_bottom = 14.0
+
+[node name="TextureRect" type="ColorRect" parent="graph_legend/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_right = 28.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="graph_legend/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 32.0
+margin_right = 61.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "dsfd"
+
+[node name="button_resize" type="Button" parent="graph_legend/VBoxContainer"]
+margin_left = 116.0
+margin_top = 159.0
+margin_right = 144.0
+margin_bottom = 181.0
+size_flags_horizontal = 12
+size_flags_vertical = 0
+icon = ExtResource( 56 )
+
 [connection signal="value_changed" from="alpha_slider" to="." method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="data_tables/ScrollContainer/VBoxContainer/strong_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="data_tables/ScrollContainer/VBoxContainer/flow_speeds_listItem/ItemList" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="data_tables/ScrollContainer/VBoxContainer/p_p1_listItem/ItemList" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="data_tables/ScrollContainer/VBoxContainer/weak_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="alpha_slider" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="expansion_fans" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="AoA_circular_arc" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="expansion_fans" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="oblique_shock_lines" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="alpha_slider" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="data_tables/ScrollContainer/VBoxContainer/strong_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="data_tables/ScrollContainer/VBoxContainer/weak_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="data_tables/ScrollContainer/VBoxContainer/p_p1_listItem/ItemList" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="data_tables/ScrollContainer/VBoxContainer/flow_speeds_listItem/ItemList" method="_on_alpha_slider_value_changed"]
 [connection signal="button_up" from="m_slider_button" to="graphs_cL_cD" method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="m_slider_button" to="." method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="m_slider_button" to="expansion_fans" method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="m_slider_button" to="oblique_shock_lines" method="_on_m_slider_button_button_up"]
+[connection signal="button_up" from="m_slider_button" to="graph_legend" method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="graphs_cL_cD" method="_on_gamma_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="." method="_on_gamma_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="expansion_fans" method="_on_gamma_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="oblique_shock_lines" method="_on_gamma_slider_button_button_up"]
 [connection signal="value_changed" from="simulation_precision_slider" to="simulation_precision_slider" method="_on_simulation_precision_slider_value_changed"]
+[connection signal="pressed" from="graphs_cL_cD/cL_graph/button_clear_cL_graph" to="graphs_cL_cD" method="_on_button_clear_cL_graph_pressed"]
+[connection signal="pressed" from="graphs_cL_cD/cD_graph/button_clear_cD_graph" to="graphs_cL_cD" method="_on_button_clear_cD_graph_pressed"]
+[connection signal="pressed" from="graphs_cL_cD/cD_div_cL_graph/button_clear_cD_div_cL_graph" to="graphs_cL_cD" method="_on_button_clear_cD_div_cL_graph_pressed"]
+[connection signal="pressed" from="graphs_cL_cD/cL_div_cD_graph/button_clear_cL_div_cD_graph" to="graphs_cL_cD" method="_on_button_clear_cL_div_cD_graph_pressed"]
 [connection signal="toggled" from="checkboxes/checkbox_cL_plot" to="graphs_cL_cD" method="_on_checkbox_cL_plot_toggled"]
 [connection signal="toggled" from="checkboxes/checkbox_cD_plot" to="graphs_cL_cD" method="_on_checkbox_cD_plot_toggled"]
 [connection signal="toggled" from="checkboxes/checkbox_cD_div_cL_plot" to="graphs_cL_cD" method="_on_checkbox_cD_div_cL_plot_toggled"]

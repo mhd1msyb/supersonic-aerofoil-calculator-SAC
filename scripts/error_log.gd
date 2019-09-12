@@ -7,20 +7,19 @@ onready var message_box=get_node("VBoxContainer/background/ScrollContainer/messa
 onready var button_hide=get_node("VBoxContainer/VBoxContainer/button_hide")
 onready var button_drag=get_node("VBoxContainer/VBoxContainer/button_drag")
 onready var button_clear=get_node("VBoxContainer/VBoxContainer/button_clear")
+onready var button_resize=get_node("VBoxContainer/button_resize")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hide()
 	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 func _input(event):
 	if visible==true:
 		if event is InputEventMouseMotion:
 			if button_drag.pressed:
 				rect_global_position+=event.relative
+			if button_resize.pressed:
+				rect_size+=event.relative
 	else:
 		return
 

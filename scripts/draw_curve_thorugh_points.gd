@@ -9,7 +9,6 @@ func _draw():
 	var graph=get_parent().get_parent().get_parent()
 	
 	if get_parent().get_child_count()>2:
-	
 		for i in range(get_parent().get_child_count()):
 			if get_parent().get_child(i)!=self:
 				if i<len(global_var.cL_plot_list): # make sure that we don't draw a line through the points going through the bow shock vertical line

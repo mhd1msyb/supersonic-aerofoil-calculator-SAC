@@ -4,7 +4,6 @@ extends Node2D
 
 onready var pivot=get_parent().get_node("pivot")
 onready var line2d_bottom=get_parent().get_node("pivot/Line2D_bottom")
-onready var preload_proxy=preload("res://scenes/proxy_expansion_fan.tscn")
 
 onready var checkbox_expansion_fan=get_parent().get_node("checkboxes/checkbox_expansion_fan")
 

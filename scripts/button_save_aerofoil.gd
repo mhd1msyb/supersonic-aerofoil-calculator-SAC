@@ -6,13 +6,11 @@ onready var pivot=get_parent().get_node("pivot")
 onready var line2d_bottom=get_parent().get_node("pivot/Line2D_bottom")
 onready var alpha_slider=get_parent().get_node("alpha_slider")
 onready var label_with_timer=preload("res://scenes/label_with_timer.tscn")
-onready var prox=preload("res://scenes/proxy_expansion_fan.tscn")
 onready var save_dialogue=get_node("PanelContainer")
 onready var save_dialogue_textedit=get_node("PanelContainer/VBoxContainer/TextEdit")
 
 
 func _ready():
-	
 	hide()
 
 

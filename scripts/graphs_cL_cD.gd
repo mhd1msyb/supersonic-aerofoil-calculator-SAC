@@ -66,7 +66,7 @@ onready var cL_div_cD_x_label=get_node("cL_div_cD_graph").get_node("labels").get
 onready var cL_div_cD_y_label=get_node("cL_div_cD_graph").get_node("labels").get_node("y")
 
 var graph_size=700
-var point_scale=0.2
+var point_scale=0.21
 
 
 
@@ -126,14 +126,12 @@ func _add_points(x,y, global_pos,size, graph,parent): #adds the 'points' to the 
 	y - the y parameter of the graph
 	global_pos - the origin of the graph in global screen space coords
 	size - the size of the graph
-	
 	"""
 	var proxy_instance=preload_proxy.instance()
-	
 	parent.add_child(proxy_instance)
-	proxy_instance.material.set_shader_param("random_graph_point_color",global_var.random_graph_point_color)
 	proxy_instance.scale=Vector2(1,1)*point_scale
-	proxy_instance.global_transform.origin=global_pos + Vector2(x,-y)*size 
+	proxy_instance.global_transform.origin=global_pos + Vector2(x,-y)*size
+	proxy_instance.material.set_shader_param("random_graph_point_color",Vector3(global_var.random_graph_point_color.r,global_var.random_graph_point_color.g,global_var.random_graph_point_color.b))
 	
 	
 	
@@ -152,8 +150,9 @@ func _axes_draw_line(graph_name_string): # draws axes lines
 
 	for i in range(graph.get_node("points").get_child_count()):
 		for ii in range(graph.get_node("points").get_child(i).get_child_count()):
-			xcoord_list.append(graph.get_node("points").get_child(i).get_child(ii).global_transform.origin.x)
-			ycoord_list.append(graph.get_node("points").get_child(i).get_child(ii).global_transform.origin.y)
+			if graph.get_node("points").get_child(i).get_child(ii).name!="draw_curve_though_points": #make sure we dont include the polyline curve itself
+				xcoord_list.append(graph.get_node("points").get_child(i).get_child(ii).global_transform.origin.x)
+				ycoord_list.append(graph.get_node("points").get_child(i).get_child(ii).global_transform.origin.y)
 	
 	var maxX=global_var._max(xcoord_list)
 	var maxY=global_var._min(ycoord_list)
@@ -396,22 +395,22 @@ func _input(event): # to drag the graphs
 
 
 
-func _draw_bow_shock_line(graph,parent):
-	
-	var yVal=Vector2()
-	if abs(global_var.bow_shock_angle)<10:
-		for i in range (11):
-			#Vector2(0,graph.rect_global_position.y-global_var.cL_plot_list.back()).linear_interpolate(Vector2(0,graph.rect_global_position.y),float(i)/10)
-			
-			if graph==cL_graph and global_var.cL_plot_list.back()!=null:
-				yVal=Vector2(0,global_var.cL_plot_list.back()).linear_interpolate(Vector2(0,0),float(i)/11)
-				
-			if graph==cD_graph and global_var.cD_plot_list.back()!=null:
-				yVal=Vector2(0,global_var.cD_plot_list.back()).linear_interpolate(Vector2(0,0),float(i)/11)
-			
-			#print(yVal,graph.rect_global_position)
-			#yVal=graph.rect_global_position
-			_add_points(deg2rad(global_var.bow_shock_angle),yVal.y,graph.rect_global_position,graph_size,graph,parent)
+#func _draw_bow_shock_line(graph,parent):
+#
+#	var yVal=Vector2()
+#	if abs(global_var.bow_shock_angle)<10:
+#		for i in range (11):
+#			#Vector2(0,graph.rect_global_position.y-global_var.cL_plot_list.back()).linear_interpolate(Vector2(0,graph.rect_global_position.y),float(i)/10)
+#
+#			if graph==cL_graph and global_var.cL_plot_list.back()!=null:
+#				yVal=Vector2(0,global_var.cL_plot_list.back()).linear_interpolate(Vector2(0,0),float(i)/11)
+#
+#			if graph==cD_graph and global_var.cD_plot_list.back()!=null:
+#				yVal=Vector2(0,global_var.cD_plot_list.back()).linear_interpolate(Vector2(0,0),float(i)/11)
+#
+#			#print(yVal,graph.rect_global_position)
+#			#yVal=graph.rect_global_position
+#			_add_points(deg2rad(global_var.bow_shock_angle),yVal.y,graph.rect_global_position,graph_size,graph,parent)
 
 
 
@@ -439,8 +438,7 @@ func _on_gamma_slider_button_button_up():
 	_update_graph(false,cL_div_cD_graph)
 	
 	update()
-	print(global_var.cL_plot_list)
-	
+#	print(global_var.cL_plot_list)
 	global_var.aerofoil_geomtery_changed=false
 	pass # Replace with function body.
 
@@ -459,6 +457,30 @@ func _on_m_slider_button_button_up():
 	_update_graph(false,cL_div_cD_graph)
 	
 	update()
-	print(global_var.cL_plot_list)
+#	print(global_var.cL_plot_list)
 	global_var.aerofoil_geomtery_changed=false
+	pass # Replace with function body.
+
+
+
+func _on_button_clear_cL_graph_pressed():
+
+	pass # Replace with function body.
+
+
+func _on_button_clear_cD_graph_pressed():
+	for i in cD_graph.get_node("points").get_children():
+		i.queue_free()
+	pass # Replace with function body.
+
+
+func _on_button_clear_cD_div_cL_graph_pressed():
+	for i in cD_div_cL_graph.get_node("points").get_children():
+		i.queue_free()
+	pass # Replace with function body.
+
+
+func _on_button_clear_cL_div_cD_graph_pressed():
+	for i in cL_div_cD_graph.get_node("points").get_children():
+		i.queue_free()
 	pass # Replace with function body.

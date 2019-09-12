@@ -8,5 +8,5 @@ void fragment(){
 	
 	COLOR=vec4(random_graph_point_color.r,random_graph_point_color.g,random_graph_point_color.b,1.0);
 	
-	
+
 }
