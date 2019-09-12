@@ -1742,7 +1742,7 @@ func _find_bow_shock():
 			gamma_slider.show()
 		
 		
-	print(global_var.bow_shock_angle)
+#	print(global_var.bow_shock_angle)
 	#pivot.global_rotation_degrees=alpha_slider.value
 	pivot.global_rotation_degrees=0
 	global_var.cL_plot_list=cL_plot_list
@@ -1765,14 +1765,15 @@ func _centre_pivot(): # sets pivot to centre of screen
 
 func _on_m_slider_button_button_up():
 	var ang=pivot.global_rotation
+	global_var.alpha_radians=ang
 	
+	alpha_slider.value=0
 	_clear_lists()
-	
-	pivot.global_rotation=0
 	
 	_find_bow_shock()
 	
 ###clean the lists and re-initialise them (to avoid values from previous updates afftecing the next update#######################################################
+	alpha_slider.value=ang
 	pivot.global_rotation=ang
 
 	_clear_lists()
@@ -1847,9 +1848,9 @@ func _on_m_slider_button_button_up():
 	_cL()
 
 	_cD()
-		
-	global_var.random_graph_point_color=Color(rand_range(0,1),rand_range(0,1),rand_range(0,1))
 	
+	global_var.random_graph_point_color=Color(rand_range(0,1),rand_range(0,1),rand_range(0,1))
+	alpha_slider.value=pivot.global_rotation
 	
 	
 	
@@ -1863,86 +1864,92 @@ func _on_m_slider_button_button_up():
 	
 func _on_gamma_slider_button_button_up():
 	var ang=pivot.global_rotation
+	global_var.alpha_radians=ang
 	
+	alpha_slider.value=0
 	_clear_lists()
-	
-	pivot.global_rotation=0
 	
 	_find_bow_shock()
 	
 ###clean the lists and re-initialise them (to avoid values from previous updates afftecing the next update#######################################################
+	alpha_slider.value=ang
 	pivot.global_rotation=ang
-	
+
 	_clear_lists()
-	
+
 	###update the vectors, coordinates and mpoints of the lines after rotation#######################################################	
 	_update_coords_vectors_midpoints()
-	
+
 	###populate angular and vector lists#######################################################	
-	
+
 	_calculate_GlobalAngles()
-	
+
 	for i in range (len(global_var.list_vector)):
 
 		###find whether expansion or contraction#######################################################		
 		_define_expansion_contraction(i)
-		
+
 		###calculate deflection angles#######################################################		
 		_deflection_angles(i)
 
 	#apply _oblique_shock() or _expansion based on whether plate is contraction or expansion#######################################################		
 	for ii in range(len(global_var.list_vector)):
-		
+
 		if global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==true:
 			_oblique_shock(ii)
 		elif global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==false:
 			print("oblique break, _on_alpha_slider_value_changed")
 			break
-			
-			
-			
+
+
+
 		if global_var.list_strings[ii]=="expansion" and _expansion(ii)==true:
 			_expansion(ii)
 		elif global_var.list_strings[ii]=="expansion" and _expansion(ii)==false:
 			print("expansion break, _on_alpha_slider_value_changed")
 			break
-			
-			
+
+
 		if global_var.list_strings[ii]=="nothing":
 			_nothing(ii)
-			
-			
-			
-			
-			
-			
-			
-			
+
+
+
+
+
+
+
+
 	for i in 1:
 		if _oblique_shock_END_EDGE("top")==true:
 			_oblique_shock_END_EDGE("top")
 		else:
 			break
-	
-			
+
+
 		var gradi=-global_var.list_vector[global_var.index_bottom_top_plate-1].y/global_var.list_vector[global_var.index_bottom_top_plate-1].x
 		if sign(gradi)==1: # to prevent exp fan showing if tehre is an oblique shock line
 			if _oblique_shock_END_EDGE("bottom")==true:
 				_oblique_shock_END_EDGE("bottom")
 			else:
 				break
-	
+
 #		print(global_var.p2_p1_END_EDGE_TOP, "   ",global_var.p2_p1_END_EDGE_BOTTOM)
-			
-	
+
+
+
+
+
+
+
 	########Calculate lift coefficient and drag coefficient###################
-			
+
 	_cL()
-	
+
 	_cD()
 	
 	global_var.random_graph_point_color=Color(rand_range(0,1),rand_range(0,1),rand_range(0,1))
-	pass
+	alpha_slider.value=pivot.global_rotation
 	
 	
 	
@@ -2337,7 +2344,7 @@ func _shock_angle_END_EDGE(m,plate): #ok
 			
 	else:
 		print("Error! Deflection (weak shock) angle too large for the given flow condtions (try decreasing aerofoil thickness and lowering speed).")
-		
+		print("m33")
 		alpha_slider.max_value=pivot.global_rotation_degrees-0.1
 		
 		var error_message=label.instance()
@@ -2345,8 +2352,6 @@ func _shock_angle_END_EDGE(m,plate): #ok
 		error_message.text="""#Error! Deflection angle out of plot 
 		range. Try editing the geometry to 
 		reduce steep plate angles.#"""
-#		error_message.rect_size.x*=2
-#		error_message.rect_global_position=alpha_slider.rect_global_position-Vector2(0,60)
 		error_message.self_modulate=ColorN("orangered",1.0)
 		error_log.show()
 		
@@ -2403,3 +2408,9 @@ func _print():
 #	add_child(label_instance)
 #	label_instance.text="Please wait..."
 #	label_instance.rect_global_position=viewport_vec*0.5
+
+#func _input(event):
+#
+#	if event.is_action_pressed("1"):
+#		alpha_slider.value=8
+		

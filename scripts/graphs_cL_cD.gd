@@ -331,7 +331,7 @@ func _update_graph(button_pressed,graph):
 		list=global_var.cL_div_cD_plot_list
 		cL_div_cD_graph.get_node("points").add_child(sub_points)
 	
-	if global_var.aerofoil_geomtery_changed==true and check_button.pressed:
+	if global_var.aerofoil_geomtery_changed==true :
 		for i in len(list):
 			_add_points(global_var.alpha_radians_plot_list[i], list[i] , graph.rect_global_position , graph_size,graph,sub_points)
 			
@@ -464,7 +464,8 @@ func _on_m_slider_button_button_up():
 
 
 func _on_button_clear_cL_graph_pressed():
-
+	for i in cL_graph.get_node("points").get_children():
+		i.queue_free()
 	pass # Replace with function body.
 
 

@@ -4,7 +4,7 @@
 
 ## Description
 
-Cross-platform interactive flow calculator for aerofoils. Cross-sections are constructed in 2D pixel coordinates by point-clicking, using a touchscreen or LMB mouse, to add nodal points (defining line segments), which form the outline. The aerofoil can be rotated (up to 10 deg) to simulate varying angle of attack's (AoA), and oblique shocks (OS) and expansion fans (EF) are calculated for every segment and rendered using colour-coded primitives (lines for OS, triangles for ES). Plots can be generated for common coefficients, namely cL and cD, for user-defined inlet flow speed and gas gamma. A 3D mesh can be optionally generated, either as a single hollow blade/wing (not implemented yet), or a set of instanced blades arranged around the hub of a turbine. **Please note: this program is still a W.I.P and has room for many optimisations. So expect slow performance on older hardware and abrupt crashes.**
+Cross-platform interactive flow calculator for aerofoils. Cross-sections are constructed in 2D pixel coordinates by point-clicking, using a touchscreen or LMB mouse, to add nodal points (defining line segments), which form the outline. The aerofoil can be rotated (up to 10 deg) to simulate varying angle of attack's (AoA), and oblique shocks (OS) and expansion fans (EF) are calculated for every segment and rendered using colour-coded primitives (lines for OS, triangles for ES). Plots can be generated for common coefficients, namely cL and cD, for user-defined inlet flow speed and gas gamma. A 3D mesh can be optionally generated, either as a single hollow blade/wing, or a set of instanced blades arranged around the hub of a turbine. **Please note: this program is still a W.I.P and has room for many optimisations. So expect slow performance on older hardware and abrupt crashes.**
 
 
 
@@ -23,7 +23,8 @@ Cross-platform interactive flow calculator for aerofoils. Cross-sections are con
  - User-defined AoA, flow speed and gas gamma
  - Self-contained - no external dependencies and no installation setup required; just run the executable
 
- ![](https://github.com/mhd1msyb/S.A.C._Resources/blob/master/preview.png)
+ ![](https://github.com/mhd1msyb/S.A.C._Resources/blob/master/preview_v0.3.png)
+ ![](https://github.com/mhd1msyb/S.A.C._Resources/blob/master/3d_mesh_viewer.png)
 
  ## Pre-compiled binaries (DOWNLOADS)
 Download the zipped files for your platform, then extract and run.

@@ -13,8 +13,9 @@ func _draw():
 			if get_parent().get_child(i)!=self:
 				if i<len(global_var.cL_plot_list): # make sure that we don't draw a line through the points going through the bow shock vertical line
 					coord_array.append(get_parent().get_child(i).global_transform.origin-graph.rect_global_position)
-
-		draw_polyline(coord_array,global_var.random_graph_point_color,2,true)
+		
+		var colour=Color(get_parent().get_child(0).material.get_shader_param("random_graph_point_color").x,get_parent().get_child(0).material.get_shader_param("random_graph_point_color").y,get_parent().get_child(0).material.get_shader_param("random_graph_point_color").z)
+		draw_polyline(coord_array,colour,2,true)
 	#draw_multiline(_draw_bow_shock_DASHED_VERTICAL_line(),Color(0,1,0),1,false)
 	#draw_line(Vector2(0,0),get_viewport().size*0.5,Color(randf(),randf(),0))
 	

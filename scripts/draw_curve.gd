@@ -21,6 +21,4 @@ func _draw():
 	
 
 
-func _input(event):
-	
-	update()
+
