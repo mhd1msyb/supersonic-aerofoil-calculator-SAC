@@ -28,9 +28,9 @@ Cross-platform interactive flow calculator for aerofoils. Cross-sections are con
 
  ## Pre-compiled binaries (DOWNLOADS)
 Download the zipped files for your platform, then extract and run.
- #### - [Windows](https://github.com/mhd1msyb/S.A.C._Resources/raw/master/downloads/v0.2/SAC_win_v0.2.zip)
- #### - [Linux](https://github.com/mhd1msyb/S.A.C._Resources/raw/master/downloads/v0.2/SAC_lin_v0.2.zip)
- #### - [Mac](https://github.com/mhd1msyb/S.A.C._Resources/raw/master/downloads/v0.2/SAC_mac_v0.2.zip)
+ #### - [Windows](https://github.com/mhd1msyb/S.A.C._Resources/raw/master/downloads/v0.3/SAC_win_v0.3.zip)
+ #### - [Linux](https://github.com/mhd1msyb/S.A.C._Resources/raw/master/downloads/v0.3/SAC_lin_v0.3.zip)
+ #### - [Mac](https://github.com/mhd1msyb/S.A.C._Resources/raw/master/downloads/v0.3/SAC_mac_v0.3.zip)
 
 
 

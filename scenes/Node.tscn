@@ -120,7 +120,7 @@ func _on_button_draw_aerofoil_pressed():
 	label.rect_size.x*=1.5
 	label.rect_size.y*=6
 	get_parent().get_parent().add_child(label)
-	label.text=\"Sketch the cross-section of an aerofoil by clicking to add nodes (which define the shape of the aerofoil). Start from the point indicated and beneath the dashed green line, and work your way back to the starting point (to close the loop), in a COUNTER-CLOCKWISE fashion. Then finish by pressing the 'FINISH SKETCH' button. If you are unsure, watch the tutorial video.\"
+	label.text=\"Sketch the cross-section of an aerofoil by clicking to add nodes (which define the shape of the aerofoil). Start from the point indicated and beneath the dashed green line, and work your way back to the starting point (to close the loop), in a COUNTER-CLOCKWISE fashion. Then finish by pressing the 'FINISH SKETCH' button.\"
 	
 	
 	get_parent().queue_free()
@@ -466,9 +466,9 @@ margin_bottom = 80.0
 
 [node name="show_curve" type="Label" parent="checkboxes/checkbox_cD_div_cL_plot"]
 margin_left = 27.0
-margin_top = 5.0
+margin_top = 4.26491
 margin_right = 183.0
-margin_bottom = 19.0
+margin_bottom = 18.2649
 text = "Show cD/cL plot "
 
 [node name="checkbox_cL_div_cD_plot" type="CheckBox" parent="checkboxes"]
@@ -574,9 +574,9 @@ icon = ExtResource( 21 )
 
 [node name="button_undo" type="Button" parent="."]
 margin_left = 390.188
-margin_top = 519.622
+margin_top = 518.622
 margin_right = 477.188
-margin_bottom = 557.622
+margin_bottom = 556.622
 text = "UNDO"
 icon = ExtResource( 22 )
 script = ExtResource( 23 )
@@ -602,9 +602,9 @@ items = [ "ADD NODES", ExtResource( 26 ), 0, false, false, -1, 0, null, "", fals
 
 [node name="button_quit" type="Button" parent="."]
 margin_left = 2.0
-margin_top = 534.889
+margin_top = 535.0
 margin_right = 81.0
-margin_bottom = 572.889
+margin_bottom = 573.0
 text = "QUIT"
 icon = ExtResource( 31 )
 script = ExtResource( 32 )
@@ -711,7 +711,7 @@ margin_left = 333.126
 margin_top = 40.7725
 margin_right = 529.126
 margin_bottom = 326.772
-items = [ "WEAK ANGLES", null, 1, false, false, -1, 0, null, "", false, "STRONG ANGLES", null, 1, false, false, -1, 0, null, "", false, "GEOMETRY INFO", null, 1, false, false, -1, 0, null, "", false, "SIMULATION PRECISION", null, 1, false, false, -1, 0, null, "", false, "ARROW INLET", null, 1, false, false, -1, 0, null, "", false, "DASHED LINE", null, 1, false, false, -1, 0, null, "", false, "BOW SHOCK DATA", null, 1, false, false, -1, 0, null, "", false, "FLOW SPEEDS", null, 1, false, false, -1, 0, null, "", false, "PRESSURE RATIOS", null, 1, false, false, -1, 0, null, "", false, "PLATE INDICES", null, 1, false, false, -1, 0, null, "", false, "NODE INDICES", null, 1, false, false, -1, 0, null, "", false, "AEROFOIL AOA", null, 1, false, false, -1, 0, null, "", false, "SCREENSHOT", ExtResource( 41 ), 1, false, false, -1, 0, null, "", false, "FPS COUNTER", null, 1, false, false, -1, 0, null, "", false, "ERROR LOG", null, 1, false, false, -1, 0, null, "", false ]
+items = [ "WEAK ANGLES", null, 1, false, false, -1, 0, null, "", false, "STRONG ANGLES", null, 1, false, false, -1, 0, null, "", false, "GEOMETRY INFO", null, 1, false, false, -1, 0, null, "", false, "SIMULATION PRECISION", null, 1, false, false, -1, 0, null, "", false, "ARROW INLET", null, 1, false, false, -1, 0, null, "", false, "DASHED LINE", null, 1, false, false, -1, 0, null, "", false, "BOW SHOCK DATA", null, 1, false, false, -1, 0, null, "", false, "FLOW SPEEDS", null, 1, false, false, -1, 0, null, "", false, "PRESSURE RATIOS", null, 1, false, false, -1, 0, null, "", false, "PLATE INDICES", null, 1, false, false, -1, 0, null, "", false, "NODE INDICES", null, 1, false, false, -1, 0, null, "", false, "AEROFOIL AOA", null, 1, false, false, -1, 0, null, "", false, "SCREENSHOT", ExtResource( 41 ), 1, false, false, -1, 0, null, "", false, "FPS COUNTER", null, 1, false, false, -1, 0, null, "", false, "ERROR LOG", null, 1, false, false, -1, 0, null, "", false, "GRAPH LEGEND", null, 1, false, false, -1, 0, null, "", false ]
 
 [node name="button_generate_3d_mesh" type="Button" parent="."]
 margin_left = 536.181
@@ -1017,31 +1017,27 @@ margin_bottom = 413.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="data_tables"]
+[node name="VBoxContainer" type="VBoxContainer" parent="data_tables"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 182.0
 margin_bottom = 406.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="data_tables/ScrollContainer"]
-margin_right = 175.0
-margin_bottom = 399.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="weak_shock_listItem" type="VBoxContainer" parent="data_tables/ScrollContainer/VBoxContainer"]
+[node name="weak_shock_listItem" type="VBoxContainer" parent="data_tables/VBoxContainer"]
 margin_right = 175.0
 margin_bottom = 96.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="data_tables/ScrollContainer/VBoxContainer/weak_shock_listItem"]
+[node name="Label" type="Label" parent="data_tables/VBoxContainer/weak_shock_listItem"]
 margin_right = 175.0
 margin_bottom = 14.0
 text = "Weak Shock Angles (rad)"
 align = 1
 
-[node name="ItemList" type="ItemList" parent="data_tables/ScrollContainer/VBoxContainer/weak_shock_listItem"]
+[node name="ItemList" type="ItemList" parent="data_tables/VBoxContainer/weak_shock_listItem"]
 margin_top = 18.0
 margin_right = 175.0
 margin_bottom = 96.0
@@ -1049,20 +1045,20 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 50 )
 
-[node name="strong_shock_listItem" type="VBoxContainer" parent="data_tables/ScrollContainer/VBoxContainer"]
+[node name="strong_shock_listItem" type="VBoxContainer" parent="data_tables/VBoxContainer"]
 margin_top = 100.0
 margin_right = 175.0
 margin_bottom = 196.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="data_tables/ScrollContainer/VBoxContainer/strong_shock_listItem"]
+[node name="Label" type="Label" parent="data_tables/VBoxContainer/strong_shock_listItem"]
 margin_right = 175.0
 margin_bottom = 14.0
 text = "Strong Shock Angles (rad)"
 align = 1
 
-[node name="ItemList" type="ItemList" parent="data_tables/ScrollContainer/VBoxContainer/strong_shock_listItem"]
+[node name="ItemList" type="ItemList" parent="data_tables/VBoxContainer/strong_shock_listItem"]
 margin_top = 18.0
 margin_right = 175.0
 margin_bottom = 96.0
@@ -1070,20 +1066,20 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 51 )
 
-[node name="flow_speeds_listItem" type="VBoxContainer" parent="data_tables/ScrollContainer/VBoxContainer"]
+[node name="flow_speeds_listItem" type="VBoxContainer" parent="data_tables/VBoxContainer"]
 margin_top = 200.0
 margin_right = 175.0
 margin_bottom = 296.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="data_tables/ScrollContainer/VBoxContainer/flow_speeds_listItem"]
+[node name="Label" type="Label" parent="data_tables/VBoxContainer/flow_speeds_listItem"]
 margin_right = 175.0
 margin_bottom = 14.0
 text = "Flow speeds"
 align = 1
 
-[node name="ItemList" type="ItemList" parent="data_tables/ScrollContainer/VBoxContainer/flow_speeds_listItem"]
+[node name="ItemList" type="ItemList" parent="data_tables/VBoxContainer/flow_speeds_listItem"]
 margin_top = 18.0
 margin_right = 175.0
 margin_bottom = 96.0
@@ -1091,21 +1087,21 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 52 )
 
-[node name="p_p1_listItem" type="VBoxContainer" parent="data_tables/ScrollContainer/VBoxContainer"]
+[node name="p_p1_listItem" type="VBoxContainer" parent="data_tables/VBoxContainer"]
 margin_top = 300.0
 margin_right = 175.0
 margin_bottom = 399.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="data_tables/ScrollContainer/VBoxContainer/p_p1_listItem"]
+[node name="Label" type="Label" parent="data_tables/VBoxContainer/p_p1_listItem"]
 margin_right = 175.0
 margin_bottom = 14.0
 text = "Pressure ratio (p/p1)"
 align = 1
 autowrap = true
 
-[node name="ItemList" type="ItemList" parent="data_tables/ScrollContainer/VBoxContainer/p_p1_listItem"]
+[node name="ItemList" type="ItemList" parent="data_tables/VBoxContainer/p_p1_listItem"]
 margin_top = 18.0
 margin_right = 175.0
 margin_bottom = 99.0
@@ -1113,7 +1109,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 53 )
 
-[node name="bow_shock_data_listItem" type="VBoxContainer" parent="data_tables/ScrollContainer/VBoxContainer"]
+[node name="bow_shock_data_listItem" type="VBoxContainer" parent="data_tables/VBoxContainer"]
 visible = false
 margin_top = 320.0
 margin_right = 175.0
@@ -1121,13 +1117,13 @@ margin_bottom = 399.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="data_tables/ScrollContainer/VBoxContainer/bow_shock_data_listItem"]
+[node name="Label" type="Label" parent="data_tables/VBoxContainer/bow_shock_data_listItem"]
 margin_right = 175.0
 margin_bottom = 14.0
 text = "Bow Shock Data"
 align = 1
 
-[node name="ItemList" type="ItemList" parent="data_tables/ScrollContainer/VBoxContainer/bow_shock_data_listItem"]
+[node name="ItemList" type="ItemList" parent="data_tables/VBoxContainer/bow_shock_data_listItem"]
 margin_top = 18.0
 margin_right = 175.0
 margin_bottom = 79.0
@@ -1217,34 +1213,51 @@ icon = ExtResource( 56 )
 
 [node name="graph_legend" type="PanelContainer" parent="."]
 margin_left = 679.0
-margin_top = 96.0
-margin_right = 837.0
-margin_bottom = 291.0
+margin_top = 52.0
+margin_right = 826.0
+margin_bottom = 247.0
 script = ExtResource( 57 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="graph_legend"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 151.0
+margin_right = 140.0
 margin_bottom = 188.0
 
 [node name="title" type="Label" parent="graph_legend/VBoxContainer"]
-margin_right = 144.0
+margin_right = 133.0
 margin_bottom = 14.0
-text = "Graph Legend Code"
+text = "Graph Legend"
 align = 1
 
-[node name="button_drag" type="Button" parent="graph_legend/VBoxContainer"]
-margin_left = 58.0
+[node name="HBoxContainer" type="HBoxContainer" parent="graph_legend/VBoxContainer"]
+margin_left = 5.0
 margin_top = 18.0
-margin_right = 86.0
+margin_right = 127.0
 margin_bottom = 40.0
 size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="button_clear" type="Button" parent="graph_legend/VBoxContainer/HBoxContainer"]
+margin_right = 44.0
+margin_bottom = 22.0
+text = "Clear"
+
+[node name="button_hide" type="Button" parent="graph_legend/VBoxContainer/HBoxContainer"]
+margin_left = 48.0
+margin_right = 90.0
+margin_bottom = 22.0
+text = "Hide"
+
+[node name="button_drag" type="Button" parent="graph_legend/VBoxContainer/HBoxContainer"]
+margin_left = 94.0
+margin_right = 122.0
+margin_bottom = 22.0
 icon = ExtResource( 11 )
 
 [node name="PanelContainer" type="PanelContainer" parent="graph_legend/VBoxContainer"]
 margin_top = 44.0
-margin_right = 144.0
+margin_right = 133.0
 margin_bottom = 155.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -1253,62 +1266,43 @@ custom_styles/panel = SubResource( 3 )
 [node name="ScrollContainer" type="ScrollContainer" parent="graph_legend/VBoxContainer/PanelContainer"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 140.0
+margin_right = 129.0
 margin_bottom = 107.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="graph_legend/VBoxContainer/PanelContainer/ScrollContainer"]
-margin_right = 136.0
+margin_right = 125.0
 margin_bottom = 103.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="graph_legend/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
-editor/display_folded = true
-visible = false
-margin_right = 61.0
-margin_bottom = 14.0
-
-[node name="TextureRect" type="ColorRect" parent="graph_legend/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
-margin_right = 28.0
-margin_bottom = 14.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="graph_legend/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
-margin_left = 32.0
-margin_right = 61.0
-margin_bottom = 14.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "dsfd"
-
 [node name="button_resize" type="Button" parent="graph_legend/VBoxContainer"]
-margin_left = 116.0
+margin_left = 105.0
 margin_top = 159.0
-margin_right = 144.0
+margin_right = 133.0
 margin_bottom = 181.0
 size_flags_horizontal = 12
 size_flags_vertical = 0
 icon = ExtResource( 56 )
 
 [connection signal="value_changed" from="alpha_slider" to="." method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="data_tables/ScrollContainer/VBoxContainer/flow_speeds_listItem/ItemList" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="data_tables/ScrollContainer/VBoxContainer/weak_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="data_tables/ScrollContainer/VBoxContainer/strong_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="data_tables/ScrollContainer/VBoxContainer/p_p1_listItem/ItemList" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="data_tables/VBoxContainer/weak_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="data_tables/VBoxContainer/flow_speeds_listItem/ItemList" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="data_tables/VBoxContainer/p_p1_listItem/ItemList" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="data_tables/VBoxContainer/strong_shock_listItem/ItemList" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="alpha_slider" method="_on_alpha_slider_value_changed"]
+[connection signal="value_changed" from="alpha_slider" to="AoA_circular_arc" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="oblique_shock_lines" method="_on_alpha_slider_value_changed"]
 [connection signal="value_changed" from="alpha_slider" to="expansion_fans" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="AoA_circular_arc" method="_on_alpha_slider_value_changed"]
-[connection signal="value_changed" from="alpha_slider" to="alpha_slider" method="_on_alpha_slider_value_changed"]
 [connection signal="button_up" from="m_slider_button" to="graphs_cL_cD" method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="m_slider_button" to="." method="_on_m_slider_button_button_up"]
+[connection signal="button_up" from="m_slider_button" to="graph_legend" method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="m_slider_button" to="oblique_shock_lines" method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="m_slider_button" to="expansion_fans" method="_on_m_slider_button_button_up"]
-[connection signal="button_up" from="m_slider_button" to="graph_legend" method="_on_m_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="graphs_cL_cD" method="_on_gamma_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="." method="_on_gamma_slider_button_button_up"]
+[connection signal="button_up" from="gamma_slider_button" to="graph_legend" method="_on_gamma_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="oblique_shock_lines" method="_on_gamma_slider_button_button_up"]
 [connection signal="button_up" from="gamma_slider_button" to="expansion_fans" method="_on_gamma_slider_button_button_up"]
 [connection signal="value_changed" from="simulation_precision_slider" to="simulation_precision_slider" method="_on_simulation_precision_slider_value_changed"]
@@ -1328,10 +1322,10 @@ icon = ExtResource( 56 )
 [connection signal="pressed" from="button_undo" to="button_undo" method="_on_button_undo_pressed"]
 [connection signal="toggled" from="button_edit" to="graphs_cL_cD" method="_on_button_edit_toggled"]
 [connection signal="toggled" from="button_edit" to="." method="_on_button_edit_toggled"]
-[connection signal="toggled" from="button_edit" to="button_edit" method="_on_button_edit_toggled"]
 [connection signal="toggled" from="button_edit" to="edit_mode_preview" method="_on_button_edit_toggled"]
-[connection signal="index_pressed" from="button_edit/CanvasLayer/PopupMenu" to="button_edit" method="_on_PopupMenu_index_pressed"]
+[connection signal="toggled" from="button_edit" to="button_edit" method="_on_button_edit_toggled"]
 [connection signal="index_pressed" from="button_edit/CanvasLayer/PopupMenu" to="edit_mode_preview" method="_on_PopupMenu_index_pressed"]
+[connection signal="index_pressed" from="button_edit/CanvasLayer/PopupMenu" to="button_edit" method="_on_PopupMenu_index_pressed"]
 [connection signal="button_up" from="button_quit" to="button_quit" method="_on_button_quit_button_up"]
 [connection signal="pressed" from="button_restart" to="button_restart" method="_on_button_restart_pressed"]
 [connection signal="pressed" from="button_about" to="button_about" method="_on_button_about_pressed"]
@@ -1354,3 +1348,5 @@ icon = ExtResource( 56 )
 [connection signal="pressed" from="aerofoil_choice_container/HBoxContainer/button_load_aerofoil/PanelContainer/VBoxContainer/close_button" to="aerofoil_choice_container/HBoxContainer/button_load_aerofoil" method="_on_close_button_pressed"]
 [connection signal="pressed" from="error_log/VBoxContainer/VBoxContainer/button_hide" to="error_log" method="_on_button_hide_pressed"]
 [connection signal="pressed" from="error_log/VBoxContainer/VBoxContainer/button_clear" to="error_log" method="_on_button_clear_log_pressed"]
+[connection signal="pressed" from="graph_legend/VBoxContainer/HBoxContainer/button_clear" to="graph_legend" method="_on_button_clear_pressed"]
+[connection signal="pressed" from="graph_legend/VBoxContainer/HBoxContainer/button_hide" to="graph_legend" method="_on_button_hide_pressed"]

@@ -67,6 +67,7 @@ onready var polygon2d_initial_occluder=get_node("polygon2d_initial_occluder")
 onready var error_log=get_node("error_log")
 onready var error_log_message_box=get_node("error_log/VBoxContainer/background/ScrollContainer/message_box")
 
+onready var graph_legend=get_node("graph_legend")
 
 func _refresh_lists():
 
@@ -1049,6 +1050,7 @@ func _on_finish_button_pressed():
 		alpha_slider.show()
 		gamma_slider.show()
 		save_button.show()
+		graph_legend.show()
 		finish_button.queue_free()
 		undo_button.queue_free()
 		
@@ -1081,9 +1083,7 @@ func _on_finish_button_pressed():
 		
 		_clear_lists()
 		
-		_find_bow_shock()
-		
-		#_MAIN_UPDATE(0)
+		_m_or_gamma_slider_changed()
 	
 	
 	elif _check_gradients()==false:
@@ -1363,7 +1363,7 @@ func _on_aerofoil_library_popup_index_pressed(index):
 	alpha_slider.show()
 	gamma_slider.show()
 	save_button.show()
-		
+	graph_legend.show()
 		
 	_shift_pivot_mp()
 	
@@ -1764,93 +1764,7 @@ func _centre_pivot(): # sets pivot to centre of screen
 
 
 func _on_m_slider_button_button_up():
-	var ang=pivot.global_rotation
-	global_var.alpha_radians=ang
-	
-	alpha_slider.value=0
-	_clear_lists()
-	
-	_find_bow_shock()
-	
-###clean the lists and re-initialise them (to avoid values from previous updates afftecing the next update#######################################################
-	alpha_slider.value=ang
-	pivot.global_rotation=ang
-
-	_clear_lists()
-
-	###update the vectors, coordinates and mpoints of the lines after rotation#######################################################	
-	_update_coords_vectors_midpoints()
-
-	###populate angular and vector lists#######################################################	
-
-	_calculate_GlobalAngles()
-
-	for i in range (len(global_var.list_vector)):
-
-		###find whether expansion or contraction#######################################################		
-		_define_expansion_contraction(i)
-
-		###calculate deflection angles#######################################################		
-		_deflection_angles(i)
-
-	#apply _oblique_shock() or _expansion based on whether plate is contraction or expansion#######################################################		
-	for ii in range(len(global_var.list_vector)):
-
-		if global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==true:
-			_oblique_shock(ii)
-		elif global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==false:
-			print("oblique break, _on_alpha_slider_value_changed")
-			break
-
-
-
-		if global_var.list_strings[ii]=="expansion" and _expansion(ii)==true:
-			_expansion(ii)
-		elif global_var.list_strings[ii]=="expansion" and _expansion(ii)==false:
-			print("expansion break, _on_alpha_slider_value_changed")
-			break
-
-
-		if global_var.list_strings[ii]=="nothing":
-			_nothing(ii)
-
-
-
-
-
-
-
-
-	for i in 1:
-		if _oblique_shock_END_EDGE("top")==true:
-			_oblique_shock_END_EDGE("top")
-		else:
-			break
-
-
-		var gradi=-global_var.list_vector[global_var.index_bottom_top_plate-1].y/global_var.list_vector[global_var.index_bottom_top_plate-1].x
-		if sign(gradi)==1: # to prevent exp fan showing if tehre is an oblique shock line
-			if _oblique_shock_END_EDGE("bottom")==true:
-				_oblique_shock_END_EDGE("bottom")
-			else:
-				break
-
-#		print(global_var.p2_p1_END_EDGE_TOP, "   ",global_var.p2_p1_END_EDGE_BOTTOM)
-
-
-
-
-
-
-
-	########Calculate lift coefficient and drag coefficient###################
-
-	_cL()
-
-	_cD()
-	
-	global_var.random_graph_point_color=Color(rand_range(0,1),rand_range(0,1),rand_range(0,1))
-	alpha_slider.value=pivot.global_rotation
+	_m_or_gamma_slider_changed()
 	
 	
 	
@@ -1863,93 +1777,7 @@ func _on_m_slider_button_button_up():
 	
 	
 func _on_gamma_slider_button_button_up():
-	var ang=pivot.global_rotation
-	global_var.alpha_radians=ang
-	
-	alpha_slider.value=0
-	_clear_lists()
-	
-	_find_bow_shock()
-	
-###clean the lists and re-initialise them (to avoid values from previous updates afftecing the next update#######################################################
-	alpha_slider.value=ang
-	pivot.global_rotation=ang
-
-	_clear_lists()
-
-	###update the vectors, coordinates and mpoints of the lines after rotation#######################################################	
-	_update_coords_vectors_midpoints()
-
-	###populate angular and vector lists#######################################################	
-
-	_calculate_GlobalAngles()
-
-	for i in range (len(global_var.list_vector)):
-
-		###find whether expansion or contraction#######################################################		
-		_define_expansion_contraction(i)
-
-		###calculate deflection angles#######################################################		
-		_deflection_angles(i)
-
-	#apply _oblique_shock() or _expansion based on whether plate is contraction or expansion#######################################################		
-	for ii in range(len(global_var.list_vector)):
-
-		if global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==true:
-			_oblique_shock(ii)
-		elif global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==false:
-			print("oblique break, _on_alpha_slider_value_changed")
-			break
-
-
-
-		if global_var.list_strings[ii]=="expansion" and _expansion(ii)==true:
-			_expansion(ii)
-		elif global_var.list_strings[ii]=="expansion" and _expansion(ii)==false:
-			print("expansion break, _on_alpha_slider_value_changed")
-			break
-
-
-		if global_var.list_strings[ii]=="nothing":
-			_nothing(ii)
-
-
-
-
-
-
-
-
-	for i in 1:
-		if _oblique_shock_END_EDGE("top")==true:
-			_oblique_shock_END_EDGE("top")
-		else:
-			break
-
-
-		var gradi=-global_var.list_vector[global_var.index_bottom_top_plate-1].y/global_var.list_vector[global_var.index_bottom_top_plate-1].x
-		if sign(gradi)==1: # to prevent exp fan showing if tehre is an oblique shock line
-			if _oblique_shock_END_EDGE("bottom")==true:
-				_oblique_shock_END_EDGE("bottom")
-			else:
-				break
-
-#		print(global_var.p2_p1_END_EDGE_TOP, "   ",global_var.p2_p1_END_EDGE_BOTTOM)
-
-
-
-
-
-
-
-	########Calculate lift coefficient and drag coefficient###################
-
-	_cL()
-
-	_cD()
-	
-	global_var.random_graph_point_color=Color(rand_range(0,1),rand_range(0,1),rand_range(0,1))
-	alpha_slider.value=pivot.global_rotation
+	_m_or_gamma_slider_changed()
 	
 	
 	
@@ -2125,6 +1953,7 @@ func _on_open_aerofoil_button_pressed():
 		alpha_slider.show()
 		gamma_slider.show()
 		save_button.show()
+		graph_legend.show()
 		
 		_find_bow_shock()
 		
@@ -2133,7 +1962,6 @@ func _on_open_aerofoil_button_pressed():
 		print("no files to load")
 		return
 	
-		
 		
 	pass # Replace with function body.
 
@@ -2344,7 +2172,6 @@ func _shock_angle_END_EDGE(m,plate): #ok
 			
 	else:
 		print("Error! Deflection (weak shock) angle too large for the given flow condtions (try decreasing aerofoil thickness and lowering speed).")
-		print("m33")
 		alpha_slider.max_value=pivot.global_rotation_degrees-0.1
 		
 		var error_message=label.instance()
@@ -2414,3 +2241,91 @@ func _print():
 #	if event.is_action_pressed("1"):
 #		alpha_slider.value=8
 		
+func _m_or_gamma_slider_changed():
+	var ang=pivot.global_rotation
+	global_var.alpha_radians=ang
+	
+	alpha_slider.value=0
+	_clear_lists()
+	
+	_find_bow_shock()
+	
+###clean the lists and re-initialise them (to avoid values from previous updates afftecing the next update#######################################################
+	alpha_slider.value=ang
+	pivot.global_rotation=ang
+
+	_clear_lists()
+
+	###update the vectors, coordinates and mpoints of the lines after rotation#######################################################	
+	_update_coords_vectors_midpoints()
+
+	###populate angular and vector lists#######################################################	
+
+	_calculate_GlobalAngles()
+
+	for i in range (len(global_var.list_vector)):
+
+		###find whether expansion or contraction#######################################################		
+		_define_expansion_contraction(i)
+
+		###calculate deflection angles#######################################################		
+		_deflection_angles(i)
+
+	#apply _oblique_shock() or _expansion based on whether plate is contraction or expansion#######################################################		
+	for ii in range(len(global_var.list_vector)):
+
+		if global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==true:
+			_oblique_shock(ii)
+		elif global_var.list_strings[ii]=="contraction" and _oblique_shock(ii)==false:
+			print("oblique break, _on_alpha_slider_value_changed")
+			break
+
+
+
+		if global_var.list_strings[ii]=="expansion" and _expansion(ii)==true:
+			_expansion(ii)
+		elif global_var.list_strings[ii]=="expansion" and _expansion(ii)==false:
+			print("expansion break, _on_alpha_slider_value_changed")
+			break
+
+
+		if global_var.list_strings[ii]=="nothing":
+			_nothing(ii)
+
+
+
+
+
+
+
+
+	for i in 1:
+		if _oblique_shock_END_EDGE("top")==true:
+			_oblique_shock_END_EDGE("top")
+		else:
+			break
+
+
+		var gradi=-global_var.list_vector[global_var.index_bottom_top_plate-1].y/global_var.list_vector[global_var.index_bottom_top_plate-1].x
+		if sign(gradi)==1: # to prevent exp fan showing if tehre is an oblique shock line
+			if _oblique_shock_END_EDGE("bottom")==true:
+				_oblique_shock_END_EDGE("bottom")
+			else:
+				break
+
+#		print(global_var.p2_p1_END_EDGE_TOP, "   ",global_var.p2_p1_END_EDGE_BOTTOM)
+
+
+
+
+
+
+
+	########Calculate lift coefficient and drag coefficient###################
+
+	_cL()
+
+	_cD()
+	
+	global_var.random_graph_point_color=Color(rand_range(0,1),rand_range(0,1),rand_range(0,1))
+	alpha_slider.value=pivot.global_rotation

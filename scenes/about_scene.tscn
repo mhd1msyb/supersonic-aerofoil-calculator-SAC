@@ -22,24 +22,25 @@ rect_scale = Vector2( 2, 2 )
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Supersonic Aerofoil Calculator - S.A.C. 
-v0.2"
+v0.3"
 align = 1
 valign = 1
 
 [node name="VSplitContainer" type="VBoxContainer" parent="."]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 0.12
-margin_left = 311.0
+margin_left = 285.0
 margin_top = 509.0
-margin_right = 726.0
+margin_right = 719.0
 margin_bottom = 601.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="school of mace" type="Label" parent="VSplitContainer"]
-margin_right = 415.0
-margin_bottom = 28.0
+margin_right = 434.0
+margin_bottom = 26.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "School of Mechanical, Aerospace and Civil Engineering"
@@ -47,18 +48,19 @@ align = 1
 valign = 1
 
 [node name="developed_by" type="Label" parent="VSplitContainer"]
-margin_top = 32.0
-margin_right = 415.0
-margin_bottom = 60.0
+margin_top = 30.0
+margin_right = 434.0
+margin_bottom = 61.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
-text = "Developed by Mehdi Msayib and Iain Dupere"
+text = "Developed by Mehdi Msayib and Iain Dupere. Flow data is extracted
+ from Supersonic notes by Iain Dupere"
 align = 1
 valign = 1
 
 [node name="(c)_all_scripts" type="Label" parent="VSplitContainer"]
-margin_top = 64.0
-margin_right = 415.0
+margin_top = 65.0
+margin_right = 434.0
 margin_bottom = 92.0
 size_flags_horizontal = 3
 size_flags_vertical = 7

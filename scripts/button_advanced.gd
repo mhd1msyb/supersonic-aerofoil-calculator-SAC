@@ -19,6 +19,7 @@ extends Button
 12 - screenshot
 13 - fps counter
 14 - error log
+15 - graph legend
 
 """
 
@@ -27,27 +28,30 @@ onready var rich_text_scene=preload("res://scenes/rich_text.tscn")
 
 onready var popup=get_node("CanvasLayer/PopupMenu")
 #onready var weak_shock_angle_list=get_parent().get_node("values_weak_shock")
-onready var weak_shock_listItem=get_parent().get_node("data_tables/ScrollContainer/VBoxContainer/weak_shock_listItem")
-onready var strong_shock_listItem=get_parent().get_node("data_tables/ScrollContainer/VBoxContainer/strong_shock_listItem")
+onready var data_tables=get_parent().get_node("data_tables")
+onready var weak_shock_listItem=get_parent().get_node("data_tables/VBoxContainer/weak_shock_listItem")
+onready var strong_shock_listItem=get_parent().get_node("data_tables/VBoxContainer/strong_shock_listItem")
 onready var aerofoil_geometry_stats=get_parent().get_node("aerofoil_geometry_stats")
 onready var simulation_precision_slider=get_parent().get_node("simulation_precision_slider")
 onready var arrow_inlet_flow=get_parent().get_node("arrow_inlet_flow")
 onready var dashed_line=get_parent().get_node("dashed_line")
-onready var bow_shock_data_listItem=get_parent().get_node("data_tables/ScrollContainer/VBoxContainer/bow_shock_data_listItem")
-onready var flow_speeds_listItem=get_parent().get_node("data_tables/ScrollContainer/VBoxContainer/flow_speeds_listItem")
-onready var p_p1_listItem=get_parent().get_node("data_tables/ScrollContainer/VBoxContainer/p_p1_listItem")
+onready var bow_shock_data_listItem=get_parent().get_node("data_tables/VBoxContainer/bow_shock_data_listItem")
+onready var flow_speeds_listItem=get_parent().get_node("data_tables/VBoxContainer/flow_speeds_listItem")
+onready var p_p1_listItem=get_parent().get_node("data_tables/VBoxContainer/p_p1_listItem")
 onready var plate_indices_scene=global_var.plate_indices_scene
 onready var node_indices_scene=global_var.node_indices_scene
 onready var aoa_circular_arc=get_parent().get_node("AoA_circular_arc")
 onready var button_screenshot=get_parent().get_node("button_screenshot")
 onready var fps=get_parent().get_node("FPS")
 onready var error_log=get_parent().get_node("error_log")
+onready var graph_legend=get_parent().get_node("graph_legend")
 
 
 
 func _ready():
 	disabled=true
 	bow_shock_data_listItem.hide()
+	data_tables.hide()
 
 
 func _on_PopupMenu_index_pressed(index):
@@ -170,7 +174,19 @@ func _on_PopupMenu_index_pressed(index):
 		error_log.visible=true
 	elif index==14 and error_log.visible==true:
 		error_log.visible=false
-
+		
+		
+	if index==15 and graph_legend.visible==false:#error log
+		graph_legend.visible=true
+	elif index==15 and graph_legend.visible==true:
+		graph_legend.visible=false
+		
+		
+	if weak_shock_listItem.visible==false and strong_shock_listItem.visible==false and p_p1_listItem.visible==false and flow_speeds_listItem.visible==false:
+		data_tables.visible=false
+	else:
+		data_tables.visible=true
+		
 		
 	global_var.button_advanced_popup_index=index
 		
