@@ -37,6 +37,7 @@ Download the zipped files for your platform, then extract and run.
 ## How to use
 
 #### Instruction Manual
+ - Download the [S.A.C. Instruction Manual](https://github.com/mhd1msyb/S.A.C._Resources/raw/master/SAC_instruction_manual.pdf) (for v0.3). This manual is a W.I.P.
 
 #### Tutorial Videos
   - [Sketch an Aerofoil](https://github.com/mhd1msyb/S.A.C._Resources/raw/master/Sketch%20Tutorial.m4v)
