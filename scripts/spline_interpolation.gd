@@ -151,8 +151,7 @@ func _on_button_done_pressed():
 	
 	if index!=-1:
 		var curve2d=Curve2D.new()
-#		curve2d.bake_interval=60.0
-		curve2d.bake_interval=80.0
+		curve2d.bake_interval=60.0
 		
 		#var handle_vec=(global_var.list_vector[index].tangent()+global_var.list_vector[index-1].tangent())*0.5
 		

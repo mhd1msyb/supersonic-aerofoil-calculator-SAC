@@ -133,7 +133,7 @@ var point_coord_before_edit=[]
 
 var aerofoil_geomtery_changed=true
 
-var random_graph_point_color=Vector3(1.0,1.0,1.0)
+var random_graph_point_color=Color(1.0,1.0,1.0)
 
 
 
@@ -339,7 +339,7 @@ func _refresh_lists():
 	
 	aerofoil_geomtery_changed=true
 
-	random_graph_point_color=Vector3(1.0,1.0,1.0)
+	random_graph_point_color=Color(1.0,1.0,1.0)
 
 
 

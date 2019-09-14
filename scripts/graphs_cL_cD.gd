@@ -131,7 +131,7 @@ func _add_points(x,y, global_pos,size, graph,parent): #adds the 'points' to the 
 	parent.add_child(proxy_instance)
 	proxy_instance.scale=Vector2(1,1)*point_scale
 	proxy_instance.global_transform.origin=global_pos + Vector2(x,-y)*size
-	proxy_instance.material.set_shader_param("random_graph_point_color",Vector3(global_var.random_graph_point_color.r,global_var.random_graph_point_color.g,global_var.random_graph_point_color.b))
+	proxy_instance.material.set_shader_param("random_graph_point_color",global_var.random_graph_point_color)
 	
 	
 	
@@ -277,6 +277,7 @@ func _on_checkbox_cL_div_cD_plot_toggled(button_pressed):
 
 func _on_button_edit_toggled(button_pressed): #MAIN FUNCTION
 	
+	global_var.random_graph_point_color=Vector3(randf(),randf(),randf())
 	
 	_update_graph(button_pressed,cL_graph)
 	
@@ -330,6 +331,8 @@ func _update_graph(button_pressed,graph):
 		check_button=show_cL_div_cD_graph_button
 		list=global_var.cL_div_cD_plot_list
 		cL_div_cD_graph.get_node("points").add_child(sub_points)
+	
+	
 	
 	if global_var.aerofoil_geomtery_changed==true :
 		for i in len(list):
@@ -484,4 +487,61 @@ func _on_button_clear_cD_div_cL_graph_pressed():
 func _on_button_clear_cL_div_cD_graph_pressed():
 	for i in cL_div_cD_graph.get_node("points").get_children():
 		i.queue_free()
+	pass # Replace with function body.
+
+
+func _on_finish_button_pressed():
+	global_var.aerofoil_geomtery_changed=true
+	_update_graph(false,cL_graph)
+	
+	_update_graph(false,cD_graph)
+	
+	_update_graph(false,cD_div_cL_graph)
+	
+	_update_graph(false,cL_div_cD_graph)
+
+	update()
+#	print(global_var.cL_plot_list)
+	global_var.aerofoil_geomtery_changed=false
+	
+	cL_graph.visible=show_cL_graph_button.toggle_mode
+	cD_graph.visible=show_cD_graph_button.toggle_mode
+	pass # Replace with function body.
+
+
+func _on_aerofoil_library_popup_index_pressed(index):
+	global_var.aerofoil_geomtery_changed=true
+	_update_graph(false,cL_graph)
+	
+	_update_graph(false,cD_graph)
+	
+	_update_graph(false,cD_div_cL_graph)
+	
+	_update_graph(false,cL_div_cD_graph)
+
+	update()
+#	print(global_var.cL_plot_list)
+	global_var.aerofoil_geomtery_changed=false
+	
+	cL_graph.visible=show_cL_graph_button.toggle_mode
+	cD_graph.visible=show_cD_graph_button.toggle_mode
+	pass # Replace with function body.
+
+
+func _on_open_aerofoil_button_pressed():
+	global_var.aerofoil_geomtery_changed=true
+	_update_graph(false,cL_graph)
+	
+	_update_graph(false,cD_graph)
+	
+	_update_graph(false,cD_div_cL_graph)
+	
+	_update_graph(false,cL_div_cD_graph)
+
+	update()
+#	print(global_var.cL_plot_list)
+	global_var.aerofoil_geomtery_changed=false
+	
+	cL_graph.visible=show_cL_graph_button.toggle_mode
+	cD_graph.visible=show_cD_graph_button.toggle_mode
 	pass # Replace with function body.

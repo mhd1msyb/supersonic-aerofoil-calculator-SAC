@@ -37,7 +37,7 @@ func _input(event):
 func _on_m_slider_button_button_up():
 	var legend_colour_code=legend_colour_code_sc.instance()
 	vbox.add_child(legend_colour_code)
-	legend_colour_code.get_node("TextureRect").material.set_shader_param("random_graph_point_color",Vector3(global_var.random_graph_point_color.r,global_var.random_graph_point_color.g,global_var.random_graph_point_color.b))
+	legend_colour_code.get_node("TextureRect").material.set_shader_param("random_graph_point_color",global_var.random_graph_point_color)
 	legend_colour_code.get_node("Label").text="Flow Spd : "+str(global_var.m1) + """
 	, Gamma : """ + str(global_var.gamma) 
 	
@@ -49,12 +49,52 @@ func _on_m_slider_button_button_up():
 func _on_gamma_slider_button_button_up():
 	var legend_colour_code=legend_colour_code_sc.instance()
 	vbox.add_child(legend_colour_code)
-	legend_colour_code.get_node("TextureRect").material.set_shader_param("random_graph_point_color",Vector3(global_var.random_graph_point_color.r,global_var.random_graph_point_color.g,global_var.random_graph_point_color.b))
+	legend_colour_code.get_node("TextureRect").material.set_shader_param("random_graph_point_color",global_var.random_graph_point_color)
 	legend_colour_code.get_node("Label").text="Flow Spd : "+str(global_var.m1) + """
 	, Gamma : """ + str(global_var.gamma) 
 	
 	scroll_container.scroll_vertical=legend_colour_code.get_child_count()*vbox.rect_size.y
 	pass # Replace with function body.
+
+
+
+
+func _on_finish_button_pressed():
+	var legend_colour_code=legend_colour_code_sc.instance()
+	vbox.add_child(legend_colour_code)
+	legend_colour_code.get_node("TextureRect").material.set_shader_param("random_graph_point_color",global_var.random_graph_point_color)
+	legend_colour_code.get_node("Label").text="Flow Spd : "+str(global_var.m1) + """
+	, Gamma : """ + str(global_var.gamma) 
+	
+	scroll_container.scroll_vertical=legend_colour_code.get_child_count()*vbox.rect_size.y
+	pass # Replace with function body.
+
+
+
+
+func _on_aerofoil_library_popup_index_pressed(index):
+	var legend_colour_code=legend_colour_code_sc.instance()
+	vbox.add_child(legend_colour_code)
+	legend_colour_code.get_node("TextureRect").material.set_shader_param("random_graph_point_color",global_var.random_graph_point_color)
+	legend_colour_code.get_node("Label").text="Flow Spd : "+str(global_var.m1) + """
+	, Gamma : """ + str(global_var.gamma) 
+	
+	scroll_container.scroll_vertical=legend_colour_code.get_child_count()*vbox.rect_size.y
+	pass # Replace with function body.
+
+
+
+func _on_open_aerofoil_button_pressed():
+	var legend_colour_code=legend_colour_code_sc.instance()
+	vbox.add_child(legend_colour_code)
+	legend_colour_code.get_node("TextureRect").material.set_shader_param("random_graph_point_color",global_var.random_graph_point_color)
+	legend_colour_code.get_node("Label").text="Flow Spd : "+str(global_var.m1) + """
+	, Gamma : """ + str(global_var.gamma) 
+	
+	scroll_container.scroll_vertical=legend_colour_code.get_child_count()*vbox.rect_size.y
+	pass # Replace with function body.
+
+
 
 
 func _on_button_hide_pressed():
@@ -66,3 +106,12 @@ func _on_button_clear_pressed():
 	for i in vbox.get_children():
 		i.queue_free()
 	pass # Replace with function body.
+
+
+
+
+
+
+
+
+

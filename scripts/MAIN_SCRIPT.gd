@@ -12,8 +12,8 @@ var horizontal_vector=Vector2(1,0)
 onready var viewport_vec=global_var.viewport_vec
 onready var screen_center=viewport_vec*0.5
 
-var cL_coeff_lift=0
-var cD_coeff_drag=0
+#var cL_coeff_lift=0
+#var cD_coeff_drag=0
 
 
 onready var pivot =get_node("pivot")
@@ -68,6 +68,8 @@ onready var error_log=get_node("error_log")
 onready var error_log_message_box=get_node("error_log/VBoxContainer/background/ScrollContainer/message_box")
 
 onready var graph_legend=get_node("graph_legend")
+
+onready var spline_interpolation_scene=preload("res://scenes/spline_interpolation_scene.tscn")
 
 func _refresh_lists():
 
@@ -800,7 +802,7 @@ func _ca():
 func _cL():
 
 	var cL=cos(pivot.global_rotation)*_cn() - sin(pivot.global_rotation)*_ca()
-	cL_coeff_lift=cL
+#	cL_coeff_lift=cL
 	global_var.cL=cL
 	return cL
 
@@ -812,7 +814,7 @@ func _cL():
 func _cD():
 
 	var cD=sin(pivot.global_rotation)*_cn() + cos(pivot.global_rotation)*_ca()
-	cD_coeff_drag=cD
+#	cD_coeff_drag=cD
 	global_var.cD=cD
 	return cD
 
@@ -839,6 +841,7 @@ func _ready():
 	OS.center_window()
 	_centre_pivot()
 	line2d_bottom.set_width(global_var.aerofoil_outline_thickness)
+	get_node("spline_interpolation/HBoxContainer/button_finish").connect("pressed",self,"_on_spline_interpolation_button_finish_pressed",[],0)
 	
 
 #########################################################################################################
@@ -1365,31 +1368,35 @@ func _on_aerofoil_library_popup_index_pressed(index):
 	save_button.show()
 	graph_legend.show()
 		
+	_clear_lists()
+	_refresh_lists()
+	
+	_remove_duplicate_entries(line2d_bottom)
+	
 	_shift_pivot_mp()
 	
 	_centre_pivot()
 	
-	line2d_bottom.rotate(_clear_AoA())
-	
-	_clear_lists()
-	
-	_refresh_lists()
+	line2d_bottom.global_rotation=_clear_AoA()
+	#global_var.alpha_offset=_clear_AoA()
 	
 	_initialise_lists() #CALLED ONCE
 	
 	###find whether top or bottom side##########################################################################
 	_top_or_bottom()#CALLED ONCE
-
+	
 	###populate ca_pressures sign list#######################################	
 	_ca_PRESSURES()#CALLED ONCE (assumption)
-	#_update_coords_vectors_midpoints()
-
+	
 	###calc area ratio (t/c)###################################	
 	_area_t_c()#CALLED ONCE
-	#print(line2d_bottom.get_point_position(0),global_var.list_point_coords[0])
 	
+	global_var.point_count_before_edit=line2d_bottom.get_point_count()
+	_store_point_coord_before_edit()
 	
-	_find_bow_shock()
+	_clear_lists()
+	
+	_m_or_gamma_slider_changed()
 	
 	
 
@@ -1916,33 +1923,7 @@ func _on_open_aerofoil_button_pressed():
 		
 		#dir.make_dir("res://saved_data_folder")
 			
-		
-		_shift_pivot_mp()
-		
-		_centre_pivot()
-		
-		line2d_bottom.rotate(_clear_AoA())
-		
-		_clear_lists()
-		
-		_refresh_lists()
-		
-		
-		_initialise_lists() #CALLED ONCE
-		
-		###find whether top or bottom side##########################################################################
-		_top_or_bottom()#CALLED ONCE
-	
-		###populate ca_pressures sign list#######################################	
-		_ca_PRESSURES()#CALLED ONCE (assumption)
-		#_update_coords_vectors_midpoints()
-	
-		###calc area ratio (t/c)###################################	
-		_area_t_c()#CALLED ONCE
-		#print(line2d_bottom.get_point_position(0),global_var.list_point_coords[0])
-
-
-
+			
 		edit_button.disabled=false
 		undo_button.disabled=true
 		advanced_button.disabled=false
@@ -1954,8 +1935,40 @@ func _on_open_aerofoil_button_pressed():
 		gamma_slider.show()
 		save_button.show()
 		graph_legend.show()
+			
+			
+			
+
+		_clear_lists()
+		_refresh_lists()
 		
-		_find_bow_shock()
+		_remove_duplicate_entries(line2d_bottom)
+		
+		_shift_pivot_mp()
+		
+		_centre_pivot()
+		
+		line2d_bottom.global_rotation=_clear_AoA()
+		#global_var.alpha_offset=_clear_AoA()
+		
+		_initialise_lists() #CALLED ONCE
+		
+		###find whether top or bottom side##########################################################################
+		_top_or_bottom()#CALLED ONCE
+		
+		###populate ca_pressures sign list#######################################	
+		_ca_PRESSURES()#CALLED ONCE (assumption)
+		
+		###calc area ratio (t/c)###################################	
+		_area_t_c()#CALLED ONCE
+		
+		global_var.point_count_before_edit=line2d_bottom.get_point_count()
+		_store_point_coord_before_edit()
+		
+		_clear_lists()
+		
+		_m_or_gamma_slider_changed()
+
 		
 		
 	else:
@@ -2327,5 +2340,58 @@ func _m_or_gamma_slider_changed():
 
 	_cD()
 	
-	global_var.random_graph_point_color=Color(rand_range(0,1),rand_range(0,1),rand_range(0,1))
+	global_var.random_graph_point_color=Vector3(rand_range(0,1),rand_range(0,1),rand_range(0,1))
 	alpha_slider.value=pivot.global_rotation
+	
+	
+	
+	
+	
+	
+	
+	
+func _on_spline_interpolation_button_finish_pressed():
+	_clear_lists()
+	_refresh_lists()
+	
+	_remove_duplicate_entries(line2d_bottom)
+	
+	_shift_pivot_mp()
+	
+	_centre_pivot()
+	
+	line2d_bottom.global_rotation=_clear_AoA()
+	#global_var.alpha_offset=_clear_AoA()
+	
+	_initialise_lists() #CALLED ONCE
+	
+	###find whether top or bottom side##########################################################################
+	_top_or_bottom()#CALLED ONCE
+	
+	###populate ca_pressures sign list#######################################	
+	_ca_PRESSURES()#CALLED ONCE (assumption)
+	
+	###calc area ratio (t/c)###################################	
+	_area_t_c()#CALLED ONCE
+	
+	global_var.point_count_before_edit=line2d_bottom.get_point_count()
+	_store_point_coord_before_edit()
+	
+	_clear_lists()
+	
+	_m_or_gamma_slider_changed()
+	
+	pass
+	
+	
+	
+	
+	
+	
+	
+	
+#func _input(event):
+#	if event.is_action_pressed("1"):
+#		var spline=spline_interp.instance()
+#		add_child(spline)
+	
