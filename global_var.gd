@@ -3,6 +3,7 @@ extends Node
 
 
 onready var main_scene=preload("res://scenes/Node.tscn")
+onready var help_scene=preload("res://scenes/help_scene.tscn")
 onready var about_scene=preload("res://scenes/about_scene.tscn")
 onready var settings_scene=preload("res://scenes/settings_menu.tscn")
 
