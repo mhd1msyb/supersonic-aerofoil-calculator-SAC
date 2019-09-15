@@ -40,6 +40,7 @@ Download the zipped files for your platform, then extract and run.
  - Download the [S.A.C. Instruction Manual](https://github.com/mhd1msyb/S.A.C._Resources/raw/master/SAC_instruction_manual.pdf) (for v0.3). This manual is a W.I.P.
 
 #### Tutorial Videos
+  - [Essentials Run-through](https://github.com/mhd1msyb/S.A.C._Resources/raw/master/Essentials%20Run-through.m4v)
   - [Sketch an Aerofoil](https://github.com/mhd1msyb/S.A.C._Resources/raw/master/Sketch%20Tutorial.m4v)
   - [Save and Load an Aerofoil](https://github.com/mhd1msyb/S.A.C._Resources/raw/master/Save%20and%20Load%20Aerofoil.m4v)
   - [Show Data Tables](https://github.com/mhd1msyb/S.A.C._Resources/raw/master/Show%20Data%20Tables.m4v)
