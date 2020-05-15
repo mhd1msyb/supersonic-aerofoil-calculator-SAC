@@ -1,0 +1,94 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://textures/back_icon.png" type="Texture" id=1]
+[ext_resource path="res://scripts/back_button.gd" type="Script" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="thanks_for_using" type="RichTextLabel" parent="."]
+margin_left = 278.0
+margin_top = 155.0
+margin_right = 747.0
+margin_bottom = 215.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Thanks for using this program. If you wish to report any bugs/glitches, or have any questions, please open an issue at: https://github.com/mhd1msyb/supersonic-aerofoil-calculator-SAC/issues"
+
+[node name="title" type="Label" parent="."]
+margin_left = 278.0
+margin_right = 506.0
+margin_bottom = 14.0
+rect_scale = Vector2( 2, 2 )
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "Supersonic Aerofoil Calculator - S.A.C. 
+v0.3"
+align = 1
+valign = 1
+
+[node name="VSplitContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.12
+margin_left = 285.0
+margin_top = 509.0
+margin_right = 719.0
+margin_bottom = 601.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="developed_by" type="Label" parent="VSplitContainer"]
+margin_right = 434.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "Developed by Mehdi Msayib and Iain Dupere. Flow data is extracted
+ from Supersonic notes by Iain Dupere"
+align = 1
+valign = 1
+
+[node name="(c)_all_scripts" type="Label" parent="VSplitContainer"]
+margin_top = 48.0
+margin_right = 434.0
+margin_bottom = 92.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "Copyright © 2019 Mehdi Msayib (mhdmsy@hotmail.co.uk)"
+align = 1
+valign = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 284.0
+margin_top = 245.0
+margin_right = 751.0
+margin_bottom = 443.0
+
+[node name="prog" type="RichTextLabel" parent="VBoxContainer"]
+margin_right = 467.0
+margin_bottom = 63.0
+size_flags_vertical = 3
+text = "This program is licensed under the Apache License Version 2.0. Source code can be found at: https://github.com/mhd1msyb/supersonic-aerofoil-calculator-SAC"
+
+[node name="godot" type="RichTextLabel" parent="VBoxContainer"]
+margin_top = 67.0
+margin_right = 467.0
+margin_bottom = 130.0
+size_flags_vertical = 3
+text = "This program uses the Godot Engine, which is licensed under the Expat license : godotengine.org/license"
+
+[node name="freetype" type="RichTextLabel" parent="VBoxContainer"]
+margin_top = 134.0
+margin_right = 467.0
+margin_bottom = 198.0
+size_flags_vertical = 3
+text = "Fonts are rendered using FreeType. Portions of this software are © 2019 The FreeType Project (www.freetype.org). All rights reserved."
+
+[node name="button_back" type="Button" parent="."]
+margin_top = 558.682
+margin_right = 80.0
+margin_bottom = 596.682
+text = "BACK"
+icon = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[connection signal="pressed" from="button_back" to="button_back" method="_on_button_back_pressed"]
