@@ -37,18 +37,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="developed_by" type="Label" parent="VSplitContainer"]
-margin_right = 434.0
-margin_bottom = 44.0
-size_flags_horizontal = 3
-size_flags_vertical = 7
-text = "Developed by Mehdi Msayib and Iain Dupere. Flow data is extracted
- from Supersonic notes by Iain Dupere"
-align = 1
-valign = 1
-
 [node name="(c)_all_scripts" type="Label" parent="VSplitContainer"]
-margin_top = 48.0
 margin_right = 434.0
 margin_bottom = 92.0
 size_flags_horizontal = 3
@@ -90,5 +79,4 @@ margin_bottom = 596.682
 text = "BACK"
 icon = ExtResource( 1 )
 script = ExtResource( 2 )
-
 [connection signal="pressed" from="button_back" to="button_back" method="_on_button_back_pressed"]
